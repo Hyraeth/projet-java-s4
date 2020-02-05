@@ -1,7 +1,9 @@
-Didelot Yannis 21801118 @ydidel28.
+# Liste des membres du projet JAVA : Aquavias
 
-Danyshchuk Ruslan 21803907 @ruslan.
+Didelot Yannis 21801118 @ydidel28
 
-KHIEU William 21806172 @Hyraeth.
+Danyshchuk Ruslan 21803907 @ruslan
 
-Li Julien 21806501 @Juju.
+KHIEU William 21806172 @Hyraeth
+
+Li Julien 21806501 @Juju
