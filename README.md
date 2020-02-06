@@ -6,7 +6,7 @@
 
 - KHIEU William 21806172 @Hyraeth
 
-    - Li Julien 21806501 @Juju
+- Li Julien 21806501 @Juju
 
 # Stockage des niveaux de jeu
 
