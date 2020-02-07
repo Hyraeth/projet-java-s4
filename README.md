@@ -84,7 +84,7 @@ Le fichier JSON sera structuré de la manière suivante :
     },
 }
 ```
-La manière dont on va sauvegarder la configuration d'un niveau reste encore à voir en fonction de commment on modélise les tuyaux (voir plus haut pour idées).
+La manière dont on va sauvegarder la configuration d'un niveau reste encore à voir en fonction de commment on modélise les tuyaux comme la méthode proposée ci-dessus n'est pas définitive.
 
 On aura au moins 2 fichiers JSON. Un qui servira de "backup" lorsqu'on souhaite réinitialiser un niveau. Et un autre qui servira de sauvegarde pour le joueur.
 Cela permettra de pouvoir refaire un niveau afin d'avoir un meilleur score.
