@@ -17,7 +17,7 @@ Et la classe Niveau qui représente un niveau du jeu.
 
 ### Classe Tuyau
 
-Cette classe sera modélisée par un tableau de boolean de taille 4. Chaque indice du tableau correspond à une coordonnée (voir schéma).
+Cette classe sera modélisée par un tableau de boolean de taille 4. Chaque indice du tableau correspond à une coordonnée (voir schéma) De plus chaque tuyau possède un boolean rempli qui indique s'il contient de l'eau ou pas.
 
 Il a a en tout au moins 4 tuyaux :
 
