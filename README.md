@@ -22,16 +22,24 @@ Cette classe sera modélisée par un tableau de boolean de taille 4. Chaque indi
 Il a a en tout au moins 4 tuyaux :
 
 - Un tuyau avec une seule connection qui sert à la fois d'arrivée d'eau et de recepteur d'eau.
+
 Représentation dans l'interface terminale : ╥
+
 Représentation dans l'interface graphique : WIP
 - Un tuyau avec 2 connections opposées.
+
 Représentation dans l'interface terminale : ║
+
 Représentation dans l'interface graphique : WIP
 - Un tuyau avec 2 connections "suivie".
+
 Représentation dans l'interface terminale : ╚
+
 Représentation dans l'interface graphique : WIP
 - Un tuyau avec 3 connections.
+
 Représentation dans l'interface terminale : ╠
+
 Représentation dans l'interface graphique : WIP
 
 Voici par exemple comment un tuyau à 2 connections opposées serait modéliser.
@@ -46,6 +54,17 @@ Il s'agit des tuyaux les plus simples que nous allons implementer au départ. Si
 ### Classe Niveau
 
 Cette classe sera modéliser par une matrice de tuyaux.
+
+Exemple d'affichage d'un niveau dans l'interface terminale :
+
+```bash
+ ╔╝║═╚╔╝═╝
+ ║═╗╝║═╔╚╝
+═╗═╔╔═╝╗╝══
+ ╝╚╗║╗║╗╔║
+ ║╝╚╝═║╗═║
+ ╝╚═╔╚╝║╔╗
+```
 
 ## Stockage des niveaux de jeu
 
