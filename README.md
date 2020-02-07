@@ -1,4 +1,6 @@
-# Liste des membres du projet JAVA : Aquavias
+# Projet de programmation : AQUAVIAS
+
+## Liste des membres du projet
 
 - Didelot Yannis 21801118 @ydidel28
 
@@ -8,7 +10,7 @@
 
 - Li Julien 21806501 @Juju
 
-# Modélisation du jeu
+## Modélisation du jeu
 
 Pour l'instant nous n'avons que 2 classes principale pour le modèle. La classe Tuyau qui servira de bloc de construction pour les niveaux.
 Et la classe Niveau qui représente un niveau du jeu.
@@ -45,7 +47,7 @@ Il s'agit des tuyaux les plus simples que nous allons implementer au départ. Si
 
 Cette classe sera modéliser par une matrice de tuyaux.
 
-# Stockage des niveaux de jeu
+## Stockage des niveaux de jeu
 
 Pour pouvoir stocker les niveaux du jeu on s'est décidé qu'il serait mieux d'utiliser un outil familier.
 Au départ on avait hésiter à utiiser des fichiers XML pour stocker les données des niveaux mais le format JSON est plus adapté à nos besoin. Ce sera donc le format que l'on utilisera pour stocker les niveaux.
@@ -84,7 +86,12 @@ Le fichier JSON sera structuré de la manière suivante :
     },
 }
 ```
+
 La manière dont on va sauvegarder la configuration d'un niveau reste encore à voir en fonction de commment on modélise les tuyaux comme la méthode proposée ci-dessus n'est pas définitive.
 
 On aura au moins 2 fichiers JSON. Un qui servira de "backup" lorsqu'on souhaite réinitialiser un niveau. Et un autre qui servira de sauvegarde pour le joueur.
 Cela permettra de pouvoir refaire un niveau afin d'avoir un meilleur score.
+
+## Organisation de l'interface graphique
+
+WIP
