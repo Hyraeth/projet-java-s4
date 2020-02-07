@@ -23,26 +23,26 @@ Il a a en tout au moins 4 tuyaux :
 
 - Un tuyau avec une seule connection qui sert à la fois d'arrivée d'eau et de recepteur d'eau.
   
-  Représentation dans l'interface terminale : ╥
+  Représentation dans l'interface terminale : ╨ ╞ ╥ ╡
 
   Représentation dans l'interface graphique : WIP
 
 - Un tuyau avec 2 connections opposées.
   
-  Représentation dans l'interface terminale : ║
+  Représentation dans l'interface terminale : ║ ═
 
   Représentation dans l'interface graphique : WIP
 
 - Un tuyau avec 2 connections "suivie".
   
-  Représentation dans l'interface terminale : ╚
+  Représentation dans l'interface terminale : ╚ ╔ ╗ ╝
 
   Représentation dans l'interface graphique : WIP
 
 - Un tuyau avec 3 connections.
   
-  Représentation dans l'interface terminale : ╠
-  
+  Représentation dans l'interface terminale : ╠ ╦ ╣ ╩
+
   Représentation dans l'interface graphique : WIP
 
 Voici par exemple comment un tuyau à 2 connections opposées serait modéliser.
