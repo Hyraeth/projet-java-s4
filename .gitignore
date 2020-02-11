@@ -2,3 +2,6 @@
 test
 target
 *.class
+.classpath
+.project
+org.*
