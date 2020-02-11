@@ -1,4 +1,4 @@
-package Aquavias.model;
+package Aquavias.Model;
 
 public class Tuyau {
     private boolean[] entrees;
