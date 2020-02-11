@@ -1,9 +1,4 @@
 .vscode
-target
-target/*
-*.class
-.project
-.classpath
-org.*
-main
 test
+target
+*.class
