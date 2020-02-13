@@ -1,9 +1,11 @@
-Cette semaine je me suis surtout interessé à la mise en place d'un algorithme de qui permet de generer des niveaux, et j'ai commencé à implémenter
-l'interface graphique.
+Cette semaine je me suis surtout interessé à la mise en place d'un algorithme permettant
+de generer des niveaux et j'ai commencé à implémenterl'interface graphique.
 
-Pour l'algorithme de génération de niveau, j'ai fait des recherches sur la maniere d'implementer la generation aleatoire de circuit, on devrait
-donc mettre en place l'algorithme de Growing Tree. J'ai commencé à créer la classe génération de cet algorithme, mais je n'ai pas beaucoup avancé..
-J'avais du mal à comprendre en detail cet algorithme, et j'ai pas reussi à le coder directement en l'adaptant à nos fichiers de sauvegarde étant donné
-qu'on a eu 2 controles et 2 partiels cette semaine, je voulais le finir pendant la semaine de pause qui arrive.
+Pour l'algorithme de génération de niveau, j'ai fait des recherches sur la maniere d'implementer
+la generation aleatoire de circuit, on devrait donc mettre en place l'algorithme de Growing Tree. 
+J'ai commencé à créer la classe génération de cet algorithme, mais je n'ai pas beaucoup avancé..
+J'avais du mal à comprendre en detail cet algorithme, et j'ai pas reussi à le coder directement 
+en l'adaptant à nos fichiers de sauvegarde étant donné qu'on a eu 2 controles et 2 partiels cette 
+semaine. Je vais me rattraper durant la semaine de pause qui arrive.
 
 J'ai comencé à coder l'interface graphique en mettant les boutons principaux du menu.
