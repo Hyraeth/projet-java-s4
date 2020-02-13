@@ -123,6 +123,7 @@ WIP
 ### Jeu
 
 La règle principale est de réussir à relier la source à la ville en formant une série finie de "tuyau" ou de "pont".
+
 Par contre, il ne faut pas qu'un tuyau reliant ces deux points menne à une issue vide.
 
 Il y a 3 variantes dans le jeu:
@@ -137,4 +138,5 @@ Il y a 3 variantes dans le jeu:
 ### Menu
 
 Un niveau est accessible si et seulement si le niveau précédent a déjà été terminé. Une ecception existe pour le tout premier niveau.
+
 Un niveau déjà fait se démarque des autres par un affichage d'une couleur différente.
