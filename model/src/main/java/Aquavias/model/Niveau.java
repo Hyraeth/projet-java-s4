@@ -19,16 +19,11 @@ public class Niveau {
 
     }
 
-    //Importe un niveau
-    public void load() {
-
-    }
-
     //affiche le plateau dans le terminal
     public void affiche() {
         for (int i = 0; i < niveau.length; i++) {
             for (int j = 0; j < niveau[i].length; j++) {
-                if(niveau[i][j] != null) System.out.print(niveau[i][j]);
+                if(niveau[i][j] != null) niveau[i][j].afficher();
                 else System.out.println(" ");
             }
             System.out.println();

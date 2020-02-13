@@ -2,7 +2,7 @@ package Aquavias.model;
 
 public class Tuyau {
     //Entre/sortie/rien
-    private String type;
+    private char type;
     //liste des entrées possibles
     private boolean[] connections;
     //savoir si un tuyau est rempli
@@ -12,43 +12,49 @@ public class Tuyau {
     //pour faciliter l'interface graphique
     private String fileName;
 
-    public Tuyau(int i, boolean fill, String t) {
+    public Tuyau(int i, char t) {
         //chaque i correspond à un tuyau diffrent. fill indique si le tuyau est rempli dès sa création
         switch (i) {
             //Entree sortie
             case 0:
                 connections = new boolean[]{true, false, false, false};
-                rempli = fill;
+                rempli = false;
                 type = t;
                 afficheTerm = new char[]{'╨','╞','╥','╡'};
-                fileName = t+"0"+fill;
+                if(t=='E') fileName = t+"0"+true;
+                else fileName = t+"0"+false;
                 break;
             //Tuyau en L
             case 1:
                 connections = new boolean[]{true, true, false, false};
-                rempli = fill;
+                rempli = false;
                 type = t;
                 afficheTerm = new char[]{'╚','╔', '╗', '╝'};
-                fileName = t+"1"+fill;
+                fileName = t+"1"+false;
                 break;
             //Tuyau droit
             case 2:
                 connections = new boolean[]{true, false, true, false};
-                rempli = fill;
+                rempli = false;
                 type = t;
                 afficheTerm = new char[]{'║','═','║','═'};
-                fileName = t+"2"+fill;
+                fileName = t+"2"+false;
                 break;
             //Tuyau en T
             case 3:
                 connections = new boolean[]{true, true, true, false};
-                rempli = fill;
+                rempli = false;
                 type = t;
                 afficheTerm = new char[]{'╠', '╦', '╣', '╩'};
-                fileName = t+"3"+fill;
+                fileName = t+"3"+false;
                 break;
             //Tuyaux nulls
             default:
+                connections = new boolean[]{true, true, true, true};
+                rempli = false;
+                type = 'S';
+                afficheTerm = new char[]{'╬', '╬', '╬', '╬'};
+                fileName = t+"4"+false;
                 break;
         }
     }
@@ -80,13 +86,29 @@ public class Tuyau {
         return false;
     }
 
+    public int getRotation() {
+        for (int i = 0; i < connections.length; i++) {
+            if(connections[i]) return i;
+        }
+        return 0;
+    }
+
+    public void afficher() {
+        System.out.println(afficheTerm[0]);
+    }
+
     public String toString() {
-        return afficheTerm[0]+"";
+        return fileName;
     }
 
     //
     public boolean isRacine() {
-        if(rempli && fileName.equals("racine")) return true;
+        if(rempli && fileName.equals("E0true") && type=='E') return true;
+        return false;
+    }
+
+    public boolean isArrivee() {
+        if(type=='S') return true;
         return false;
     }
 }
