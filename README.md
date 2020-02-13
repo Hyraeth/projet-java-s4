@@ -117,3 +117,26 @@ Cela permettra de pouvoir refaire un niveau afin d'avoir un meilleur score.
 ## Organisation de l'interface graphique
 
 WIP
+
+## Règles du Jeu
+
+### Jeu
+
+La règle principale est de réussir à relier la source à la ville en formant une série finie de "tuyau" ou de "pont".
+
+Par contre, il ne faut pas qu'un tuyau reliant ces deux points menne à une issue vide.
+
+Il y a 3 variantes dans le jeu:
+
+- La première variante est que la source et les mouvements sont illimités. Il n'y a donc aucune contrainte pour ces niveaux
+
+- La deuxième variante est que la source est illimitée mais les mouvements sont limités.
+
+- La troisième variante est le contraire, c'est-à-dire que la source est limitée mais les mouvements illimités. 
+  (Pour cette variante on peut implémenter un compte à rebour qui se lance si on rencontre un tuyau qui a une sortie[True] et qui ne rencontre pas de tuyau ou qui rencontre un tuyau qui a une entrée[False])
+
+### Menu
+
+Un niveau est accessible si et seulement si le niveau précédent a déjà été terminé. Une ecception existe pour le tout premier niveau.
+
+Un niveau déjà fait se démarque des autres par un affichage d'une couleur différente.
