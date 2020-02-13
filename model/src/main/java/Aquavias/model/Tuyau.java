@@ -1,32 +1,54 @@
 package Aquavias.model;
 
 public class Tuyau {
+    //Entre/sortie/rien
+    private String type;
     //liste des entrées possibles
-    private boolean[] connections = new boolean[4];
+    private boolean[] connections;
     //savoir si un tuyau est rempli
     private boolean rempli;
     //affiche un char associé à un tuyau
-    private char[] afficheTerm = new char[4];
-    //pour faciliter l'interface gaphique
+    private char[] afficheTerm;
+    //pour faciliter l'interface graphique
     private String fileName;
 
-    public Tuyau(int i, boolean fill) {
+    public Tuyau(int i, boolean fill, String t) {
         //chaque i correspond à un tuyau diffrent. fill indique si le tuyau est rempli dès sa création
         switch (i) {
+            //Entree sortie
             case 0:
-
+                connections = new boolean[]{true, false, false, false};
+                rempli = fill;
+                type = t;
+                afficheTerm = new char[]{'╨','╞','╥','╡'};
+                fileName = t+"0"+fill;
                 break;
+            //Tuyau en L
             case 1:
-
+                connections = new boolean[]{true, true, false, false};
+                rempli = fill;
+                type = t;
+                afficheTerm = new char[]{'╚','╔', '╗', '╝'};
+                fileName = t+"1"+fill;
                 break;
+            //Tuyau droit
             case 2:
-
+                connections = new boolean[]{true, false, true, false};
+                rempli = fill;
+                type = t;
+                afficheTerm = new char[]{'║','═','║','═'};
+                fileName = t+"2"+fill;
                 break;
+            //Tuyau en T
             case 3:
-            
+                connections = new boolean[]{true, true, true, false};
+                rempli = fill;
+                type = t;
+                afficheTerm = new char[]{'╠', '╦', '╣', '╩'};
+                fileName = t+"3"+fill;
                 break;
+            //Tuyaux nulls
             default:
-                //Niveaux null
                 break;
         }
     }
