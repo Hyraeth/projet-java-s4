@@ -1,3 +1,3 @@
-Pour lancer le programme -> 
-javac *.java
+Pour lancer le programme -> \n
+javac *.java \n
 java Lanceur
