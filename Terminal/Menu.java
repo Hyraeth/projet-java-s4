@@ -6,9 +6,9 @@ public class Menu{
   }
 
   //Affiche la barre de menu
-  public void afficherMenu(){
+  public void affiche(){
     System.out.println(
-    "\n              MENU         \n"
+    Color.WHITE_BOLD_BRIGHT+"\n              MENU         \n"+Color.RESET
     +  "      _____________________\n\n"
     +  "            JOUER(j)\n"
     +  "            CREER(c)\n"
