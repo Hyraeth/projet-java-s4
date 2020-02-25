@@ -54,7 +54,6 @@ public class Niveau {
     public void initConfig (String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
-        int largeur = getLargeur();
         if(s.length()%3==0) {
             for (int i = 0; i < s.length(); i+=3) {
                 niveau[i/longueur][i%longueur] = initPipe.getPipe("qqchose", false);
