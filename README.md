@@ -116,4 +116,5 @@ Cela permettra de pouvoir refaire un niveau afin d'avoir un meilleur score.
 
 ## Organisation de l'interface graphique
 
-WIP
+Organisation de l'interface graphique:
+![graphique Aquavias](graphiqueaqua.png)
