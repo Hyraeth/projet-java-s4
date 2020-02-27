@@ -27,6 +27,18 @@
     </dependency>
   </dependencies>
 
+  <dependencies>
+    <groupId>Aquavias.model</groupId>
+    <artifactId>model</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </dependencies>
+
+  <dependencies>
+    <groupId>Aquavias.controller</groupId>
+    <artifactId>controller</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </dependencies>
+
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
