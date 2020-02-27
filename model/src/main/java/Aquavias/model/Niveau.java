@@ -1,7 +1,6 @@
 package Aquavias.model;
 
 import java.io.*;
-import java.util.*;
 
 import org.apache.commons.io.FileUtils;
 import org.json.*;
@@ -56,7 +55,8 @@ public class Niveau {
         int longueur = getLongueur();
         if(s.length()%3==0) {
             for (int i = 0; i < s.length(); i+=3) {
-                niveau[i/longueur][i%longueur] = initPipe.getPipe("qqchose", false);
+                boolean moveable = (s.charAt(i+1)=='T')? true : false;
+                niveau[i/longueur][i%longueur] = initPipe.getPipe(Character.getNumericValue(s.charAt(i)), moveable);
                 niveau[i/longueur][i%longueur].rotate(Character.getNumericValue(s.charAt(i+1)));
             }
         }
@@ -64,11 +64,31 @@ public class Niveau {
 
     //tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
-        niveau[i][j].rotate();
+        if(coups != 0) {
+            niveau[i][j].rotate();
+            coups--;
+        }
     }
 
     //Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
     public void flow() {
+
+    }
+
+    public void calculateScore() {
+        score = "qqchose".length();
+    }
+
+    public boolean finish() {
+        for (int i = 0; i < niveau.length; i++) {
+            for (int j = 0; j < niveau[i].length; j++) {
+                if(niveau[i][j] != null && (niveau[i][j] instanceof PipeArrivee)) return niveau[i][j].rempli;
+            }
+        }
+        return false;
+    }
+
+    public void saveScore() {
 
     }
 
