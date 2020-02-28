@@ -141,3 +141,11 @@ Il y a 3 variantes dans le jeu:
 Un niveau est accessible si et seulement si le niveau précédent a déjà été terminé. Une ecception existe pour le tout premier niveau.
 
 Un niveau déjà fait se démarque des autres par un affichage d'une couleur différente.
+
+## Execution
+
+Pour lancer le programme, faire la commande suivante depuis le répertoire racine :
+
+```
+make run
+```
