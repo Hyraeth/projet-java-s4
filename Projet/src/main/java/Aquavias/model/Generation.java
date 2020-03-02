@@ -74,8 +74,8 @@ public class Generation {
   }
 
   public static void main(String[] args) {
-    int i=6;
-    int j=6;
+    int i=9;
+    int j=9;
     Generation g1 = generer(i,j);
     affiche(g1.tab);
     Niveau n1 = new Niveau(i,j);
@@ -148,7 +148,7 @@ public class Generation {
 
   //return un tuyau aleatoire:
   public static Pipe pipeAlea() {
-    int n = (int)(Math.random() * 4);
+    int n = (int)(Math.random() * 6);
     switch(n) {
       case 0:
         return new PipeL(true);
@@ -156,6 +156,10 @@ public class Generation {
         return new PipeI(true);
       case 2:
         return new PipeT(true);
+      case 3:
+        return null;
+      case 4:
+        return null;
       default:
         return new PipeX();
     }
