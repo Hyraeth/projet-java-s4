@@ -56,7 +56,7 @@ public abstract class Pipe {
     }
 
     public void affiche() {
-        System.out.println(afficheTerm[index+getRotation()]);
+        System.out.print(afficheTerm[index+getRotation()]);
     }
     public String toString() {
         return fileName;
@@ -67,10 +67,10 @@ class PipeDepart extends Pipe{
 
     public PipeDepart() {
         this.moveable = false;
-        this.connections = new boolean[]{true, false, false, false};
+        this.connections = new boolean[]{false, true, false, false};
         this.rempli = true;
         this.fileName = "Depart";
-        this.rotation = 0;
+        this.rotation = 1;
         this.index = 0;
     }
 
@@ -80,10 +80,10 @@ class PipeArrivee extends Pipe {
 
     public PipeArrivee() {
         this.moveable = false;
-        this.connections = new boolean[]{true, false, false, false};
+        this.connections = new boolean[]{false, false, false, true};
         this.rempli = false;
         this.fileName = "Arrivee";
-        this.rotation = 0;
+        this.rotation = 3;
         this.index = 0;
     }
 
@@ -136,6 +136,6 @@ class PipeX extends Pipe {
     }
 
     public void affiche() {
-        System.out.println("╬");
+        System.out.print("╬");
     }
 }

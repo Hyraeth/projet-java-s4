@@ -11,6 +11,8 @@ public class Niveau {
     private int coups;
     private int score;
 
+    public void setNiveau(Pipe[][] pip) {niveau=pip;}
+
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
         this.coups = 0;
@@ -54,9 +56,11 @@ public class Niveau {
     public void initConfig (String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
+        int n;
         if(s.length()%3==0) {
             for (int i = 0; i < s.length(); i+=3) {
-                niveau[i/longueur][i%longueur] = initPipe.getPipe("qqchose", false);
+                n = (int)(Math.random() * 7);
+                niveau[i/longueur][i%longueur] = initPipe.getPipe(n, false);
                 niveau[i/longueur][i%longueur].rotate(Character.getNumericValue(s.charAt(i+1)));
             }
         }
@@ -77,7 +81,7 @@ public class Niveau {
         for (int i = 0; i < niveau.length; i++) {
             for (int j = 0; j < niveau[i].length; j++) {
                 if(niveau[i][j] != null) niveau[i][j].affiche();
-                else System.out.println(" ");
+                else System.out.print(" ");
             }
             System.out.println();
         }
