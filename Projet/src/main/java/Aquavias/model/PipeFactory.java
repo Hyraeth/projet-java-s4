@@ -1,7 +1,7 @@
 package Aquavias.model;
 
 public class PipeFactory {
-    public Pipe getPipe(String PipeType, boolean moveable) {
+    public Pipe getPipe(int PipeType, boolean moveable) {
         switch (PipeType) {
             case 0:
                 return new PipeDepart();
