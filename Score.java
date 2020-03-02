@@ -8,14 +8,14 @@ public class Score {
 
   public void afficher(int[] scoreComparaison, int score) {
 
-    if (score <= scoreComparaison[2]) {
+    if (score <= scoreComparaison[2] && score > scoreComparaison[1]) {
       System.out.println("                        ★★★");
       System.out.println("                     Excellent");
-    } else if (score <= scoreComparaison[1]) {
+    } else if (score <= scoreComparaison[1] && score > scoreComparaison[0]) {
         System.out.println("                        ★★");
         System.out.println("                       Bien");
         }
-        else if (score <= scoreComparaison[0]) {
+        else if (score <= scoreComparaison[0] && score > scoreComparaison[0]+5) {
           System.out.println("                        ★");
           System.out.println("                        Ok");
           }
