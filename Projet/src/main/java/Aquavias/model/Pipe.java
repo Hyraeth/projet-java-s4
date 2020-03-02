@@ -56,7 +56,7 @@ public abstract class Pipe {
     }
 
     public void affiche() {
-        System.out.println(afficheTerm[index+getRotation()]);
+        System.out.print(afficheTerm[index+getRotation()]);
     }
     public String toString() {
         return fileName;
@@ -136,6 +136,6 @@ class PipeX extends Pipe {
     }
 
     public void affiche() {
-        System.out.println("╬");
+        System.out.print("╬");
     }
 }

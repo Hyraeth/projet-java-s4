@@ -77,7 +77,7 @@ public class Niveau {
         for (int i = 0; i < niveau.length; i++) {
             for (int j = 0; j < niveau[i].length; j++) {
                 if(niveau[i][j] != null) niveau[i][j].affiche();
-                else System.out.println(" ");
+                else System.out.print(" ");
             }
             System.out.println();
         }

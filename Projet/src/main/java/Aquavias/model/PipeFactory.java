@@ -3,17 +3,17 @@ package Aquavias.model;
 public class PipeFactory {
     public Pipe getPipe(String PipeType, boolean moveable) {
         switch (PipeType) {
-            case "depart":
+            case 0:
                 return new PipeDepart();
-            case "arrivee":
+            case 1:
                 return new PipeArrivee();
-            case "pipeL":
+            case 2:
                 return new PipeL(moveable);
-            case "pipeI":
+            case 3:
                 return new PipeI(moveable);
-            case "pipeT":
+            case 4:
                 return new PipeT(moveable);
-            case "pipeX":
+            case 5:
                 return new PipeX();
             default:
                 return null;
