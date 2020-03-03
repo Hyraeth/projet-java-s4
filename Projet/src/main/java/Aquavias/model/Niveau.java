@@ -86,4 +86,20 @@ public class Niveau {
             System.out.println();
         }
     }
+    //affiche le plateau dans le terminal avec des séparation.
+    public void afficheAvecCase() {
+        for (int i = 0; i < niveau.length; i++) {
+            for (int j = 0; j < niveau[i].length; j++) {
+                if (j==0) System.out.print("|");
+                if(niveau[i][j] != null) niveau[i][j].affiche();
+                else System.out.print(" ");
+                System.out.print("|");
+            }
+            System.out.println();
+            for (int j = 0; j < 2*niveau[i].length+1; j++) {
+                System.out.print("-");
+            }
+            System.out.println();
+        }
+    }
 }

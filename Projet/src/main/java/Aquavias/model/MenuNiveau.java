@@ -1,9 +1,11 @@
-public class Niveau{
+package Aquavias.model;
+
+public class MenuNiveau{
   public int Norm; //Nombre de niveau normaux
   public int Pers; //Nombre de niveau personnalisés
 
   //Constructeur
-  public Niveau(int n,int p){
+  public MenuNiveau(int n,int p){
     Norm = n;
     Pers = p;
   }
@@ -12,6 +14,12 @@ public class Niveau{
   public void LanceNivN(int x){
     System.out.println("Voir dans le fichier JSON le niveau normal numero "+ x);
     System.out.println("Disponible dans une prochaîne mise à jour...");
+    int i=5;
+    int j=15;
+    Generation g1 = Generation.generer(i,j);
+    Niveau n1 = new Niveau(i,j);
+    n1.setNiveau(Generation.const1(g1.getTab()));
+    n1.affiche();
   }
 
   //Permet de lancer le niveau personnalisé numéro x

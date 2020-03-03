@@ -1,3 +1,5 @@
+package Aquavias.model;
+
 import java.util.*;
 import java.io.*;
 
@@ -13,7 +15,7 @@ public class Jeu{
 
   //Lancé si le joueur veut creer
   public void creer(){
-    Creation c = new Creation();
+    /*Creation c = new Creation();
     while(true){
       //Affiche la fenêtre de création de niveau
       c.affiche();
@@ -21,7 +23,7 @@ public class Jeu{
       if(rep.equals("r")) return; //Retour
       else if(rep.equals("q")) System.exit(0); //Quitter
       else System.out.println("Je n'ai pas compris.");
-    }
+    }*/
   }
 
   //Lancé si le joueur veut jouer
@@ -48,7 +50,7 @@ public class Jeu{
   //Lanceur de niveau (normal ou personnalisé)
   public void lanceNiv(String s){
     while(true){
-      Niveau n = new Niveau(25,13);
+      MenuNiveau n = new MenuNiveau(25,13);
       if(s.equals("n")){ //Si il faut lancer un niveau normal
         n.afficheNorm(); //Affiche la liste des niveaux normaux
         int x;
