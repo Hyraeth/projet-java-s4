@@ -1,3 +1,5 @@
+package Aquavias.model;
+
 public class Menu{
 
   //Constructeur

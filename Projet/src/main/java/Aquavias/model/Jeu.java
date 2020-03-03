@@ -1,3 +1,5 @@
+package Aquavias.model;
+
 import java.util.*;
 import java.io.*;
 

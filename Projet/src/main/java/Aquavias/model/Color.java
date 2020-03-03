@@ -1,3 +1,5 @@
+package Aquavias.model;
+
 public enum Color {
     //Reset Colors
     RESET("\033[0m"),

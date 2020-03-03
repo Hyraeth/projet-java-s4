@@ -1,3 +1,5 @@
+package Aquavias.model;
+
 public class PipeFactory {
     public Pipe getPipe(int PipeType, boolean moveable) {
         switch (PipeType) {

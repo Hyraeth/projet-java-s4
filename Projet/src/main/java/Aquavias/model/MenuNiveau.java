@@ -1,3 +1,5 @@
+package Aquavias.model;
+
 public class MenuNiveau{
   public int Norm; //Nombre de niveau normaux
   public int Pers; //Nombre de niveau personnalisés
