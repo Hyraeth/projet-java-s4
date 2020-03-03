@@ -1,7 +1,6 @@
-package Aquavias.model;
-
 public class Generation {
   private static int[][] tab;
+  public int[][] getTab(){return tab;}
 
   public Generation(int[][] a) {
     tab = a;

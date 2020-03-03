@@ -1,10 +1,8 @@
-package Aquavias.model;
-
 import java.io.*;
 import java.util.*;
 
-import org.apache.commons.io.FileUtils;
-import org.json.*;
+//import org.apache.commons.io.FileUtils;
+//import org.json.*;
 
 public class Niveau {
     private Pipe[][] niveau;
@@ -23,7 +21,7 @@ public class Niveau {
         this(0,0);
     }
 
-    public void load (File f, String type, int lvl) throws IOException {
+    /*public void load (File f, String type, int lvl) throws IOException {
 		if (!f.exists()) return;
 		JSONObject json = new JSONObject (FileUtils.readFileToString (f, "utf-8"));
 		JSONArray lvl_liste = json.getJSONArray (type);
@@ -74,7 +72,7 @@ public class Niveau {
     //Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
     public void flow() {
 
-    }
+    }*/
 
     //affiche le plateau dans le terminal
     public void affiche() {
@@ -82,6 +80,22 @@ public class Niveau {
             for (int j = 0; j < niveau[i].length; j++) {
                 if(niveau[i][j] != null) niveau[i][j].affiche();
                 else System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+    //affiche le plateau dans le terminal avec des séparation.
+    public void afficheAvecCase() {
+        for (int i = 0; i < niveau.length; i++) {
+            for (int j = 0; j < niveau[i].length; j++) {
+                if (j==0) System.out.print("|");
+                if(niveau[i][j] != null) niveau[i][j].affiche();
+                else System.out.print(" ");
+                System.out.print("|");
+            }
+            System.out.println();
+            for (int j = 0; j < 2*niveau[i].length+1; j++) {
+                System.out.print("-");
             }
             System.out.println();
         }

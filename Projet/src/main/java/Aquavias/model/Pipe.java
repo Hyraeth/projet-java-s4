@@ -1,5 +1,3 @@
-package Aquavias.model;
-
 public abstract class Pipe {
     //Si la pièce peut etre tournée
     protected boolean moveable;
