@@ -80,32 +80,33 @@ Le fichier JSON sera structuré de la manière suivante :
 {
 //Niveaux préconçus
 "niveaux_off" :
-    {
-        "001" : {
+    [
+        {
             //La taille du niveau
-            "taille" : n m,
+            "longueur" : n,
+            "largeur" : m,
             //Configuration du niveau, i.e. la répartition des tuyaux
             "configuration" : ,
             "score" : ,
             "coups" ; ,
         },
-        "002" : {
+        {
             ...
         }
-    },
+    ],
 //Niveaux créés à l'aide de l'éditeur de niveau
 "niveaux_cus" :
-    {
-       "001" : {
+    [
+       {
             "taille" : ,
             "configuration" : ,
             "score" : ,
             "coups" ; ,
         },
-        "002" : {
+        {
             ...
         }
-    },
+    ],
 }
 ```
 
