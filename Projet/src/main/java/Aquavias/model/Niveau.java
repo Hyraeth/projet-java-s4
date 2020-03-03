@@ -3,8 +3,8 @@ package Aquavias.model;
 import java.io.*;
 import java.util.*;
 
-//import org.apache.commons.io.FileUtils;
-//import org.json.*;
+import org.apache.commons.io.FileUtils;
+import org.json.*;
 
 public class Niveau {
     private Pipe[][] niveau;
@@ -23,7 +23,7 @@ public class Niveau {
         this(0,0);
     }
 
-    /*public void load (File f, String type, int lvl) throws IOException {
+    public void load (File f, String type, int lvl) throws IOException {
 		if (!f.exists()) return;
 		JSONObject json = new JSONObject (FileUtils.readFileToString (f, "utf-8"));
 		JSONArray lvl_liste = json.getJSONArray (type);
@@ -74,7 +74,7 @@ public class Niveau {
     //Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
     public void flow() {
 
-    }*/
+    }
 
     //affiche le plateau dans le terminal
     public void affiche() {
