@@ -1,0 +1,53 @@
+
+{
+  "niveaux_off"  :
+   {
+     "001" : {
+       "taille" : [3,4],
+       "configuration" : "00F13T21T02T40T30T13T11T11T20T12T12T",
+       "score" : 0,
+       "nb_coups" : 5,
+       "coups_min" : 4
+     },
+
+     "002" : {
+       "taille" : [4,3],
+       "configuration" : ,
+       "score" : 0,
+       "nb_coups" : ,
+       "coups_min" : 
+     },
+
+     "003" : {
+       "taille" : [4,4],
+       "configuration" : ,
+       "score" : 0,
+       "nb_coups" : ,
+       "coups_min" : ,
+     },
+
+     "004" : {
+       "taille" : [5,4],
+       "configuration" : ,
+       "score" : 0,
+       "nb_coups" : ,
+       "coups_min" : ,
+     }
+
+
+   },
+
+   "niveaux_cus" :
+   {
+     "001" : {
+            "taille" : ,
+            "configuration" : ,
+            "score" : ,
+            "coups" : ,
+        },
+        "002" : {
+
+        }
+
+   }
+}
