@@ -11,6 +11,6 @@ public class App
     {
         System.out.println( "Hello World!" );
         String [] a = {"a"};
-        Generation.main(a);
+        Lanceur.main(a);
     }
 }
