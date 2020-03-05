@@ -55,7 +55,6 @@ public class Niveau {
     public void initConfig (String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
-        int n;
         if(s.length()%3==0) {
             for (int i = 0; i < s.length(); i+=3) {
                 boolean moveable = (s.charAt(i+1)=='T')? true : false;
