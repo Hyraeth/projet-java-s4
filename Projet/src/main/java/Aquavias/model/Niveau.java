@@ -28,7 +28,7 @@ public class Niveau {
     public void load(File f, String type, int lvl) throws IOException {
         if (!f.exists())
             return;
-        
+        System.out.println("file found");
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
 
@@ -38,7 +38,8 @@ public class Niveau {
         int longueur = level.getInt("longueur");
         this.setSize(largeur, longueur);
 
-        String config = level.getString("config");
+        String config = level.getString("configuration");
+        System.out.println(config);
         initConfig(config);
 
         this.coups = level.getInt("coups");
@@ -60,11 +61,12 @@ public class Niveau {
     public void initConfig(String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
+        System.out.println(longueur);
         if (s.length() % 3 == 0) {
             for (int i = 0; i < s.length(); i += 3) {
-                boolean moveable = (s.charAt(i + 1) == 'T') ? true : false;
-                niveau[i / longueur][i % longueur] = initPipe.getPipe(Character.getNumericValue(s.charAt(i)), moveable);
-                niveau[i / longueur][i % longueur].rotate(Character.getNumericValue(s.charAt(i + 1)));
+                boolean moveable = (s.charAt(i + 2) == 'T') ? true : false;
+                niveau[i / (3*longueur)][(i / 3)%longueur] = initPipe.getPipe(Character.getNumericValue(s.charAt(i)), moveable);
+                niveau[i / (3*longueur)][(i / 3)%longueur].rotate(Character.getNumericValue(s.charAt(i + 1)));
             }
         }
     }
@@ -149,13 +151,17 @@ public class Niveau {
     public static void main(String[] args) {
         Niveau n = new Niveau();
         n.affiche();
-        File f = new File("..\\assets\\lvls\\niveau.json");
+        File f = new File("assets\\lvls\\niveau.json");
         System.out.println(f.toPath());
         try {
             n.load(f, "niveaux_off", 0);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(n);
+        n.affiche();
+        System.out.println(n.niveau[1][1]);
+        n.rotate(1, 1);
+        System.out.println();
+        n.affiche();
     }
 }

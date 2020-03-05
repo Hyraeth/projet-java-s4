@@ -17,13 +17,11 @@ public abstract class Pipe {
     protected int index;
 
     public void rotate() {
-        for (int i = 0; i < connections.length; i++) {
-            //On décale le tableau vers la droite
-            connections[i] = connections[(i-1)%4];
-            afficheTerm[i] = afficheTerm[(i-1)%4];
-            rotation++;
-            rotation %= 4;
-        }
+        boolean last = connections[connections.length-1];
+        for( int index =connections.length-2; index >= 0 ; index-- )
+            connections[index+1] = connections[index];
+        connections[0] = last;
+        rotation = (rotation+1)%4;
     }
 
     public void rotate(int i) {
@@ -60,6 +58,22 @@ public abstract class Pipe {
     }
     public String toString() {
         return fileName;
+    }
+
+    public static void main(String[] args) {
+        PipeDepart pd = new PipeDepart();
+        PipeArrivee pa = new PipeArrivee();
+        PipeI pi = new PipeI(true);
+        PipeL pl = new PipeL(true);
+        PipeT pt = new PipeT(true);
+        PipeX px = new PipeX();
+        pd.affiche();
+        pa.affiche();
+        pi.affiche();
+        pl.affiche();
+        pt.affiche();
+        px.affiche();
+        pd.rotate(); pd.affiche();
     }
 } 
 
