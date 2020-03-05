@@ -10,6 +10,8 @@ public class Niveau {
     private int coups;
     private int score;
 
+    public void setNiveau(Pipe[][] pip) {niveau=pip;}
+
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
         this.coups = 0;
@@ -53,6 +55,7 @@ public class Niveau {
     public void initConfig (String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
+        int n;
         if(s.length()%3==0) {
             for (int i = 0; i < s.length(); i+=3) {
                 boolean moveable = (s.charAt(i+1)=='T')? true : false;
@@ -97,7 +100,23 @@ public class Niveau {
         for (int i = 0; i < niveau.length; i++) {
             for (int j = 0; j < niveau[i].length; j++) {
                 if(niveau[i][j] != null) niveau[i][j].affiche();
-                else System.out.println(" ");
+                else System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+    //affiche le plateau dans le terminal avec des séparation.
+    public void afficheAvecCase() {
+        for (int i = 0; i < niveau.length; i++) {
+            for (int j = 0; j < niveau[i].length; j++) {
+                if (j==0) System.out.print("|");
+                if(niveau[i][j] != null) niveau[i][j].affiche();
+                else System.out.print(" ");
+                System.out.print("|");
+            }
+            System.out.println();
+            for (int j = 0; j < 2*niveau[i].length+1; j++) {
+                System.out.print("-");
             }
             System.out.println();
         }
