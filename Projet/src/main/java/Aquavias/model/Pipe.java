@@ -83,7 +83,7 @@ class PipeDepart extends Pipe{
         this.moveable = false;
         this.connections = new boolean[]{false, true, false, false};
         this.rempli = true;
-        this.fileName = "Depart";
+        this.fileName = "Depart"+rempli;
         this.rotation = 1;
         this.index = 0;
     }
@@ -96,7 +96,7 @@ class PipeArrivee extends Pipe {
         this.moveable = false;
         this.connections = new boolean[]{false, false, false, true};
         this.rempli = false;
-        this.fileName = "Arrivee";
+        this.fileName = "Arrivee"+rempli;
         this.rotation = 3;
         this.index = 0;
     }
@@ -109,7 +109,7 @@ class PipeL extends Pipe {
         this.moveable = move;
         this.connections = new boolean[]{true, true, false, false};
         this.rempli = false;
-        this.fileName = "PipeL";
+        this.fileName = "PipeL"+rempli;
         this.rotation = 0;
         this.index = 4;
     }
@@ -122,7 +122,7 @@ class PipeI extends Pipe {
         this.moveable = move;
         this.connections = new boolean[]{true, false, true, false};
         this.rempli = false;
-        this.fileName = "PipeI";
+        this.fileName = "PipeI"+rempli;
         this.rotation = 0;
         this.index = 8;
     }
@@ -134,7 +134,7 @@ class PipeT extends Pipe {
         this.moveable = move;
         this.connections = new boolean[]{true, true, true, false};
         this.rempli = false;
-        this.fileName = "PipeT";
+        this.fileName = "PipeT"+rempli;
         this.rotation = 0;
         this.index = 12;
     }
@@ -146,7 +146,7 @@ class PipeX extends Pipe {
         this.moveable = false;
         this.connections = new boolean[]{true, true, true, true};
         this.rempli = false;
-        this.fileName = "PipeX";
+        this.fileName = "PipeX"+rempli;
     }
 
     public void affiche() {
