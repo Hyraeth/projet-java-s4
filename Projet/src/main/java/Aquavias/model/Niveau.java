@@ -76,7 +76,7 @@ public class Niveau {
 
     //affiche le plateau dans le terminal
     public void affiche() {
-        System.out.print("           Niveau 1\n\n  ");  // on changera le 1 par le niveau du fichier json après
+        System.out.print("           Niveau 1     coups: " + coups + "\n\n");  // on changera le 1 par le niveau du fichier json après
         for (int x = 0; x< niveau[0].length; x++) {
           System.out.print(x);
         }
@@ -123,21 +123,31 @@ public class Niveau {
           System.out.println("Ce n'est pas un nombre");
         }
 
-        if (correct(str)) {        // si la valeur rentré par le scanner est correct
-          rotate(str);             // on tourne
+        int premier = premier(str);
+        int deuxieme = deuxieme(str);
+
+        if (correct(premier, deuxieme)) {        // si la valeur rentré par le scanner est correct
+          rotate(premier, deuxieme);             // on tourne
           coups++;
         }
         else System.out.println("Vous n'avez pas rentré une valeur correct. Réessayez.");
+
         affiche();                 // affiche le niveau à chaque fois qu'on tourne un tuyau
       }
 
       Score.afficher(this.score, this.coups, 1);  // en attendant de coder json, on fait pour niveau 1
     }
 
+    private int premier(int str) {
+      return str/10;
+    }
 
-    public boolean correct(int tuyau) {        // renvoie true si les coordonnées sont bonnes
-      int premier = tuyau/10;
-      int deuxieme = tuyau%10;
+    private int deuxieme(int str) {
+      return str%10;
+    }
+
+
+    public boolean correct(int premier, int deuxieme) {        // renvoie true si les coordonnées sont bonnes
       if (premier == -1 || deuxieme == -1) return false;
       if (premier >= 0  && premier < niveau.length) {
         if (deuxieme >= 0  && deuxieme < niveau[0].length) {
@@ -163,11 +173,8 @@ public class Niveau {
     }
 
 
-    public void rotate(int tuyau) {
-      int premier = tuyau/10;
-      int deuxieme = tuyau%10;
-      System.out.println("la piece tourne.......");
-      niveau[premier][deuxieme].rotate(1);   
+    public void rotate(int premier, int deuxieme) {
+      niveau[premier][deuxieme].rotate(1);
     }
 
 
