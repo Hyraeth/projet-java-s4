@@ -3,7 +3,7 @@ package Aquavias.controller;
 import Aquavias.model.Niveau;
 import Aquavias.vue.GUI.VueIG;
 
-public class controllerIG {
+public class ControllerIG {
     private VueIG vue;
     private Niveau model;
 

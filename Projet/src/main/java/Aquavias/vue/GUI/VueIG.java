@@ -5,11 +5,11 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import Aquavias.controller.controllerIG;
+import Aquavias.controller.ControllerIG;
 import Aquavias.model.Niveau;
 
 public class VueIG {
-    private controllerIG controller;
+    private ControllerIG controller;
     private Niveau model;
 
     private JFrame jframe;
@@ -17,7 +17,7 @@ public class VueIG {
     private JPanel zonePlateau;
     private JPanel[][] Pipes;
 
-    public VueIG(controllerIG c, Niveau m) {
+    public VueIG(ControllerIG c, Niveau m) {
         controller = c;
         model = m;
 
@@ -48,14 +48,14 @@ public class VueIG {
     }
 
     public static void main(String[] args) {
-        File f = new File("assets/lvl/niveau.json");
+        File f = new File("assets\\lvls\\niveau.json");
         Niveau m = new Niveau();
         try {
-            m.load(f, "niveaux_off", 1);
+            m.load(f, "niveaux_off", 0);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        controllerIG c = new controllerIG();
+        ControllerIG c = new ControllerIG();
         VueIG gui = new VueIG(c, m);
         c.setVue(gui);
     }
