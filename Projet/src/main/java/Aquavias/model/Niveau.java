@@ -46,6 +46,10 @@ public class Niveau {
         this.score = level.getInt("score");
     }
 
+    public Pipe getPipe(int i, int j) {
+        return niveau[i][j];
+    }
+
     public void setSize(int m, int n) {
         this.niveau = new Pipe[m][n];
     }

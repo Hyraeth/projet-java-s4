@@ -16,6 +16,10 @@ public abstract class Pipe {
 
     protected int index;
 
+    public String getFilename() {
+        return fileName;
+    }
+
     public void rotate() {
         boolean last = connections[connections.length-1];
         for( int index =connections.length-2; index >= 0 ; index-- )

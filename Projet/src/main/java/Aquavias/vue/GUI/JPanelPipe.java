@@ -1,6 +1,7 @@
 package Aquavias.vue.GUI;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.awt.*;
@@ -10,13 +11,16 @@ import javax.swing.*;
 public class JPanelPipe extends JPanel {
     private BufferedImage img;
 
-    public JPanelPipe(String name) {
-        URL resource = getClass().getResource(name);
+    public JPanelPipe(String filename) {
         try {
-            img = ImageIO.read(resource);
+            img = ImageIO.read(new File("assets\\img\\"+filename+".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void rotateImg() {
+
     }
 
     @Override
