@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Jeu{
 
-  Scanner sc;
+  static Scanner sc;
 
   //Constructeur du jeu
   public Jeu(){
@@ -58,13 +58,13 @@ public class Jeu{
         if(rep.equals("r")) return; //Retour
         else if(rep.equals("q")) System.exit(0); //Quitter
         else{
-          try{
+          try {
             x = Integer.parseInt(rep);
             if (x<1 || x>n.Norm) throw new IndexOutOfBoundsException(); //Vérifie si le niveau existe
             else n.LanceNivN(x); //Lance le niveau numéro x
           }
           catch (NumberFormatException e){ //Si ce n'est pas un nombre
-            System.out.println("Ce n'est pas un nombres");
+            System.out.println("Ce n'est pas un nombre");
           }
           catch (IndexOutOfBoundsException r){ //Si ce n'est pas accepté
             System.out.println("Ce nombre n'est pas compris entre 1 et " + n.Norm);
@@ -83,7 +83,7 @@ public class Jeu{
             else n.LanceNivP(x); //Lance le niveau numéro x
           }
           catch (NumberFormatException e){ //Si ce n'est pas un nombre
-            System.out.println("Ce n'est pas un nombres");
+            System.out.println("Ce n'est pas un nombre");
           }
           catch (IndexOutOfBoundsException r){ //Si ce n'est pas accepté
             System.out.println("Ce nombre n'est pas compris entre 1 et " + n.Pers);

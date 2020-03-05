@@ -12,14 +12,17 @@ public class MenuNiveau{
 
   //Permet de lancer le niveau normal numéro x
   public void LanceNivN(int x){
+    System.out.println("");
     System.out.println("Voir dans le fichier JSON le niveau normal numero "+ x);
     System.out.println("Disponible dans une prochaîne mise à jour...");
+    System.out.println("");
     int i=5;
-    int j=15;
+    int j=9;
     Generation g1 = Generation.generer(i,j);
     Niveau n1 = new Niveau(i,j);
     n1.setNiveau(Generation.const1(g1.getTab()));
     n1.affiche();
+    n1.jouer();
   }
 
   //Permet de lancer le niveau personnalisé numéro x

@@ -19,11 +19,11 @@ public abstract class Pipe {
     public void rotate() {
         for (int i = 0; i < connections.length; i++) {
             //On décale le tableau vers la droite
-            connections[i] = connections[(i-1)%4];
-            afficheTerm[i] = afficheTerm[(i-1)%4];
-            rotation++;
-            rotation %= 4;
+            connections[i] = connections[((((i-1)%4)+4)%4)];
+            afficheTerm[i] = afficheTerm[((((i-1)%4)+4)%4)];
         }
+        rotation++;
+        rotation %=4;
     }
 
     public void rotate(int i) {
@@ -55,13 +55,17 @@ public abstract class Pipe {
         return rotation;
     }
 
+    public boolean isMoveable() {
+      return moveable;
+    }
+
     public void affiche() {
         System.out.print(afficheTerm[index+getRotation()]);
     }
     public String toString() {
         return fileName;
     }
-} 
+}
 
 class PipeDepart extends Pipe{
 
@@ -127,7 +131,7 @@ class PipeT extends Pipe {
 }
 
 class PipeX extends Pipe {
-    
+
     public PipeX() {
         this.moveable = false;
         this.connections = new boolean[]{true, true, true, true};
