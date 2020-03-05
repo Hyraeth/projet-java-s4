@@ -60,7 +60,11 @@ public abstract class Pipe {
     }
 
     public void affiche() {
-        System.out.print(afficheTerm[index+getRotation()]);
+        if(rempli){
+            System.out.print(Color.BLUE_BRIGHT + afficheTerm[index+getRotation()] + Color.RESET);
+        }else{
+            System.out.print(afficheTerm[index+getRotation()]);
+        }
     }
     public String toString() {
         return fileName;
