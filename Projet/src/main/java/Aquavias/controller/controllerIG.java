@@ -13,6 +13,7 @@ public class ControllerIG {
 
     public void rotate(int i, int j) {
         model.rotate(i,j);
+        model.flow();
         vue.update();
         if(model.finish()) vue.displayWinScreen();
     }
