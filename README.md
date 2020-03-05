@@ -22,25 +22,25 @@ Cette classe sera modélisée par un tableau de boolean de taille 4. Chaque indi
 Il a a en tout au moins 4 tuyaux :
 
 - Un tuyau avec une seule connection qui sert à la fois d'arrivée d'eau et de recepteur d'eau.
-  
+
   Représentation dans l'interface terminale : ╨ ╞ ╥ ╡
 
   Représentation dans l'interface graphique : WIP
 
 - Un tuyau avec 2 connections opposées.
-  
+
   Représentation dans l'interface terminale : ║ ═
 
   Représentation dans l'interface graphique : WIP
 
 - Un tuyau avec 2 connections "suivie".
-  
+
   Représentation dans l'interface terminale : ╚ ╔ ╗ ╝
 
   Représentation dans l'interface graphique : WIP
 
 - Un tuyau avec 3 connections.
-  
+
   Représentation dans l'interface terminale : ╠ ╦ ╣ ╩
 
   Représentation dans l'interface graphique : WIP
@@ -117,7 +117,7 @@ Cela permettra de pouvoir refaire un niveau afin d'avoir un meilleur score.
 
 ## Organisation de l'interface graphique
 
-WIP
+![Schéma interface](graphiqueaqua.png)
 
 ## Règles du Jeu
 
@@ -133,7 +133,7 @@ Il y a 3 variantes dans le jeu:
 
 - La deuxième variante est que la source est illimitée mais les mouvements sont limités.
 
-- La troisième variante est le contraire, c'est-à-dire que la source est limitée mais les mouvements illimités. 
+- La troisième variante est le contraire, c'est-à-dire que la source est limitée mais les mouvements illimités.
   (Pour cette variante on peut implémenter un compte à rebour qui se lance si on rencontre un tuyau qui a une sortie[True] et qui ne rencontre pas de tuyau ou qui rencontre un tuyau qui a une entrée[False])
 
 ### Menu
