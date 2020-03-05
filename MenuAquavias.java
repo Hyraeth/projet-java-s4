@@ -1,6 +1,3 @@
-/* C'est pas du tout du tout fini regardez pas encore svp...
-
-
 import javax.swing.*;
 import java.awt.FlowLayout;
 import java.awt.event.*;
@@ -83,4 +80,4 @@ public class MenuAquavias extends JFrame implements ActionListener {
     fenetre.setVisible(true);
   }
 
-} */
+}
