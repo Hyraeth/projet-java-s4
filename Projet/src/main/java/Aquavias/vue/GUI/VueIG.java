@@ -40,7 +40,6 @@ public class VueIG {
         Pipes = new JPanelPipe[model.getLargeur()][model.getLongueur()];
         for (int i = 0; i < Pipes.length; i++) {
             for (int j = 0; j < Pipes[i].length; j++) {
-                System.out.println(model.getPipe(i,j).getFilename());
                 Pipes[i][j] = new JPanelPipe(model.getPipe(i,j).getFilename());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
