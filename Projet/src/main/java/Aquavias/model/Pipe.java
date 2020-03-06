@@ -30,6 +30,7 @@ public abstract class Pipe {
         rotation = (rotation+1)%4;
     }
 
+
     public void rotate(int i) {
         if(moveable) {
             for (int j = 0; j < i; j++) {
@@ -60,7 +61,11 @@ public abstract class Pipe {
     }
 
     public void affiche() {
-        System.out.print(afficheTerm[indexTerm+getRotation()]);
+        if(rempli){
+            System.out.print(""+Color.BLUE_BRIGHT + afficheTerm[indexTerm+getRotation()] + Color.RESET);
+        }else{
+            System.out.print(afficheTerm[indexTerm+getRotation()]);
+        }
     }
     public String toString() {
         return "moveable :"+moveable+"; rempli :"+rempli+"; rotation :"+rotation+"; indexTerm :"+indexTerm+"; indexGui :"+indexGUI;

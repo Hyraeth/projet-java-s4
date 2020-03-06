@@ -84,4 +84,11 @@ public class MenuNiveau{
     +Color.WHITE+"  Niveau pas encore complété. \n"+Color.RESET
     +Color.WHITE_BOLD+"  Niveau à compléter. \n"+Color.RESET);
   }
+      private int premier(int str) {
+        return str/10;
+      }
+
+      private int deuxieme(int str) {
+        return str%10;
+      }
 }
