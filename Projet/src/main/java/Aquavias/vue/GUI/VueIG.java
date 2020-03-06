@@ -59,9 +59,9 @@ public class VueIG {
     }
 
     public void update() {
-        for (JPanelPipe[] jPanelPipes : Pipes) {
-            for (JPanelPipe jPanelPipe : jPanelPipes) {
-                jPanelPipe.maj();
+        for (int i = 0; i < Pipes.length; i++) {
+            for (int j = 0; j < Pipes[i].length; j++) {
+                Pipes[i][j].setPipe(model.getPipe(i, j));
             }
         }
     }

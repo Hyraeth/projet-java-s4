@@ -11,33 +11,40 @@ import javax.swing.*;
 import Aquavias.model.Pipe;
 
 public class JPanelPipe extends JPanel {
-    private BufferedImage img;
+    private BufferedImage[][] img;
     private Pipe p;
 
     public JPanelPipe(Pipe p) {
         this.p = p;
-        try {
-            img = ImageIO.read(new File("assets\\img\\"+p.getFilename()+".png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadImg();
     }
 
     public void loadImg() {
-        
+        for (int i = 0; i < 24; i++) {
+            try {
+                int type = i/4;
+                int rot = i%4;
+                img[0][i] = ImageIO.read(new File("assets\\img\\"+type+rot+false+".png"));
+                img[1][i] = ImageIO.read(new File("assets\\img\\"+type+rot+true+".png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public void maj() {
-        
+    public void setPipe(Pipe p) {
+        this.p=p;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        int i = (p.isRempli())?1:0;
+        int j = p.getIndexGui()+p.getRotation();
         Graphics2D g2d = (Graphics2D) g;
-        int x = (this.getWidth() - img.getWidth(null)) / 2;
-        int y = (this.getHeight() - img.getHeight(null)) / 2;
-        g2d.drawImage(img, x, y, null);
+        int x = (this.getWidth() - img[i][j].getWidth(null)) / 2;
+        int y = (this.getHeight() - img[i][j].getHeight(null)) / 2;
+        g2d.drawImage(img[i][j], x, y, null);
     }
 
     @Override
