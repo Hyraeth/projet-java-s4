@@ -88,7 +88,7 @@ public class Niveau {
             if(niveau[i][j] != null) niveau[i][j].rotate();
             coups--;
         }
-    }*/
+    }
 
     // Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
     public void flow() {
@@ -190,11 +190,6 @@ public class Niveau {
       }
       System.out.println("Votre premier chiffre est incorrect");
       return false;
-    }
-
-
-    public void rotate(int premier, int deuxieme) {
-      niveau[premier][deuxieme].rotate(1);
     }
 
 
