@@ -16,6 +16,7 @@ public class PipeFactory {
             case 5:
                 return new PipeX();
             default:
+                System.out.println("I'm so lost");
                 return null;
         }
     }

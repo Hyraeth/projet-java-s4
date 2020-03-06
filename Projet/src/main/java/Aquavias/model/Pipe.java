@@ -14,7 +14,9 @@ public abstract class Pipe {
 
     protected int rotation;
 
-    protected int index;
+    protected int indexTerm;
+
+    protected int indexGUI;
 
     public String getFilename() {
         return fileName;
@@ -22,8 +24,8 @@ public abstract class Pipe {
 
     public void rotate() {
         boolean last = connections[3];
-        for( int index =2; index > 0 ; index-- )
-            connections[index+1] = connections[index];
+        for( int i =2; i > 0 ; i-- )
+            connections[i+1] = connections[i];
         connections[0] = last;
         rotation = (rotation+1)%4;
     }
@@ -64,13 +66,13 @@ public abstract class Pipe {
 
     public void affiche() {
         if(rempli){
-            System.out.print(""+Color.BLUE_BRIGHT + afficheTerm[index+getRotation()] + Color.RESET);
+            System.out.print(""+Color.BLUE_BRIGHT + afficheTerm[indexTerm+getRotation()] + Color.RESET);
         }else{
-            System.out.print(afficheTerm[index+getRotation()]);
+            System.out.print(afficheTerm[indexTerm+getRotation()]);
         }
     }
     public String toString() {
-        return fileName;
+        return "moveable :"+moveable+"; rempli :"+rempli+"; rotation :"+rotation+"; indexTerm :"+indexTerm+"; indexGui :"+indexGUI;
     }
 
     public static void main(String[] args) {
@@ -88,7 +90,19 @@ public abstract class Pipe {
         px.affiche();
         pd.rotate(); pd.affiche();
     }
-}
+
+	public boolean isRempli() {
+		return rempli;
+	}
+
+	public int getIndexGui() {
+		return this.indexGUI;
+    }
+    
+    public boolean getRempli() {
+        return rempli;
+    }
+} 
 
 class PipeDepart extends Pipe{
 
@@ -98,7 +112,8 @@ class PipeDepart extends Pipe{
         this.rempli = true;
         this.fileName = "Depart"+rempli;
         this.rotation = 1;
-        this.index = 0;
+        this.indexTerm = 0;
+        this.indexGUI = 0;
     }
 
 }
@@ -111,7 +126,8 @@ class PipeArrivee extends Pipe {
         this.rempli = false;
         this.fileName = "Arrivee"+rempli;
         this.rotation = 3;
-        this.index = 0;
+        this.indexTerm = 0;
+        this.indexGUI = 4;
     }
 
 }
@@ -124,7 +140,8 @@ class PipeL extends Pipe {
         this.rempli = false;
         this.fileName = "PipeL"+rempli;
         this.rotation = 0;
-        this.index = 4;
+        this.indexTerm = 4;
+        this.indexGUI = 8;
     }
 
 }
@@ -137,7 +154,8 @@ class PipeI extends Pipe {
         this.rempli = false;
         this.fileName = "PipeI"+rempli;
         this.rotation = 0;
-        this.index = 8;
+        this.indexTerm = 8;
+        this.indexGUI = 12;
     }
 }
 
@@ -149,7 +167,8 @@ class PipeT extends Pipe {
         this.rempli = false;
         this.fileName = "PipeT"+rempli;
         this.rotation = 0;
-        this.index = 12;
+        this.indexTerm = 12;
+        this.indexGUI = 16;
     }
 }
 
@@ -160,6 +179,7 @@ class PipeX extends Pipe {
         this.connections = new boolean[]{true, true, true, true};
         this.rempli = false;
         this.fileName = "PipeX"+rempli;
+        this.indexGUI = 20;
     }
 
     public void affiche() {
