@@ -88,7 +88,11 @@ public abstract class Pipe {
 
 	public int getIndexGui() {
 		return this.indexGUI;
-	}
+    }
+    
+    public boolean getRempli() {
+        return rempli;
+    }
 } 
 
 class PipeDepart extends Pipe{

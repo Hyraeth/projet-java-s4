@@ -12,10 +12,14 @@ import Aquavias.model.Pipe;
 
 public class JPanelPipe extends JPanel {
     private BufferedImage[][] img;
-    private Pipe p;
+    private int index;
+    private boolean remplit;
+    private int rota;
 
-    public JPanelPipe(Pipe p) {
-        this.p = p;
+    public JPanelPipe(int i, int r, boolean remp) {
+        this.index = i;
+        this.rota = r;
+        this.remplit = remp;
         loadImg();
     }
 
@@ -32,6 +36,14 @@ public class JPanelPipe extends JPanel {
         }
     }
 
+    public void click() {
+        rota = (rota+1)%4;
+    }
+
+    public void remplir(boolean rempli) {
+        remplit = rempli;
+    }
+
     public void setPipe(Pipe p) {
         this.p=p;
     }
@@ -39,8 +51,8 @@ public class JPanelPipe extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        int i = (p.isRempli())?1:0;
-        int j = p.getIndexGui()+p.getRotation();
+        int i = (remplit)?1:0;
+        int j = index+rota;
         Graphics2D g2d = (Graphics2D) g;
         int x = (this.getWidth() - img[i][j].getWidth(null)) / 2;
         int y = (this.getHeight() - img[i][j].getHeight(null)) / 2;

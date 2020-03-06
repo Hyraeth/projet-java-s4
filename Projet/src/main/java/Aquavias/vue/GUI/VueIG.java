@@ -1,6 +1,7 @@
 package Aquavias.vue.GUI;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
@@ -43,25 +44,30 @@ public class VueIG {
         Pipes = new JPanelPipe[model.getLargeur()][model.getLongueur()];
         for (int i = 0; i < Pipes.length; i++) {
             for (int j = 0; j < Pipes[i].length; j++) {
-                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j));
+                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j).getRotation(), model.getPipe(i, j).getRempli());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
                 /*
-                Pipes[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
+                MouseAdapter ma = new java.awt.event.MouseAdapter() {
                     public void mouseClicked(MouseEvent evt) {
-                        Pipes[i][j].rotateImg();
-                        updateWater();
+                        controller.rotate(i, j);
                     }
-                });*/
+                };
+                Pipes[i][j].addMouseListener(ma);
+                */
                 zonePlateau.add(Pipes[i][j]);
             }
         }
     }
 
+    public void click(int i, int j) {
+        Pipes[i][j].click();
+    }
+
     public void update() {
         for (int i = 0; i < Pipes.length; i++) {
             for (int j = 0; j < Pipes[i].length; j++) {
-                Pipes[i][j].setPipe(model.getPipe(i, j));
+                Pipes[i][j].remplir(model.getPipe(i, j).getRempli());        
             }
         }
     }
