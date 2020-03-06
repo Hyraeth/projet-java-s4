@@ -17,14 +17,13 @@ public abstract class Pipe {
     protected int index;
 
     public void rotate() {
-        for (int i = 0; i < connections.length; i++) {
-            //On décale le tableau vers la droite
-            connections[i] = connections[((((i-1)%4)+4)%4)];
-            afficheTerm[i] = afficheTerm[((((i-1)%4)+4)%4)];
-        }
-        rotation++;
-        rotation %=4;
+        boolean last = connections[3];
+        for( int index =2; index > 0 ; index-- )
+            connections[index+1] = connections[index];
+        connections[0] = last;
+        rotation = (rotation+1)%4;
     }
+
 
     public void rotate(int i) {
         if(moveable) {

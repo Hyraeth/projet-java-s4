@@ -56,6 +56,10 @@ public class Niveau {
         return this.niveau.length;
     }
 
+    public int[] getScore() {
+      return this.score;
+    }
+
     public void initConfig (String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
@@ -76,12 +80,16 @@ public class Niveau {
 
     //affiche le plateau dans le terminal
     public void affiche() {
-        System.out.print("           Niveau 1     coups: " + coups + "\n\n");  // on changera le 1 par le niveau du fichier json après
+        System.out.print("           Niveau 1     coups: " + coups + "\n\n  ");  // on changera le 1 par le niveau du fichier json après
         for (int x = 0; x< niveau[0].length; x++) {
           System.out.print(x);
         }
         System.out.println();
         System.out.println();
+
+
+
+
         for (int i = 0; i < niveau.length; i++) {
             System.out.print(i + " ");
             for (int j = 0; j < niveau[i].length; j++) {
@@ -106,44 +114,6 @@ public class Niveau {
             }
             System.out.println();
         }
-    }
-
-
-    public void jouer() {
-
-      while(!partieTerminee()) {    // tant que la partie n'est pas terminée
-
-        int str = 0;
-
-        try{
-          System.out.println("Choisissez un tuyau à tourner");
-          str = Jeu.sc.nextInt();
-        }
-        catch (NumberFormatException e){ //Si ce n'est pas un nombre
-          System.out.println("Ce n'est pas un nombre");
-        }
-
-        int premier = premier(str);
-        int deuxieme = deuxieme(str);
-
-        if (correct(premier, deuxieme)) {        // si la valeur rentré par le scanner est correct
-          rotate(premier, deuxieme);             // on tourne
-          coups++;
-        }
-        else System.out.println("Vous n'avez pas rentré une valeur correct. Réessayez.");
-
-        affiche();                 // affiche le niveau à chaque fois qu'on tourne un tuyau
-      }
-
-      Score.afficher(this.score, this.coups, 1);  // en attendant de coder json, on fait pour niveau 1
-    }
-
-    private int premier(int str) {
-      return str/10;
-    }
-
-    private int deuxieme(int str) {
-      return str%10;
     }
 
 
