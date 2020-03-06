@@ -23,6 +23,10 @@ public class JPanelPipe extends JPanel {
         }
     }
 
+    public void loadImg() {
+        
+    }
+
     public void maj() {
         
     }
