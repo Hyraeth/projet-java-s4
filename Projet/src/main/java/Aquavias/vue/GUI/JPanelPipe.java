@@ -1,11 +1,17 @@
 package Aquavias.vue.GUI;
 
 import java.awt.image.BufferedImage;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import org.w3c.dom.events.MouseEvent;
+
+import Aquavias.controller.ControllerIG;
 
 public class JPanelPipe extends JPanel {
 
@@ -14,11 +20,16 @@ public class JPanelPipe extends JPanel {
     private boolean remplit;
     private int rota;
 
-    public JPanelPipe(int i, int r, boolean remp) {
+    public JPanelPipe(int i, int r, boolean remp, ControllerIG c, int x, int y) {
         this.index = i;
         this.rota = r;
         this.remplit = remp;
         loadImg();
+        addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                c.rotate(x, y);
+            }
+        });
     }
 
     public void loadImg() {
