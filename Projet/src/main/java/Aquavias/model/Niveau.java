@@ -94,10 +94,9 @@ public class Niveau {
 
     public boolean finish() {
         for (int i = 0; i < niveau.length; i++) {
-            for (int j = 0; j < niveau[i].length; j++) {
-                if (niveau[i][j] != null && (niveau[i][j] instanceof PipeArrivee))
-                    return niveau[i][j].rempli;
-            }
+            if (/*niveau[i][niveau[0].length-1] != null && */(niveau[i][niveau[0].length-1] instanceof PipeArrivee))
+                return niveau[i][niveau[0].length-1].rempli;
+            
         }
         return false;
     }

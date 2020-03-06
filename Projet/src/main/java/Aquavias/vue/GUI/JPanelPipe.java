@@ -8,19 +8,23 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Aquavias.model.Pipe;
+
 public class JPanelPipe extends JPanel {
     private BufferedImage img;
+    private Pipe p;
 
-    public JPanelPipe(String filename) {
+    public JPanelPipe(Pipe p) {
+        this.p = p;
         try {
-            img = ImageIO.read(new File("assets\\img\\"+filename+".png"));
+            img = ImageIO.read(new File("assets\\img\\"+p.getFilename()+".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void rotateImg() {
-
+    public void maj() {
+        
     }
 
     @Override
