@@ -21,8 +21,8 @@ public abstract class Pipe {
     }
 
     public void rotate() {
-        boolean last = connections[connections.length-1];
-        for( int index =connections.length-2; index >= 0 ; index-- )
+        boolean last = connections[3];
+        for( int index =2; index > 0 ; index-- )
             connections[index+1] = connections[index];
         connections[0] = last;
         rotation = (rotation+1)%4;
