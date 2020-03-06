@@ -60,6 +60,10 @@ public abstract class Pipe {
         return rotation;
     }
 
+    public boolean isMoveable() {
+      return moveable;
+    }
+
     public void affiche() {
         if(rempli){
             System.out.print(""+Color.BLUE_BRIGHT + afficheTerm[indexTerm+getRotation()] + Color.RESET);
@@ -169,7 +173,7 @@ class PipeT extends Pipe {
 }
 
 class PipeX extends Pipe {
-    
+
     public PipeX() {
         this.moveable = false;
         this.connections = new boolean[]{true, true, true, true};

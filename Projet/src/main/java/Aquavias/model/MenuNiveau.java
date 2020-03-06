@@ -84,6 +84,33 @@ public class MenuNiveau{
     +Color.WHITE+"  Niveau pas encore complété. \n"+Color.RESET
     +Color.WHITE_BOLD+"  Niveau à compléter. \n"+Color.RESET);
   }
+
+  public void jouer(int lvl, Niveau n) {
+
+        int coups = 0;
+
+        while(!n.partieTerminee()) {    // tant que la partie n'est pas terminée
+          int str = 0;
+          try{
+            System.out.println("Choisissez un tuyau à tourner");
+            str = Jeu.sc.nextInt();
+          }
+          catch (NumberFormatException e){ //Si ce n'est pas un nombre
+            System.out.println("Ce n'est pas un nombre");
+          }
+
+          int premier = premier(str);
+          int deuxieme = deuxieme(str);
+          if (n.correct(premier, deuxieme)) {        // si la valeur rentré par le scanner est correct
+            n.rotate(premier, deuxieme);             // on tourne
+            coups++;
+          }
+          else System.out.println("Vous n'avez pas rentré une valeur correct. Réessayez.");
+          n.affiche();                 // affiche le niveau à chaque fois qu'on tourne un tuyau
+        }
+        Score.afficher(n.getScore(), coups, lvl);  // en attendant de coder json, on fait pour niveau 1
+      }
+
       private int premier(int str) {
         return str/10;
       }

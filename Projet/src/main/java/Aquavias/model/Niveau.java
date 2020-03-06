@@ -9,7 +9,7 @@ import org.json.*;
 public class Niveau {
     private Pipe[][] niveau;
     private int coups;
-    private int score;
+    private int[] score;
 
     public void setNiveau(Pipe[][] pip) {
         niveau = pip;
@@ -18,7 +18,10 @@ public class Niveau {
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
         this.coups = 0;
-        this.score = 0;
+        this.score = new int[3];
+        this.score[0] = 20;
+        this.score[1] = 15;
+        this.score[2] = 10;
     }
 
     public Niveau() {
@@ -43,7 +46,7 @@ public class Niveau {
         initConfig(config);
 
         this.coups = level.getInt("coups");
-        this.score = level.getInt("score");
+        //this.score = level.getInt("score");
     }
 
     public Pipe getPipe(int i, int j) {
@@ -60,6 +63,10 @@ public class Niveau {
 
     public int getLargeur() {
         return this.niveau.length;
+    }
+
+    public int[] getScore() {
+      return this.score;
     }
 
     public void initConfig(String s) {
@@ -81,22 +88,22 @@ public class Niveau {
             if(niveau[i][j] != null) niveau[i][j].rotate();
             coups--;
         }
-    }
+    }*/
 
     // Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
     public void flow() {
 
     }
 
-    public void calculateScore() {
+    /*public void calculateScore() {
         score = "qqchose".length();
-    }
+    } */
 
     public boolean finish() {
         for (int i = 0; i < niveau.length; i++) {
             if (/*niveau[i][niveau[0].length-1] != null && */(niveau[i][niveau[0].length-1] instanceof PipeArrivee))
                 return niveau[i][niveau[0].length-1].rempli;
-            
+
         }
         return false;
     }
@@ -107,6 +114,14 @@ public class Niveau {
 
     // affiche le plateau dans le terminal
     public void affiche() {
+
+        System.out.print("           Niveau 1     coups: " + coups + "\n\n  ");  // on changera le 1 par le niveau du fichier json après
+        for (int x = 0; x< niveau[0].length; x++) {
+          System.out.print(x);
+        }
+        System.out.println();
+        System.out.println();
+
         for (int i = 0; i < niveau.length; i++) {
             for (int j = 0; j < niveau[i].length; j++) {
                 if (niveau[i][j] != null)
@@ -147,6 +162,51 @@ public class Niveau {
             }
             System.out.println();
         }
+    }
+
+
+
+
+    public boolean correct(int premier, int deuxieme) {        // renvoie true si les coordonnées sont bonnes
+      if (premier == -1 || deuxieme == -1) return false;
+      if (premier >= 0  && premier < niveau.length) {
+        if (deuxieme >= 0  && deuxieme < niveau[0].length) {
+          if (this.niveau[premier][deuxieme] != null) {
+            if (this.niveau[premier][deuxieme].isMoveable()) return true;
+            else {
+              System.out.println("Vous ne pouvez pas tourner ce tuyau");
+              return false;
+            }
+          }
+          else {
+            System.out.println("Il n y a pas de tuyau à cette position");
+            return false;
+          }
+        }
+        else {
+          System.out.println("Votre deuxieme chiffre est incorrect");
+          return false;
+        }
+      }
+      System.out.println("Votre premier chiffre est incorrect");
+      return false;
+    }
+
+
+    public void rotate(int premier, int deuxieme) {
+      niveau[premier][deuxieme].rotate(1);
+    }
+
+
+    public boolean partieTerminee() {
+      if (coups > score[0]+5) return true;  // si nb de coups depassé
+      if (arrivee()) return true;
+      return false;
+    }
+
+    public boolean arrivee() { // return true si eau arrivee à destination
+      // à coder
+      return false;  // pour tester en attendant
     }
 
     public static void main(String[] args) {
