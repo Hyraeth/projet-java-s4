@@ -7,9 +7,8 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Aquavias.model.Pipe;
-
 public class JPanelPipe extends JPanel {
+
     private BufferedImage[][] img;
     private int index;
     private boolean remplit;
