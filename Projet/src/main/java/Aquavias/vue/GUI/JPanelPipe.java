@@ -44,10 +44,6 @@ public class JPanelPipe extends JPanel {
         remplit = rempli;
     }
 
-    public void setPipe(Pipe p) {
-        this.p=p;
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
