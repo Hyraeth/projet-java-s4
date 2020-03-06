@@ -63,7 +63,7 @@ public abstract class Pipe {
         System.out.print(afficheTerm[indexTerm+getRotation()]);
     }
     public String toString() {
-        return fileName;
+        return "moveable :"+moveable+"; rempli :"+rempli+"; rotation :"+rotation+"; indexTerm :"+indexTerm+"; indexGui :"+indexGUI;
     }
 
     public static void main(String[] args) {

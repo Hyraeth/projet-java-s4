@@ -29,7 +29,7 @@ public class App
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ControllerIG c = new ControllerIG();
+            ControllerIG c = new ControllerIG(m);
             VueIG gui = new VueIG(c, m);
             c.setVue(gui);
         });

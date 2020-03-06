@@ -19,15 +19,20 @@ public class JPanelPipe extends JPanel {
     private int index;
     private boolean remplit;
     private int rota;
+    private ControllerIG c;
 
     public JPanelPipe(int i, int r, boolean remp, ControllerIG c, int x, int y) {
         this.index = i;
         this.rota = r;
         this.remplit = remp;
+        this.c = c;
         loadImg();
         addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 c.rotate(x, y);
+                rota = (rota+1)%4;
+                repaint();
             }
         });
     }
@@ -43,10 +48,6 @@ public class JPanelPipe extends JPanel {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void click() {
-        rota = (rota+1)%4;
     }
 
     public void remplir(boolean rempli) {

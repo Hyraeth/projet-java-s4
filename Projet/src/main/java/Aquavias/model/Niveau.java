@@ -77,8 +77,8 @@ public class Niveau {
 
     // tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
-        if (coups != 0) {
-            niveau[i][j].rotate();
+        if (coups != 0 && niveau[i][j].moveable) {
+            if(niveau[i][j] != null) niveau[i][j].rotate();
             coups--;
         }
     }
@@ -123,9 +123,7 @@ public class Niveau {
         for (int i = 0; i < niveau.length; i++) {
             for (int j = 0; j < niveau[i].length; j++) {
                 if (niveau[i][j] != null)
-                    s += niveau[i][j].toString();
-                else
-                    System.out.print(" ");
+                    s += i+" "+j+" "+niveau[i][j].toString()+"\n";
             }
         }
         return s;
