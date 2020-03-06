@@ -34,58 +34,6 @@ public abstract class Pipe {
         }
     }
 
-    //return un boolean de taille 2 avec dans la première case, si l'eau a atteint l'arrivé,
-    //et dans la deuxième, si il n'y a pas de fuite.
-    public static boolean[] remplir(Pipe[][] pip, int x, int y, int prec) {
-        boolean[] res = new boolean[2];
-        if (Pipe[x][y].connections[prec]==true){  //Si il est connecté au precedent.
-            pip[x][y].remplir();
-            if (pip[x][y] instanceof PipeArrivee) res[0] = true;
-        }
-        res[1] = fuite();
-        boolean[] a,b,c,d;
-        boolean[] possible = possible(pip, x, y, prec);
-        if (possible[0]) a=remplir(pip, x-1, y, 2);
-        if (possible[1]) a=remplir(pip, x, y+1, 2);
-        if (possible[2]) a=remplir(pip, x+1, y, 2);
-        if (possible[3]) a=remplir(pip, x, y-1, 2);
-        res[0]=(res[0] || a[0] || b[0] || c[0] || d[0]);
-        res[1]=(res[0] && a[0] && b[0] && c[0] && d[0]);
-    }
-
-    //return les possibilité d'acces aux cases suivantes.
-    public static boolean[] possible (Pipe[][] pip, int i, int j, int prec) {
-        boolean[] b = new boolean[4];
-        if (i-1>=0             //Si la case est dans le plateau
-            && pip[i][j].connections[0]==true   //Si il est connecté au suivant
-            && pip[i-1][j]!=null                 //Si le suivant n'est pas null
-            && !pip[i-1][j].rempli) {          //Si le suivant n'est pas deja rempli
-                b[0] = true;
-        }
-        if (j+1<pip[0].length
-            && pip[i][j].connections[1]==true
-            && pip[i][j+1]!=null
-            && !pip[i][j+1].rempli){
-                b[1] = true;
-        }
-        if (i+1<pip.length
-            && pip[i][j].connections[2]==true
-            && pip[i+1][j]!=null
-            && !pip[i+1][j].rempli){
-                b[2] = true;
-        }
-        if (j-1>=0
-            && pip[i][j].connections[3]==true
-            && pip[i][j-1]!=null
-            && !pip[i][j-1].rempli){
-                b[3] = true;
-        }
-        return b;
-    }
-    public static boolean fuite(Pipe[][] pip, int x, int y) {
-        
-    }
-
     public void remplir() {
         rempli = true;
     }
@@ -94,13 +42,8 @@ public abstract class Pipe {
         rempli = false;
     }
 
-    public boolean connected(Pipe t) {
-        for (int i = 0; i < connections.length; i++) {
-            //On regarde si les connections opposé sont true
-            if(this.connections[i] && t.connections[(i+2)%4]) return true;
-        }
-        //On retourne false si aucune connections n'est possible
-        return false;
+    public boolean connect(int suivant) {
+        return this.connections[suivant];
     }
 
     public int getRotation() {
