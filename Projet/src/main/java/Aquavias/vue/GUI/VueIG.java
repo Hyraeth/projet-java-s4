@@ -46,18 +46,19 @@ public class VueIG {
                 Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getFilename());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
+                /*
                 Pipes[i][j].addMouseListener(new java.awt.event.MouseAdapter() {
                     public void mouseClicked(MouseEvent evt) {
                         Pipes[i][j].rotateImg();
                         updateWater();
                     }
-                });
+                });*/
                 zonePlateau.add(Pipes[i][j]);
             }
         }
     }
 
-    public void updateWater() {
+    public void update() {
 
     }
 
