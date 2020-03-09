@@ -93,13 +93,14 @@ public class Niveau {
             }
         }
         if (niveau[k][0] instanceof PipeDepart) {
+            niveau[k][0].remplir();
             this.remplir(k,1,3);
         }
     }
     //return un boolean de taille 2 avec dans la première case, si l'eau a atteint l'arrivé,
     //et dans la deuxième, si il n'y a pas de fuite.
     public boolean remplir(int x, int y, int prec) {
-        if (niveau[x][y].connections[prec]==true){  //Si il est connecté au precedent.
+        if (niveau[x][y].connections[prec]){  //Si il est connecté au precedent.
             niveau[x][y].remplir();
         } else return false;
         boolean fuite = this.fuite(x,y);   //est vrai si il a une fuite.
