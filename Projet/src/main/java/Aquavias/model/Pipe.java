@@ -106,7 +106,7 @@ class PipeDepart extends Pipe{
     public PipeDepart() {
         this.moveable = false;
         this.connections = new boolean[]{false, true, false, false};
-        this.rempli = true;
+        this.rempli = false;
         this.fileName = "Depart"+rempli;
         this.rotation = 1;
         this.indexTerm = 0;

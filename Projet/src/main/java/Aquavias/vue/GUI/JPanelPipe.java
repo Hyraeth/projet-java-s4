@@ -42,8 +42,8 @@ public class JPanelPipe extends JPanel {
             try {
                 int type = i/4;
                 int rot = i%4;
-                img[0][i] = ImageIO.read(new File("assets\\img\\"+type+rot+false+".png"));
-                img[1][i] = ImageIO.read(new File("assets\\img\\"+type+rot+true+".png"));
+                img[0][i] = ImageIO.read(new File("assets/img/"+type+rot+false+".png"));
+                img[1][i] = ImageIO.read(new File("assets/img/"+type+rot+true+".png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
