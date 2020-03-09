@@ -75,13 +75,11 @@ public class Generation {
   }
 
   public static void main(String[] args) {
-    Niveau n = init();
+    Niveau n = init(9,9);
     n.affiche();
   }
 
-  public static Niveau init() {
-    int i=9;
-    int j=9;
+  public static Niveau init(int i, int j) {
     Generation g1 = generer(i,j);
     //affiche(g1.tab);
     Niveau n1 = new Niveau(i,j);

@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Jeu{
 
-  Scanner sc;
+  static Scanner sc;
 
   //Constructeur du jeu
   public Jeu(){
