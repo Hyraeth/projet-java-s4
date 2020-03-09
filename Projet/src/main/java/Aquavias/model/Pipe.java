@@ -62,7 +62,7 @@ public abstract class Pipe {
     public void affiche() {
         if(rempli){
             System.out.print(Color.BLUE_BRIGHT );
-            System.out.print(afficheTerm[index+getRotation()]);
+            System.out.print(afficheTerm[indexTerm+getRotation()]);
             System.out.print(Color.RESET);
         }else{
             System.out.print(afficheTerm[indexTerm+getRotation()]);
