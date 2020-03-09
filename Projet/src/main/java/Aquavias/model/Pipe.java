@@ -47,13 +47,8 @@ public abstract class Pipe {
         rempli = false;
     }
 
-    public boolean connected(Pipe t) {
-        for (int i = 0; i < connections.length; i++) {
-            //On regarde si les connections opposé sont true
-            if(this.connections[i] && t.connections[(i+2)%4]) return true;
-        }
-        //On retourne false si aucune connections n'est possible
-        return false;
+    public boolean connect(int suivant) {
+        return this.connections[suivant];
     }
 
     public int getRotation() {
@@ -66,7 +61,9 @@ public abstract class Pipe {
 
     public void affiche() {
         if(rempli){
-            System.out.print(""+Color.BLUE_BRIGHT + afficheTerm[indexTerm+getRotation()] + Color.RESET);
+            System.out.print(Color.BLUE_BRIGHT );
+            System.out.print(afficheTerm[index+getRotation()]);
+            System.out.print(Color.RESET);
         }else{
             System.out.print(afficheTerm[indexTerm+getRotation()]);
         }

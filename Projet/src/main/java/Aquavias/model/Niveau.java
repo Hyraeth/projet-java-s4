@@ -82,7 +82,94 @@ public class Niveau {
         }
     }
 
-    // tourne le Pipe à la position i,j
+    public void remplir() {
+        int k=0;
+        for (int i = 0; i<this.getLargeur(); i++) {
+            for (int j = 0; j<this.getLongueur(); j++) {
+                if (niveau[i][j] != null) niveau[i][j].vide();
+            }
+            if (niveau[i][0] instanceof PipeDepart) {
+                k=i;
+            }
+        }
+        if (niveau[k][0] instanceof PipeDepart) {
+            this.remplir(k,1,3);
+        }
+    }
+    //return un boolean de taille 2 avec dans la première case, si l'eau a atteint l'arrivé,
+    //et dans la deuxième, si il n'y a pas de fuite.
+    public boolean remplir(int x, int y, int prec) {
+        if (niveau[x][y].connections[prec]==true){  //Si il est connecté au precedent.
+            niveau[x][y].remplir();
+        } else return false;
+        boolean fuite = this.fuite(x,y);   //est vrai si il a une fuite.
+        boolean a = false,b = false,c = false,d = false;
+        boolean[] possible = this.possible(x, y, prec);
+        if (possible[0]) a = this.remplir(x-1, y, 2);
+        if (possible[1]) b = this.remplir(x, y+1, 3);
+        if (possible[2]) c = this.remplir(x+1, y, 0);
+        if (possible[3]) d = this.remplir(x, y-1, 1);
+        return (!fuite && a && b && c && d);
+    }
+
+    //return les possibilité d'acces aux cases suivantes.
+    public boolean[] possible (int i, int j, int prec) {
+        boolean[] b = new boolean[4];
+        if (i-1>=0             //Si la case est dans le plateau
+            && niveau[i][j].connections[0]==true   //Si il est connecté au suivant
+            && niveau[i-1][j]!=null                 //Si le suivant n'est pas null
+            && !niveau[i-1][j].rempli) {          //Si le suivant n'est pas deja rempli
+                b[0] = true;
+        }
+        if (j+1<niveau[0].length
+            && niveau[i][j].connections[1]==true
+            && niveau[i][j+1]!=null
+            && !niveau[i][j+1].rempli){
+                b[1] = true;
+        }
+        if (i+1<niveau.length
+            && niveau[i][j].connections[2]==true
+            && niveau[i+1][j]!=null
+            && !niveau[i+1][j].rempli){
+                b[2] = true;
+        }
+        if (j-1>=0
+            && niveau[i][j].connections[3]==true
+            && niveau[i][j-1]!=null
+            && !niveau[i][j-1].rempli){
+                b[3] = true;
+        }
+        return b;
+    }
+    //return true si il y a une fuite 
+    public boolean fuite(int i, int j) {
+        if (niveau[i][j].connections[0]==true   //Si il est connecté au suivant
+            && (i-1<0                        //Si la case n'est pas dans le plateau
+                || niveau[i-1][j]==null                 //Si le suivant est null
+                || !niveau[i-1][j].connect(2))){          //Si le suivant n'est pas connecté a lui
+            return true;
+        }
+        if (niveau[i][j].connections[1]==true
+            && (j+1>=niveau[0].length
+                || niveau[i][j+1]==null
+                || !niveau[i][j+1].connect(3))){
+            return true;
+        }
+        if (niveau[i][j].connections[2]==true
+            && (i+1>=niveau.length
+                || niveau[i+1][j]==null
+                || !niveau[i+1][j].connect(0))){
+            return true;
+        }
+        if (niveau[i][j].connections[3]==true
+            && (j-1<0
+                || niveau[i][j-1]==null
+                || !niveau[i][j-1].connect(1))){
+            return true;
+        }return false;
+    }
+
+    //tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
         if (coups != 0 && niveau[i][j].moveable) {
             if(niveau[i][j] != null) niveau[i][j].rotate();
@@ -114,14 +201,7 @@ public class Niveau {
 
     // affiche le plateau dans le terminal
     public void affiche() {
-
-        System.out.print("           Niveau 1     coups: " + coups + "\n\n  ");  // on changera le 1 par le niveau du fichier json après
-        for (int x = 0; x< niveau[0].length; x++) {
-          System.out.print(x);
-        }
-        System.out.println();
-        System.out.println();
-
+        this.remplir();
         for (int i = 0; i < niveau.length; i++) {
             for (int j = 0; j < niveau[i].length; j++) {
                 if (niveau[i][j] != null)
