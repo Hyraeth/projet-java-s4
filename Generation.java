@@ -10,7 +10,7 @@ public class Generation {
 
     int largeur = taille[0];
     int longueur = taille[1];
-    Tuyau[][] res = new Tuyau[taille[0]][taile[1];
+    Tuyau[][] res = new Tuyau[taille[0]][taile[1]];
 
     res[0][0] = new Tuyau(0,0,D) ; //tuyau de depart
     res[largeur][longueur] = new Tuyau(0,0,A); //tuyau d'arrivé
