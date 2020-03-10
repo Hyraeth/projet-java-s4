@@ -46,7 +46,7 @@ public class VueIG {
                 Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j).getRotation(), model.getPipe(i, j).getRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
                 //System.out.println(model.getPipe(i, j).getIndexGui()+" "+model.getPipe(i, j).getRotation()+" "+model.getPipe(i, j).getRempli());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-                Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
+                if(model.getPipe(i,j).isMoveable()) Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
                 zonePlateau.add(Pipes[i][j]);
             }
         }
