@@ -26,7 +26,6 @@ public class JPanelPipe extends JPanel {
         this.rota = r;
         this.remplit = remp;
         this.c = co;
-        loadImg();
         if(moveable) {
             addMouseListener(new MouseAdapter() {
                 @Override
@@ -39,7 +38,7 @@ public class JPanelPipe extends JPanel {
         }
     }
 
-    public void loadImg() {
+    public static void loadImg() {
         for (int i = 0; i < 24; i++) {
             try {
                 int type = i/4;
