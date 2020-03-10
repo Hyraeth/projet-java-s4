@@ -24,7 +24,7 @@ public abstract class Pipe {
 
     public void rotate() {
         boolean last = connections[3];
-        for( int i =2; i > 0 ; i-- )
+        for( int i =2; i >= 0 ; i-- )
             connections[i+1] = connections[i];
         connections[0] = last;
         rotation = (rotation+1)%4;
@@ -180,6 +180,13 @@ class PipeX extends Pipe {
     }
 
     public void affiche() {
-        System.out.print("╬");
+        if(rempli){
+            System.out.print(Color.BLUE_BRIGHT );
+            System.out.print("╬");
+            System.out.print(Color.RESET);
+        }else{
+            System.out.print("╬");
+        }
+        
     }
 }
