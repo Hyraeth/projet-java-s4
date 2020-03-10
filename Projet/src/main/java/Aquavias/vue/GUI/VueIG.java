@@ -24,7 +24,7 @@ public class VueIG {
     public VueIG(ControllerIG c, Niveau m) {
         controller = c;
         model = m;
-
+        m.remplir();
         jframe = new JFrame();
 
         zonePlateau = new JPanel(new GridLayout(model.getLargeur(), model.getLongueur()));
@@ -43,7 +43,7 @@ public class VueIG {
         Pipes = new JPanelPipe[model.getLargeur()][model.getLongueur()];
         for (int i = 0; i < Pipes.length; i++) {
             for (int j = 0; j < Pipes[i].length; j++) {
-                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j).getRotation(), model.getPipe(i, j).getRempli(), controller, i, j);
+                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j).getRotation(), model.getPipe(i, j).getRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
                 //System.out.println(model.getPipe(i, j).getIndexGui()+" "+model.getPipe(i, j).getRotation()+" "+model.getPipe(i, j).getRempli());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
