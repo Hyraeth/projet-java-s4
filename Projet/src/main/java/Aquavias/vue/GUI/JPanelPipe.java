@@ -15,7 +15,7 @@ import Aquavias.controller.ControllerIG;
 
 public class JPanelPipe extends JPanel {
 
-    private BufferedImage[][] img = new BufferedImage[2][24];
+    private static BufferedImage[][] img = new BufferedImage[2][24];
     private int index;
     private boolean remplit;
     private int rota;

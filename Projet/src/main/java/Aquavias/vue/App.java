@@ -25,7 +25,7 @@ public class App
             File f = new File("assets/lvls/niveau.json");
             Niveau m = new Niveau();
             try {
-                m.load(f, "niveaux_off", 0);
+                m.load(f, "niveaux_off", 1);
             } catch (IOException e) {
                 e.printStackTrace();
             }
