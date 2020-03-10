@@ -1,5 +1,7 @@
 package Aquavias.model;
 
+import Aquavias.vue.GUI.VueTerm;
+
 public abstract class Pipe {
     //Si la pièce peut etre tournée
     protected boolean moveable;
@@ -22,9 +24,17 @@ public abstract class Pipe {
         return fileName;
     }
 
+    public int getIndexTerm(){
+      return indexTerm;
+    }
+
+    public char getTerm(int i){
+      return afficheTerm[i];
+    }
+
     public void rotate() {
         boolean last = connections[3];
-        for( int i =2; i >= 0 ; i-- )
+        for( int i =2; i > 0 ; i-- )
             connections[i+1] = connections[i];
         connections[0] = last;
         rotation = (rotation+1)%4;
@@ -59,15 +69,6 @@ public abstract class Pipe {
       return moveable;
     }
 
-    public void affiche() {
-        if(rempli){
-            System.out.print(Color.BLUE_BRIGHT );
-            System.out.print(afficheTerm[indexTerm+getRotation()]);
-            System.out.print(Color.RESET);
-        }else{
-            System.out.print(afficheTerm[indexTerm+getRotation()]);
-        }
-    }
     public String toString() {
         return "moveable :"+moveable+"; rempli :"+rempli+"; rotation :"+rotation+"; indexTerm :"+indexTerm+"; indexGui :"+indexGUI;
     }
@@ -79,13 +80,14 @@ public abstract class Pipe {
         PipeL pl = new PipeL(true);
         PipeT pt = new PipeT(true);
         PipeX px = new PipeX();
-        pd.affiche();
-        pa.affiche();
-        pi.affiche();
-        pl.affiche();
-        pt.affiche();
-        px.affiche();
-        pd.rotate(); pd.affiche();
+        vt.affichePipe(pd);
+        vt.affichePipe(pa);
+        vt.affichePipe(pi);
+        vt.affichePipe(pl);
+        vt.affichePipe(pt);
+        vt.affichePipeX(px);
+        pd.rotate();
+        vt.affichePipe(pd);
     }
 
 	public boolean isRempli() {
@@ -95,11 +97,11 @@ public abstract class Pipe {
 	public int getIndexGui() {
 		return this.indexGUI;
     }
-    
+
     public boolean getRempli() {
         return rempli;
     }
-} 
+}
 
 class PipeDepart extends Pipe{
 
@@ -177,16 +179,5 @@ class PipeX extends Pipe {
         this.rempli = false;
         this.fileName = "PipeX"+rempli;
         this.indexGUI = 20;
-    }
-
-    public void affiche() {
-        if(rempli){
-            System.out.print(Color.BLUE_BRIGHT );
-            System.out.print("╬");
-            System.out.print(Color.RESET);
-        }else{
-            System.out.print("╬");
-        }
-        
     }
 }
