@@ -154,26 +154,22 @@ public class Niveau {
     public boolean fuite(int i, int j) {
         if (niveau[i][j].connections[0]==true   //Si il est connecté au suivant
             && (i-1<0                        //Si la case n'est pas dans le plateau
-                || niveau[i-1][j]==null                 //Si le suivant est null
-                || !niveau[i-1][j].connect(2))){          //Si le suivant n'est pas connecté a lui
+                || niveau[i-1][j]==null)){                 //Si le suivant est null
             return true;
         }
         if (niveau[i][j].connections[1]==true
             && (j+1>=niveau[0].length
-                || niveau[i][j+1]==null
-                || !niveau[i][j+1].connect(3))){
+                || niveau[i][j+1]==null)){
             return true;
         }
         if (niveau[i][j].connections[2]==true
             && (i+1>=niveau.length
-                || niveau[i+1][j]==null
-                || !niveau[i+1][j].connect(0))){
+                || niveau[i+1][j]==null)){
             return true;
         }
         if (niveau[i][j].connections[3]==true
             && (j-1<0
-                || niveau[i][j-1]==null
-                || !niveau[i][j-1].connect(1))){
+                || niveau[i][j-1]==null)){
             return true;
         }return false;
     }
