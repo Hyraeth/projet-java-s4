@@ -2,6 +2,8 @@ package Aquavias.model;
 
 import java.io.*;
 
+import Aquavias.vue.GUI.VueTerm;
+
 import org.apache.commons.io.FileUtils;
 import org.json.*;
 
@@ -14,6 +16,7 @@ public class Niveau {
     public void setNiveau(Pipe[][] pip) {
         niveau = pip;
     }
+
 
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
@@ -57,8 +60,11 @@ public class Niveau {
         this.niveau = new Pipe[m][n];
     }
 
+    public int getLongueur(int i){
+      return this.niveau[i].length;
+    }
     public int getLongueur() {
-        return this.niveau[0].length;
+        return getLongueur(0);
     }
 
     public int getLargeur() {
@@ -67,15 +73,6 @@ public class Niveau {
 
     public int[] getScore() {
       return this.score;
-    }
-
-    public boolean finis () {
-        for (int i = 0; i<this.getLargeur(); i++) {
-            if (niveau[i][this.getLongueur()-1]!=null && niveau[i][this.getLongueur()-1] instanceof PipeArrivee) {
-                return this.remplir() && niveau[i][this.getLongueur()-1].rempli;
-            }
-        }
-        return false;
     }
 
     public void initConfig(String s) {
@@ -91,7 +88,7 @@ public class Niveau {
         }
     }
 
-    public boolean remplir() {
+    public void remplir() {
         int k=0;
         for (int i = 0; i<this.getLargeur(); i++) {
             for (int j = 0; j<this.getLongueur(); j++) {
@@ -102,17 +99,17 @@ public class Niveau {
             }
         }
         if (niveau[k][0] instanceof PipeDepart) {
-            niveau[k][0].remplir();
-            return this.remplir(k,1,3);
-        } else return false;
+            this.remplir(k,1,3);
+        }
     }
-    //rempli d'eau et renvoie true si il n'y a pas de fuite.
+    //return un boolean de taille 2 avec dans la première case, si l'eau a atteint l'arrivé,
+    //et dans la deuxième, si il n'y a pas de fuite.
     public boolean remplir(int x, int y, int prec) {
-        if (niveau[x][y].connections[prec]){  //Si il est connecté au precedent.
+        if (niveau[x][y].connections[prec]==true){  //Si il est connecté au precedent.
             niveau[x][y].remplir();
         } else return false;
         boolean fuite = this.fuite(x,y);   //est vrai si il a une fuite.
-        boolean a = true,b = true,c = true,d = true;
+        boolean a = false,b = false,c = false,d = false;
         boolean[] possible = this.possible(x, y, prec);
         if (possible[0]) a = this.remplir(x-1, y, 2);
         if (possible[1]) b = this.remplir(x, y+1, 3);
@@ -150,7 +147,7 @@ public class Niveau {
         }
         return b;
     }
-    //return true si il y a une fuite 
+    //return true si il y a une fuite
     public boolean fuite(int i, int j) {
         if (niveau[i][j].connections[0]==true   //Si il est connecté au suivant
             && (i-1<0                        //Si la case n'est pas dans le plateau
@@ -195,23 +192,19 @@ public class Niveau {
         score = "qqchose".length();
     } */
 
+    public boolean finish() {
+        for (int i = 0; i < niveau.length; i++) {
+            if (/*niveau[i][niveau[0].length-1] != null && */(niveau[i][niveau[0].length-1] instanceof PipeArrivee))
+                return niveau[i][niveau[0].length-1].rempli;
+
+        }
+        return false;
+    }
+
     public void saveScore() {
 
     }
 
-    // affiche le plateau dans le terminal
-    public void affiche() {
-        if (this.finis()) System.out.println("TUE AS GUANIER !!!");
-        for (int i = 0; i < niveau.length; i++) {
-            for (int j = 0; j < niveau[i].length; j++) {
-                if (niveau[i][j] != null)
-                    niveau[i][j].affiche();
-                else
-                    System.out.print(" ");
-            }
-            System.out.println();
-        }
-    }
 
     public String toString() {
         String s = "";
@@ -223,28 +216,6 @@ public class Niveau {
         }
         return s;
     }
-
-    // affiche le plateau dans le terminal avec des séparation.
-    public void afficheAvecCase() {
-        for (int i = 0; i < niveau.length; i++) {
-            for (int j = 0; j < niveau[i].length; j++) {
-                if (j == 0)
-                    System.out.print("|");
-                if (niveau[i][j] != null)
-                    niveau[i][j].affiche();
-                else
-                    System.out.print(" ");
-                System.out.print("|");
-            }
-            System.out.println();
-            for (int j = 0; j < 2 * niveau[i].length + 1; j++) {
-                System.out.print("-");
-            }
-            System.out.println();
-        }
-    }
-
-
 
 
     public boolean correct(int premier, int deuxieme) {        // renvoie true si les coordonnées sont bonnes
@@ -286,7 +257,7 @@ public class Niveau {
 
     public static void main(String[] args) {
         Niveau n = new Niveau();
-        n.affiche();
+        vt.afficheNiv(n);
         File f = new File("assets\\lvls\\niveau.json");
         System.out.println(f.toPath());
         try {
@@ -294,10 +265,10 @@ public class Niveau {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        n.affiche();
+        vt.afficheNiv(n);
         System.out.println(n.niveau[1][1]);
         n.rotate(1, 1);
         System.out.println();
-        n.affiche();
+        vt.afficheNiv(n);
     }
 }
