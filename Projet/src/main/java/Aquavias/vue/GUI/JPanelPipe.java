@@ -21,20 +21,22 @@ public class JPanelPipe extends JPanel {
     private int rota;
     private ControllerIG c;
 
-    public JPanelPipe(int i, int r, boolean remp, ControllerIG co, int x, int y) {
+    public JPanelPipe(int i, int r, boolean remp, ControllerIG co, int x, int y, boolean moveable) {
         this.index = i;
         this.rota = r;
         this.remplit = remp;
         this.c = co;
         loadImg();
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                c.rotate(x, y);
-                rota = (rota+1)%4;
-                repaint();
-            }
-        });
+        if(moveable) {
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    c.rotate(x, y);
+                    rota = (rota+1)%4;
+                    repaint();
+                }
+            });
+        }
     }
 
     public void loadImg() {
