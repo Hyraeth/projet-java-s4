@@ -26,7 +26,7 @@ public class VueIG {
         model = m;
         m.remplir();
         jframe = new JFrame();
-
+        JPanelPipe.loadImg();
         zonePlateau = new JPanel(new GridLayout(model.getLargeur(), model.getLongueur()));
 
         initPlateau(m,c);

@@ -15,7 +15,7 @@ import Aquavias.controller.ControllerIG;
 
 public class JPanelPipe extends JPanel {
 
-    private BufferedImage[][] img = new BufferedImage[2][24];
+    private static BufferedImage[][] img = new BufferedImage[2][24];
     private int index;
     private boolean remplit;
     private int rota;
@@ -26,7 +26,6 @@ public class JPanelPipe extends JPanel {
         this.rota = r;
         this.remplit = remp;
         this.c = co;
-        loadImg();
         if(moveable) {
             addMouseListener(new MouseAdapter() {
                 @Override
@@ -39,7 +38,7 @@ public class JPanelPipe extends JPanel {
         }
     }
 
-    public void loadImg() {
+    public static void loadImg() {
         for (int i = 0; i < 24; i++) {
             try {
                 int type = i/4;
