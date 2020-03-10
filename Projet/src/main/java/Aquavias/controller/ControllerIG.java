@@ -18,8 +18,8 @@ public class ControllerIG {
     public void rotate(int i, int j) {
         model.rotate(i,j);
         //tests pour voir si l'ig fonctionne correctement
-        System.out.println(model.getPipe(i, j));
-        model.affiche();
+        //System.out.println(model.getPipe(i, j));
+        //model.affiche();
         //model.flow();
         vue.update();
         //if(model.finish()) vue.displayWinScreen();
