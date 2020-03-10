@@ -69,6 +69,15 @@ public class Niveau {
       return this.score;
     }
 
+    public boolean finis () {
+        for (int i = 0; i<this.getLargeur(); i++) {
+            if (niveau[i][this.getLongueur()-1]!=null && niveau[i][this.getLongueur()-1] instanceof PipeArrivee) {
+                return this.remplir() && niveau[i][this.getLongueur()-1].rempli;
+            }
+        }
+        return false;
+    }
+
     public void initConfig(String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
@@ -82,7 +91,7 @@ public class Niveau {
         }
     }
 
-    public void remplir() {
+    public boolean remplir() {
         int k=0;
         for (int i = 0; i<this.getLargeur(); i++) {
             for (int j = 0; j<this.getLongueur(); j++) {
@@ -94,17 +103,16 @@ public class Niveau {
         }
         if (niveau[k][0] instanceof PipeDepart) {
             niveau[k][0].remplir();
-            this.remplir(k,1,3);
-        }
+            return this.remplir(k,1,3);
+        } else return false;
     }
-    //return un boolean de taille 2 avec dans la première case, si l'eau a atteint l'arrivé,
-    //et dans la deuxième, si il n'y a pas de fuite.
+    //rempli d'eau et renvoie true si il n'y a pas de fuite.
     public boolean remplir(int x, int y, int prec) {
         if (niveau[x][y].connections[prec]){  //Si il est connecté au precedent.
             niveau[x][y].remplir();
         } else return false;
         boolean fuite = this.fuite(x,y);   //est vrai si il a une fuite.
-        boolean a = false,b = false,c = false,d = false;
+        boolean a = true,b = true,c = true,d = true;
         boolean[] possible = this.possible(x, y, prec);
         if (possible[0]) a = this.remplir(x-1, y, 2);
         if (possible[1]) b = this.remplir(x, y+1, 3);
@@ -187,22 +195,13 @@ public class Niveau {
         score = "qqchose".length();
     } */
 
-    public boolean finish() {
-        for (int i = 0; i < niveau.length; i++) {
-            if (/*niveau[i][niveau[0].length-1] != null && */(niveau[i][niveau[0].length-1] instanceof PipeArrivee))
-                return niveau[i][niveau[0].length-1].rempli;
-
-        }
-        return false;
-    }
-
     public void saveScore() {
 
     }
 
     // affiche le plateau dans le terminal
     public void affiche() {
-        this.remplir();
+        if (this.finis()) System.out.println("TUE AS GUANIER !!!");
         for (int i = 0; i < niveau.length; i++) {
             for (int j = 0; j < niveau[i].length; j++) {
                 if (niveau[i][j] != null)
