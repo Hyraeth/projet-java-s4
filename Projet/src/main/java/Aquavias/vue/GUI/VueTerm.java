@@ -1,6 +1,6 @@
 package Aquavias.vue.GUI;
 
-import java.io.*;
+import java.util.*;
 
 import Aquavias.model.MenuNiveau;
 import Aquavias.model.Pipe;
@@ -89,11 +89,11 @@ public class VueTerm{
 
   // affiche le plateau dans le terminal
   public void afficheNiv(Niveau n) {
-      n.remplir();
+      if (n.finis()) System.out.println("TUE AS GUANIER !!!");
       for (int i = 0; i < n.getLargeur(); i++) {
           for (int j = 0; j < n.getLongueur(i); j++) {
               if (n.getPipe(i,j) != null)
-                  n.getPipe(i,j).affiche();
+                  affichePipe(n.getPipe(i,j));
               else
                   System.out.print(" ");
           }
@@ -108,7 +108,7 @@ public class VueTerm{
               if (j == 0)
                   System.out.print("|");
               if (n.getPipe(i,j) != null)
-                  n.getPipe(i,j).affiche();
+                  affichePipe(n.getPipe(i,j));
               else
                   System.out.print(" ");
               System.out.print("|");
@@ -182,16 +182,13 @@ public class VueTerm{
 
 
   public void affichePipe(Pipe p) {
-      if(!p.vide()){
+      if(p.isRempli()){
           System.out.print(Color.BLUE_BRIGHT );
           System.out.print(p.getTerm(p.getIndexTerm()+p.getRotation()));
           System.out.print(Color.RESET);
       }else{
           System.out.print(p.getTerm(p.getIndexTerm()+p.getRotation()));
       }
-  }
-  public void affichePipeX(){
-    System.out.print("╬");
   }
 
 }
