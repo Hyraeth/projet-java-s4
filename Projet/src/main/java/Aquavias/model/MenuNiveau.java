@@ -6,7 +6,7 @@ public class MenuNiveau{
   private int Norm; //Nombre de niveau normaux
   private int Pers; //Nombre de niveau personnalisés
   private VueTerm vt = new VueTerm();
-
+  
   public int getNorm(){
     return Norm;
   }
@@ -37,6 +37,7 @@ public class MenuNiveau{
     System.out.println("Voir dans le fichier JSON le niveau personnalisé numero "+ x);
     System.out.println("Disponible dans une prochaîne mise à jour...");
   }
+
 
   public void jouer(int lvl, Niveau n) {
 
