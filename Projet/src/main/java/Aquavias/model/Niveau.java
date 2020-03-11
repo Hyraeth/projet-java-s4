@@ -74,6 +74,17 @@ public class Niveau {
     public int[] getScore() {
       return this.score;
     }
+    
+    public boolean finis () {
+        for (int i = 0; i<this.getLargeur(); i++) {
+            if (niveau[i][this.getLongueur()-1]!=null && niveau[i][this.getLongueur()-1] instanceof PipeArrivee) {
+                this.remplir();
+                return niveau[i][this.getLongueur()-1].rempli;
+            }
+        }
+        return false;
+    }
+
 
     public void initConfig(String s) {
         PipeFactory initPipe = new PipeFactory();
@@ -88,7 +99,7 @@ public class Niveau {
         }
     }
 
-    public void remplir() {
+    public boolean remplir() {
         int k=0;
         for (int i = 0; i<this.getLargeur(); i++) {
             for (int j = 0; j<this.getLongueur(); j++) {
@@ -99,17 +110,17 @@ public class Niveau {
             }
         }
         if (niveau[k][0] instanceof PipeDepart) {
-            this.remplir(k,1,3);
-        }
+            niveau[k][0].remplir();
+            return this.remplir(k,1,3);
+        } else return false;
     }
-    //return un boolean de taille 2 avec dans la première case, si l'eau a atteint l'arrivé,
-    //et dans la deuxième, si il n'y a pas de fuite.
+    //rempli d'eau et renvoie true si il n'y a pas de fuite.
     public boolean remplir(int x, int y, int prec) {
-        if (niveau[x][y].connections[prec]==true){  //Si il est connecté au precedent.
+        if (niveau[x][y].connections[prec]){  //Si il est connecté au precedent.
             niveau[x][y].remplir();
         } else return false;
         boolean fuite = this.fuite(x,y);   //est vrai si il a une fuite.
-        boolean a = false,b = false,c = false,d = false;
+        boolean a = true,b = true,c = true,d = true;
         boolean[] possible = this.possible(x, y, prec);
         if (possible[0]) a = this.remplir(x-1, y, 2);
         if (possible[1]) b = this.remplir(x, y+1, 3);
@@ -117,6 +128,7 @@ public class Niveau {
         if (possible[3]) d = this.remplir(x, y-1, 1);
         return (!fuite && a && b && c && d);
     }
+
 
     //return les possibilité d'acces aux cases suivantes.
     public boolean[] possible (int i, int j, int prec) {
@@ -147,7 +159,7 @@ public class Niveau {
         }
         return b;
     }
-    //return true si il y a une fuite
+    //return true si il y a une fuite 
     public boolean fuite(int i, int j) {
         if (niveau[i][j].connections[0]==true   //Si il est connecté au suivant
             && (i-1<0                        //Si la case n'est pas dans le plateau
@@ -174,6 +186,7 @@ public class Niveau {
             return true;
         }return false;
     }
+
 
     //tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
@@ -256,6 +269,7 @@ public class Niveau {
     }
 
     public static void main(String[] args) {
+        VueTerm vt = new VueTerm();
         Niveau n = new Niveau();
         vt.afficheNiv(n);
         File f = new File("assets\\lvls\\niveau.json");
