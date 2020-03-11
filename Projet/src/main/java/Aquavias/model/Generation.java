@@ -1,5 +1,7 @@
 package Aquavias.model;
 
+import Aquavias.vue.GUI.VueTerm;
+
 public class Generation {
   private static int[][] tab;
   public int[][] getTab(){return tab;}
@@ -75,8 +77,9 @@ public class Generation {
   }
 
   public static void main(String[] args) {
+    VueTerm vt = new VueTerm();
     Niveau n = init(9,9);
-    n.affiche();
+    vt.afficheNiv(n);
   }
 
   public static Niveau init(int i, int j) {
@@ -87,28 +90,6 @@ public class Generation {
     return n1;
 
   }
-
-  public static void affiche (int[][] tab) {
-    for (int i=0; i<tab.length; i++) {
-      for (int j=0; j<tab[0].length; j++) {
-        System.out.print(tab[i][j] + "    ");
-      }
-      System.out.println();
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   public static Pipe[][] const1(int[][] t) {
     Pipe[][] pip = new Pipe[t.length][t[0].length];

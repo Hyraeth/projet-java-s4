@@ -2,6 +2,8 @@ package Aquavias.model;
 
 import java.io.*;
 
+import Aquavias.vue.GUI.VueTerm;
+
 import org.apache.commons.io.FileUtils;
 import org.json.*;
 
@@ -56,11 +58,14 @@ public class Niveau {
     public void setSize(int m, int n) {
         this.niveau = new Pipe[m][n];
     }
-
-    public int getLongueur() {
-        return this.niveau[0].length;
+    
+    public int getLongueur(int i){
+      return this.niveau[i].length;
     }
-
+    public int getLongueur() {
+        return getLongueur(0);
+    }
+    
     public int getLargeur() {
         return this.niveau.length;
     }
@@ -199,19 +204,6 @@ public class Niveau {
 
     }
 
-    // affiche le plateau dans le terminal
-    public void affiche() {
-        if (this.finis()) System.out.println("TUE AS GUANIER !!!");
-        for (int i = 0; i < niveau.length; i++) {
-            for (int j = 0; j < niveau[i].length; j++) {
-                if (niveau[i][j] != null)
-                    niveau[i][j].affiche();
-                else
-                    System.out.print(" ");
-            }
-            System.out.println();
-        }
-    }
 
     public String toString() {
         String s = "";
@@ -223,28 +215,6 @@ public class Niveau {
         }
         return s;
     }
-
-    // affiche le plateau dans le terminal avec des séparation.
-    public void afficheAvecCase() {
-        for (int i = 0; i < niveau.length; i++) {
-            for (int j = 0; j < niveau[i].length; j++) {
-                if (j == 0)
-                    System.out.print("|");
-                if (niveau[i][j] != null)
-                    niveau[i][j].affiche();
-                else
-                    System.out.print(" ");
-                System.out.print("|");
-            }
-            System.out.println();
-            for (int j = 0; j < 2 * niveau[i].length + 1; j++) {
-                System.out.print("-");
-            }
-            System.out.println();
-        }
-    }
-
-
 
 
     public boolean correct(int premier, int deuxieme) {        // renvoie true si les coordonnées sont bonnes
@@ -285,8 +255,9 @@ public class Niveau {
     }
 
     public static void main(String[] args) {
+      VueTerm vt = new VueTerm();
         Niveau n = new Niveau();
-        n.affiche();
+        vt.afficheNiv(n);
         File f = new File("assets\\lvls\\niveau.json");
         System.out.println(f.toPath());
         try {
@@ -294,10 +265,10 @@ public class Niveau {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        n.affiche();
+        vt.afficheNiv(n);
         System.out.println(n.niveau[1][1]);
         n.rotate(1, 1);
         System.out.println();
-        n.affiche();
+        vt.afficheNiv(n);
     }
 }

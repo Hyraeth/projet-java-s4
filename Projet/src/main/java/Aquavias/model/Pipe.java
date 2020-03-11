@@ -1,5 +1,7 @@
 package Aquavias.model;
 
+import Aquavias.vue.GUI.VueTerm;
+
 public abstract class Pipe {
     //Si la pièce peut etre tournée
     protected boolean moveable;
@@ -8,7 +10,7 @@ public abstract class Pipe {
     //savoir si un Pipe est rempli
     protected boolean rempli;
     //affiche un char associé à un Pipe
-    protected static char[] afficheTerm = new char[]{'╨','╞','╥','╡','╚','╔', '╗', '╝','║','═','║','═','╠', '╦', '╣', '╩'};
+    protected static char[] afficheTerm = new char[]{'╨','╞','╥','╡','╚','╔', '╗', '╝','║','═','║','═','╠', '╦', '╣', '╩','╬'};
     //pour faciliter l'interface graphique
     protected String fileName;
 
@@ -20,6 +22,14 @@ public abstract class Pipe {
 
     public String getFilename() {
         return fileName;
+    }
+    
+    public int getIndexTerm(){
+      return indexTerm;
+    }
+
+    public char getTerm(int i){
+      return afficheTerm[i];
     }
 
     public void rotate() {
@@ -73,19 +83,21 @@ public abstract class Pipe {
     }
 
     public static void main(String[] args) {
+        VueTerm vt = new VueTerm();
         PipeDepart pd = new PipeDepart();
         PipeArrivee pa = new PipeArrivee();
         PipeI pi = new PipeI(true);
         PipeL pl = new PipeL(true);
         PipeT pt = new PipeT(true);
         PipeX px = new PipeX();
-        pd.affiche();
-        pa.affiche();
-        pi.affiche();
-        pl.affiche();
-        pt.affiche();
-        px.affiche();
-        pd.rotate(); pd.affiche();
+        vt.affichePipe(pd);
+        vt.affichePipe(pa);
+        vt.affichePipe(pi);
+        vt.affichePipe(pl);
+        vt.affichePipe(pt);
+        vt.affichePipe(px);
+        pd.rotate();
+        vt.affichePipe(pd);
     }
 
 	public boolean isRempli() {
@@ -176,17 +188,8 @@ class PipeX extends Pipe {
         this.connections = new boolean[]{true, true, true, true};
         this.rempli = false;
         this.fileName = "PipeX"+rempli;
+        this.rotation = 0;
+        this.indexTerm = 16;
         this.indexGUI = 20;
-    }
-
-    public void affiche() {
-        if(rempli){
-            System.out.print(Color.BLUE_BRIGHT );
-            System.out.print("╬");
-            System.out.print(Color.RESET);
-        }else{
-            System.out.print("╬");
-        }
-        
     }
 }
