@@ -67,7 +67,7 @@ public class VueIG {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            File f = new File("assets\\lvls\\niveau.json");
+            File f = new File("assets/lvls/niveau.json");
             Niveau m = new Niveau();
             try {
                 m.load(f, "niveaux_off", 0);
