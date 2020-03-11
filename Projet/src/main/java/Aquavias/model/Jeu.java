@@ -29,6 +29,7 @@ public class Jeu{
 
   //Lancé si le joueur veut jouer
   public void jouer(){
+
     while(true){
       //Affichage de la fenêtre
       vt.afficheNiv();
@@ -103,6 +104,7 @@ public class Jeu{
         default : System.out.println("\nVeuillez entrer j,c ou q .\n");
       }
     }
+
   }
 
 
