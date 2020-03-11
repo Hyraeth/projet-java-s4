@@ -139,13 +139,13 @@ public class Generation {
       case 0:
         return new PipeL(true);
       case 1:
-        return new PipeI(true);
+        return new PipeL(true);
       case 2:
-        return new PipeT(true);
+        return new PipeI(true);
       case 3:
-        return null;
+        return new PipeI(true);
       case 4:
-        return null;
+        return new PipeT(true);
       default:
         return new PipeX();
     }
