@@ -23,7 +23,7 @@ public abstract class Pipe {
     public String getFilename() {
         return fileName;
     }
-
+    
     public int getIndexTerm(){
       return indexTerm;
     }
@@ -34,7 +34,7 @@ public abstract class Pipe {
 
     public void rotate() {
         boolean last = connections[3];
-        for( int i =2; i > 0 ; i-- )
+        for( int i =2; i >= 0 ; i-- )
             connections[i+1] = connections[i];
         connections[0] = last;
         rotation = (rotation+1)%4;
@@ -69,6 +69,15 @@ public abstract class Pipe {
       return moveable;
     }
 
+    public void affiche() {
+        if(rempli){
+            System.out.print(Color.BLUE_BRIGHT );
+            System.out.print(afficheTerm[indexTerm+getRotation()]);
+            System.out.print(Color.RESET);
+        }else{
+            System.out.print(afficheTerm[indexTerm+getRotation()]);
+        }
+    }
     public String toString() {
         return "moveable :"+moveable+"; rempli :"+rempli+"; rotation :"+rotation+"; indexTerm :"+indexTerm+"; indexGui :"+indexGUI;
     }
@@ -98,11 +107,11 @@ public abstract class Pipe {
 	public int getIndexGui() {
 		return this.indexGUI;
     }
-
+    
     public boolean getRempli() {
         return rempli;
     }
-}
+} 
 
 class PipeDepart extends Pipe{
 
