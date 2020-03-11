@@ -9,7 +9,6 @@ import Aquavias.model.Color;
 import Aquavias.model.Score;
 
 public class VueTerm{
-  MenuNiveau mn = new MenuNiveau(25,13);
 
   public VueTerm(){
 
@@ -32,6 +31,7 @@ public class VueTerm{
 
   //Affiche la liste de tous les niveaux normaux
   public void afficheNorm(){
+    MenuNiveau mn = new MenuNiveau(25,13);
 
     System.out.println(Color.BLUE_BRIGHT
     +"\n             AQUAVIAS         \n"
@@ -59,7 +59,7 @@ public class VueTerm{
 
   //Affiche la liste de tous les niveaux personnalisés
   public void affichePers(){
-
+    MenuNiveau mn = new MenuNiveau(25,13);
     System.out.println(
     Color.WHITE_BOLD_BRIGHT
     +"\n \033[3m ~BIENVENUE DANS LES NIVEAUX PERSONALISES~ \033[0m \n"
@@ -89,7 +89,10 @@ public class VueTerm{
 
   // affiche le plateau dans le terminal
   public void afficheNiv(Niveau n) {
-      if (n.finis()) System.out.println("TUE AS GUANIER !!!");
+      if (n.finis()){
+       System.out.println("TUE AS GUANIER !!!");
+       System.exit(0);
+      }
       for (int i = 0; i < n.getLargeur(); i++) {
           for (int j = 0; j < n.getLongueur(i); j++) {
               if (n.getPipe(i,j) != null)
