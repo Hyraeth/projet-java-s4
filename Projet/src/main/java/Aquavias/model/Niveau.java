@@ -17,7 +17,6 @@ public class Niveau {
         niveau = pip;
     }
 
-
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
         this.coups = 0;
@@ -59,14 +58,14 @@ public class Niveau {
     public void setSize(int m, int n) {
         this.niveau = new Pipe[m][n];
     }
-
+    
     public int getLongueur(int i){
       return this.niveau[i].length;
     }
     public int getLongueur() {
         return getLongueur(0);
     }
-
+    
     public int getLargeur() {
         return this.niveau.length;
     }
@@ -74,17 +73,15 @@ public class Niveau {
     public int[] getScore() {
       return this.score;
     }
-    
+
     public boolean finis () {
         for (int i = 0; i<this.getLargeur(); i++) {
             if (niveau[i][this.getLongueur()-1]!=null && niveau[i][this.getLongueur()-1] instanceof PipeArrivee) {
-                this.remplir();
-                return niveau[i][this.getLongueur()-1].rempli;
+                return this.remplir() && niveau[i][this.getLongueur()-1].rempli;
             }
         }
         return false;
     }
-
 
     public void initConfig(String s) {
         PipeFactory initPipe = new PipeFactory();
@@ -128,7 +125,6 @@ public class Niveau {
         if (possible[3]) d = this.remplir(x, y-1, 1);
         return (!fuite && a && b && c && d);
     }
-
 
     //return les possibilité d'acces aux cases suivantes.
     public boolean[] possible (int i, int j, int prec) {
@@ -187,7 +183,6 @@ public class Niveau {
         }return false;
     }
 
-
     //tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
         if (coups != 0 && niveau[i][j].moveable) {
@@ -204,15 +199,6 @@ public class Niveau {
     /*public void calculateScore() {
         score = "qqchose".length();
     } */
-
-    public boolean finish() {
-        for (int i = 0; i < niveau.length; i++) {
-            if (/*niveau[i][niveau[0].length-1] != null && */(niveau[i][niveau[0].length-1] instanceof PipeArrivee))
-                return niveau[i][niveau[0].length-1].rempli;
-
-        }
-        return false;
-    }
 
     public void saveScore() {
 
@@ -269,7 +255,7 @@ public class Niveau {
     }
 
     public static void main(String[] args) {
-        VueTerm vt = new VueTerm();
+      VueTerm vt = new VueTerm();
         Niveau n = new Niveau();
         vt.afficheNiv(n);
         File f = new File("assets\\lvls\\niveau.json");
