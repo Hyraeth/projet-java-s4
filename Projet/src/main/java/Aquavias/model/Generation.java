@@ -3,7 +3,6 @@ package Aquavias.model;
 import Aquavias.vue.GUI.VueTerm;
 
 public class Generation {
-  private VueTerm vt = new VueTerm();
   private static int[][] tab;
   public int[][] getTab(){return tab;}
 
@@ -78,6 +77,7 @@ public class Generation {
   }
 
   public static void main(String[] args) {
+    VueTerm vt = new VueTerm();
     Niveau n = init(9,9);
     vt.afficheNiv(n);
   }
