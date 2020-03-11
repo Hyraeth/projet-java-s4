@@ -7,7 +7,6 @@ import java.io.*;
 
 public class Jeu{
   private VueTerm vt = new VueTerm();
-  private MenuNiveau mn = new MenuNiveau();
   static Scanner sc;
 
   //Constructeur du jeu
@@ -46,6 +45,7 @@ public class Jeu{
   //Lanceur de niveau (normal ou personnalisé)
   public void lanceNiv(String s){
     while(true){
+      MenuNiveau n = new MenuNiveau(25,13);
       if(s.equals("n")){ //Si il faut lancer un niveau normal
         vt.afficheNorm(); //Affiche la liste des niveaux normaux
         int x;
@@ -55,14 +55,14 @@ public class Jeu{
         else{
           try{
             x = Integer.parseInt(rep);
-            if (x<1 || x>mn.getNorm()) throw new IndexOutOfBoundsException(); //Vérifie si le niveau existe
+            if (x<1 || x>n.getNorm()) throw new IndexOutOfBoundsException(); //Vérifie si le niveau existe
             else n.LanceNivN(x); //Lance le niveau numéro x
           }
           catch (NumberFormatException e){ //Si ce n'est pas un nombre
             System.out.println("Ce n'est pas un nombres");
           }
           catch (IndexOutOfBoundsException r){ //Si ce n'est pas accepté
-            System.out.println("Ce nombre n'est pas compris entre 1 et " + n.Norm);
+            System.out.println("Ce nombre n'est pas compris entre 1 et " + n.getNorm());
           }
         }
       }else{ //Si il faut lancer un niveau personnalisé
@@ -74,14 +74,14 @@ public class Jeu{
         else{
           try{
             x = Integer.parseInt(rep);
-            if (x<1 || x>mn.getPers()) throw new IndexOutOfBoundsException(); //Vérifie si le niveau existe
+            if (x<1 || x>n.getPers()) throw new IndexOutOfBoundsException(); //Vérifie si le niveau existe
             else n.LanceNivP(x); //Lance le niveau numéro x
           }
           catch (NumberFormatException e){ //Si ce n'est pas un nombre
             System.out.println("Ce n'est pas un nombres");
           }
           catch (IndexOutOfBoundsException r){ //Si ce n'est pas accepté
-            System.out.println("Ce nombre n'est pas compris entre 1 et " + n.Pers);
+            System.out.println("Ce nombre n'est pas compris entre 1 et " + n.getPers());
           }
         }
       }
