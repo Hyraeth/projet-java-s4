@@ -45,7 +45,7 @@ Il a a en tout au moins 4 tuyaux :
 
   Représentation dans l'interface graphique : WIP
   
-  - Un tuyau avec 4 connections.
+- Un tuyau avec 4 connections.
   
   Représentation dans l'interface terminale : '╬'
 
