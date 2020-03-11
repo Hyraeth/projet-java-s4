@@ -10,7 +10,7 @@ public abstract class Pipe {
     //savoir si un Pipe est rempli
     protected boolean rempli;
     //affiche un char associé à un Pipe
-    protected static char[] afficheTerm = new char[]{'╨','╞','╥','╡','╚','╔', '╗', '╝','║','═','║','═','╠', '╦', '╣', '╩'};
+    protected static char[] afficheTerm = new char[]{'╨','╞','╥','╡','╚','╔', '╗', '╝','║','═','║','═','╠', '╦', '╣', '╩','╬'};
     //pour faciliter l'interface graphique
     protected String fileName;
 
@@ -74,6 +74,7 @@ public abstract class Pipe {
     }
 
     public static void main(String[] args) {
+        VueTerm vt = new VueTerm();
         PipeDepart pd = new PipeDepart();
         PipeArrivee pa = new PipeArrivee();
         PipeI pi = new PipeI(true);
@@ -85,7 +86,7 @@ public abstract class Pipe {
         vt.affichePipe(pi);
         vt.affichePipe(pl);
         vt.affichePipe(pt);
-        vt.affichePipeX(px);
+        vt.affichePipe(px);
         pd.rotate();
         vt.affichePipe(pd);
     }
@@ -178,6 +179,8 @@ class PipeX extends Pipe {
         this.connections = new boolean[]{true, true, true, true};
         this.rempli = false;
         this.fileName = "PipeX"+rempli;
+        this.rotation = 0;
+        this.indexTerm = 16;
         this.indexGUI = 20;
     }
 }
