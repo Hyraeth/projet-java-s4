@@ -142,14 +142,14 @@ public class VueTerm{
   // 3 étoiles (score max). Si on a moins que 1 une étoile, on affiche une tête de mort.
   public static void afficheScore(int[] scoreComparaison, int score, int lvl) {
 
-    if (score <= scoreComparaison[2] && score > scoreComparaison[1]) {
+    if (score >= scoreComparaison[2] && score < scoreComparaison[1]) {
       System.out.println("                        ★★★");
       System.out.println("                     Excellent\n");
-    } else if (score <= scoreComparaison[1] && score > scoreComparaison[0]) {
+    } else if (score >= scoreComparaison[1] && score < scoreComparaison[0]) {
         System.out.println("                        ★★");
         System.out.println("                       Bien\n");
         }
-        else if (score <= scoreComparaison[0] && score > scoreComparaison[0]+5) {
+        else if (score >= scoreComparaison[0] && score < scoreComparaison[0]+5) {
           System.out.println("                        ★");
           System.out.println("                        Ok\n");
           }
