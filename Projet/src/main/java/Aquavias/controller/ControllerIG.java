@@ -32,6 +32,14 @@ public class ControllerIG {
         //if(model.finish()) vue.displayWinScreen();
     }
 
+    public int getLongueur() {
+        return model.getLongueur();
+    }
+
+    public int getLargeur() {
+        return model.getLargeur();
+    }
+
     public void undo() {
 
     }
