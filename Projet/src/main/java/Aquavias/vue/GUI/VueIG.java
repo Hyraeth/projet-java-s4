@@ -27,7 +27,7 @@ public class VueIG {
         m.remplir();
         jframe = new JFrame();
         JPanelPipe.loadImg();
-        zonePlateau = new JPanel(new GridLayout(model.getLargeur(), model.getLongueur()));
+        zonePlateau = new JPanel();
 
         initPlateau(m,c);
 
@@ -39,15 +39,18 @@ public class VueIG {
     }
 
     public void initPlateau(Niveau model, ControllerIG controller) {
-        zonePlateau = new JPanel(new GridLayout(model.getLargeur(), model.getLongueur()));
+        zonePlateau.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
         Pipes = new JPanelPipe[model.getLargeur()][model.getLongueur()];
         for (int i = 0; i < Pipes.length; i++) {
             for (int j = 0; j < Pipes[i].length; j++) {
+                gbc.gridx = j;
+                gbc.gridy = i;
                 Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j).getRotation(), model.getPipe(i, j).getRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
                 //System.out.println(model.getPipe(i, j).getIndexGui()+" "+model.getPipe(i, j).getRotation()+" "+model.getPipe(i, j).getRempli());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 if(model.getPipe(i,j).isMoveable()) Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
-                zonePlateau.add(Pipes[i][j]);
+                zonePlateau.add(Pipes[i][j], gbc);
             }
         }
     }
