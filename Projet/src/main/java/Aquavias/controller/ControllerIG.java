@@ -13,8 +13,8 @@ public class ControllerIG {
 
     public ControllerIG(Niveau n) {
         this.model = n;
-	String[] arg=new String[0];
-	Test.main(arg);
+	    //String[] arg=new String[0];
+	    //Test.main(arg);
     }
 
     public void setVue(VueIG v) {
