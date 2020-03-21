@@ -85,6 +85,7 @@ public class JPanelPipe extends JPanel {
         }
         int w = (int) d.getWidth();
         int h = (int) d.getHeight();
+        System.out.println(w+" "+h);
         int s = (w/this.c.getLongueur() < h/this.c.getLargeur() ? w/this.c.getLongueur() : h/this.c.getLargeur());
         return new Dimension(s, s);
     }
