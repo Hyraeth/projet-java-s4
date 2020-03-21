@@ -28,7 +28,7 @@ public class VueIG {
         jframe = new JFrame();
         JPanelPipe.loadImg();
         zonePlateau = new JPanel();
-
+        jframe.setSize(new Dimension(500,500));
         initPlateau(m,c);
 
         jframe.add(zonePlateau);
