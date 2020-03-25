@@ -12,10 +12,10 @@ public class Niveau {
     private Pipe[][] niveau;
     private int coups;
     private int[] score;
+    private int contrainte; //Si = 0 aucune contrainte, = 1 limite de mouvement, = 2 limite de réserve
+    private int reserve;
 
-    public void setNiveau(Pipe[][] pip) {
-        niveau = pip;
-    }
+    
 
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
@@ -24,6 +24,8 @@ public class Niveau {
         this.score[0] = 20;
         this.score[1] = 15;
         this.score[2] = 10;
+        this.contrainte = 0;
+        this.reserve = -1;
     }
 
     public Niveau() {
@@ -48,15 +50,45 @@ public class Niveau {
         initConfig(config);
 
         this.coups = level.getInt("coups");
+        this.reserve = level.getInt("reserve");
+
+        if(coups > 0) this.contrainte = 1;
+        if(reserve > 0) this.contrainte = 2;
+        
         //this.score = level.getInt("score");
     }
+
+    //Setteurs
+
+    public void setSize(int m, int n) {
+        this.niveau = new Pipe[m][n];
+    }
+
+    public void setNiveau(Pipe[][] pip) {
+        niveau = pip;
+    }
+
+    public void setCoups(int n){
+        coups = n;
+    }
+
+    public void setReserve(int n){
+        reserve = n;
+    }
+
+
+    //Getteurs
 
     public Pipe getPipe(int i, int j) {
         return niveau[i][j];
     }
 
-    public void setSize(int m, int n) {
-        this.niveau = new Pipe[m][n];
+    public int getCoups(){
+        return coups;
+    }
+
+    public int getReserve(){
+        return reserve;
     }
     
     public int getLongueur(int i){
@@ -75,11 +107,26 @@ public class Niveau {
     }
 
     public boolean finis () {
+        boolean cont = true;
+        switch(contrainte){
+            case 1: cont = limMouv(); //S'il y a une limite de mouvement
+            case 2: cont = limRes();  //S'il y a une limite de réservoir
+        }
         for (int i = 0; i<this.getLargeur(); i++) {
             if (niveau[i][this.getLongueur()-1]!=null && niveau[i][this.getLongueur()-1] instanceof PipeArrivee) {
-                return this.remplir() && niveau[i][this.getLongueur()-1].rempli;
+                return cont && this.remplir() && niveau[i][this.getLongueur()-1].rempli;
             }
         }
+        return false;
+    }
+
+    public boolean limMouv(){ //Return true si on a utilisé le nombre de coup limité
+        if( coups >= 0) return true;
+        return false;
+    }
+
+    public boolean limRes(){ //Return true si on il y a encore de l'eau dans le réservoir
+        if( reserve >= 0) return true;
         return false;
     }
 
@@ -185,9 +232,12 @@ public class Niveau {
 
     //tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
-        if (coups != 0 && niveau[i][j].moveable) {
-            if(niveau[i][j] != null) niveau[i][j].rotate();
-            coups--;
+        
+        if (niveau[i][j].moveable) {
+            if(niveau[i][j] != null){
+                niveau[i][j].rotate();
+                coups--;
+            }
         }
     }
 
@@ -253,6 +303,8 @@ public class Niveau {
       // à coder
       return false;  // pour tester en attendant
     }
+
+    
 
     public static void main(String[] args) {
       VueTerm vt = new VueTerm();
