@@ -19,7 +19,7 @@ public class Niveau {
 
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
-        this.coups = 0;
+        this.coups = -1;
         this.score = new int[3];
         this.score[0] = 20;
         this.score[1] = 15;
