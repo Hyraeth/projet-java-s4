@@ -63,7 +63,15 @@ public class JPanelPipe extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         int x = (this.getWidth() - img[i][j].getWidth(null)) / 2;
         int y = (this.getHeight() - img[i][j].getHeight(null)) / 2;
-        g2d.drawImage(img[i][j], x, y, null);
+        Dimension d = super.getPreferredSize();
+        Container c = getParent();
+        if (c != null) {
+            d = c.getSize();
+        } 
+        int w = (int) d.getWidth();
+            int h = (int) d.getHeight();
+            int s = (w/this.c.getLongueur() < h/this.c.getLargeur() ? w/this.c.getLongueur() : h/this.c.getLargeur());
+        g2d.drawImage(img[i][j], 0, 0, s, s, null);
     }
 
     @Override
@@ -73,11 +81,11 @@ public class JPanelPipe extends JPanel {
         if (c != null) {
             d = c.getSize();
         } else {
-            return new Dimension(10, 10);
+            return new Dimension(25, 25);
         }
         int w = (int) d.getWidth();
         int h = (int) d.getHeight();
-        int s = (w < h ? w : h);
+        int s = (w/this.c.getLongueur() < h/this.c.getLargeur() ? w/this.c.getLongueur() : h/this.c.getLargeur());
         return new Dimension(s, s);
     }
 }
