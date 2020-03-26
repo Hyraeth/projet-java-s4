@@ -114,13 +114,15 @@ public class Fenetre extends JFrame{
     // ATTENTION !!! quand on aura plusieurs niveaux et fichier json il faudra changer ca pour avoir liste niveaux normaux ET liste niveaux perso
 
     ArrayList<JButton> listeNiveaux = new ArrayList<JButton>();
-    for(int i = 1; i<28;i++) {
+    for(int i = 1; i<4;i++) {
       listeNiveaux.add(new JButton("Niveau "+i));
     }
-    for (int i=debut; i<debut+9; i++) {
+    for (int i=debut; i<4; i++) {
       int j = i;
-      listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
-      panCenter.add(listeNiveaux.get(i-1));
+      if (listeNiveaux.get(i-1) != null ) {
+        listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
+        panCenter.add(listeNiveaux.get(i-1));
+      }
     }
     panCenter.setVisible(true);
 
