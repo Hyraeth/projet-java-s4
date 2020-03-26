@@ -55,17 +55,21 @@ public class Niveau {
         return niveau[i][j];
     }
 
+    public int getCoups() {
+      return coups;
+    }
+
     public void setSize(int m, int n) {
         this.niveau = new Pipe[m][n];
     }
-    
+
     public int getLongueur(int i){
       return this.niveau[i].length;
     }
     public int getLongueur() {
         return getLongueur(0);
     }
-    
+
     public int getLargeur() {
         return this.niveau.length;
     }
@@ -155,7 +159,7 @@ public class Niveau {
         }
         return b;
     }
-    //return true si il y a une fuite 
+    //return true si il y a une fuite
     public boolean fuite(int i, int j) {
         if (niveau[i][j].connections[0]==true   //Si il est connecté au suivant
             && (i-1<0                        //Si la case n'est pas dans le plateau
