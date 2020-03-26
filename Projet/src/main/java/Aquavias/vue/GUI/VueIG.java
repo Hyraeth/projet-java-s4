@@ -42,6 +42,7 @@ public class VueIG {
 
         actionBar = new JPanel();
         undoButton = new JButton("Undo");
+        undoButton.addActionListener((event) -> c.undo());
         resources = new JLabel(m.getresources()+"");
         actionBar.add(undoButton);
         actionBar.add(resources);
@@ -70,7 +71,7 @@ public class VueIG {
             for (int j = 0; j < Pipes[i].length; j++) {
                 gbc.gridx = j;
                 gbc.gridy = i;
-                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j).getRotation(), model.getPipe(i, j).getRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
+                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j), model.getPipe(i, j).getRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
                 //System.out.println(model.getPipe(i, j).getIndexGui()+" "+model.getPipe(i, j).getRotation()+" "+model.getPipe(i, j).getRempli());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 if(model.getPipe(i,j).isMoveable()) Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));

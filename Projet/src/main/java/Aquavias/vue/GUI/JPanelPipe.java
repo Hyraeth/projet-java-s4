@@ -12,18 +12,19 @@ import javax.swing.*;
 import org.w3c.dom.events.MouseEvent;
 
 import Aquavias.controller.ControllerIG;
+import Aquavias.model.Pipe;
 
 public class JPanelPipe extends JPanel {
 
     private static BufferedImage[][] img = new BufferedImage[2][24];
     private int index;
     private boolean remplit;
-    private int rota;
+    private Pipe p;
     private ControllerIG c;
 
-    public JPanelPipe(int i, int r, boolean remp, ControllerIG co, int x, int y, boolean moveable) {
+    public JPanelPipe(int i, Pipe p, boolean remp, ControllerIG co, int x, int y, boolean moveable) {
         this.index = i;
-        this.rota = r;
+        this.p = p;
         this.remplit = remp;
         this.c = co;
         if(moveable) {
@@ -31,7 +32,6 @@ public class JPanelPipe extends JPanel {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     c.rotate(x, y);
-                    rota = (rota+1)%4;
                     repaint();
                 }
             });
@@ -59,7 +59,7 @@ public class JPanelPipe extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         int i = (remplit)?1:0;
-        int j = index+rota;
+        int j = index+p.getRotation();
         Graphics2D g2d = (Graphics2D) g;
         int x = (this.getWidth() - img[i][j].getWidth(null)) / 2;
         int y = (this.getHeight() - img[i][j].getHeight(null)) / 2;

@@ -241,7 +241,10 @@ public class Niveau {
 
     //tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
-        if(resources != 0 && niveau[i][j] != null && niveau[i][j].moveable) niveau[i][j].rotate();
+        if(resources != 0 && niveau[i][j] != null && niveau[i][j].moveable) {
+            retour.add(new int[]{i,j});
+            niveau[i][j].rotate();
+        }
         if (type==1) {
             resources--;
         }
@@ -256,10 +259,10 @@ public class Niveau {
         this.retour.pop();
         if (resources != 0 && niveau[i][j].moveable) {
           if(niveau[i][j] != null) {
-            for (i=0; i<3; i++) {    // on tourne 3 fois
+            for (int k=0; k<3; k++) {    // on tourne 3 fois
               niveau[i][j].rotate();
             }
-            resources++;
+            if(this.type == 1)resources++;
           }
         }
       }
