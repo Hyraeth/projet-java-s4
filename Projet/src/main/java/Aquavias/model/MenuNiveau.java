@@ -6,7 +6,7 @@ public class MenuNiveau{
   private int Norm; //Nombre de niveau normaux
   private int Pers; //Nombre de niveau personnalisés
   private VueTerm vt = new VueTerm();
-  
+
   public int getNorm(){
     return Norm;
   }
@@ -46,21 +46,24 @@ public class MenuNiveau{
         while(!n.partieTerminee()) {    // tant que la partie n'est pas terminée
           int str = 0;
           try{
-            System.out.println("Choisissez un tuyau à tourner");
+            System.out.println("Choisissez un tuyau à tourner (entrez -1 pour undo)");
             str = Jeu.sc.nextInt();
           }
           catch (NumberFormatException e){ //Si ce n'est pas un nombre
             System.out.println("Ce n'est pas un nombre");
           }
-
-          int premier = premier(str);
-          int deuxieme = deuxieme(str);
-          if (n.correct(premier, deuxieme)) {        // si la valeur rentré par le scanner est correct
-            n.rotate(premier, deuxieme);             // on tourne
-            coups++;
+          if (str == -1) n.undo();
+          else {
+            int premier = premier(str);
+            int deuxieme = deuxieme(str);
+            if (n.correct(premier, deuxieme)) {        // si la valeur rentré par le scanner est correct
+              n.rotate(premier, deuxieme);             // on tourne
+              n.setRetour(premier, deuxieme);          // pour la fonction undo()
+              coups++;
+            }
+            else System.out.println("Vous n'avez pas rentré une valeur correct. Réessayez.");
+            vt.afficheNiv(n);                 // affiche le niveau à chaque fois qu'on tourne un tuyau
           }
-          else System.out.println("Vous n'avez pas rentré une valeur correct. Réessayez.");
-          vt.afficheNiv(n);                 // affiche le niveau à chaque fois qu'on tourne un tuyau
         }
         vt.afficheScore(n.getScore(), coups, lvl);  // en attendant de coder json, on fait pour niveau 1
       }

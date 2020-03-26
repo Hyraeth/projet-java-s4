@@ -13,6 +13,7 @@ public class ControllerIG {
 
     public ControllerIG(Niveau n) {
         this.model = n;
+
 	    //String[] arg=new String[0];
 	    //Test.main(arg);
     }
@@ -28,7 +29,7 @@ public class ControllerIG {
         vt.afficheNiv(model);
         //model.flow();
         vue.update();
-	
+
         //if(model.finish()) vue.displayWinScreen();
     }
 
@@ -41,6 +42,10 @@ public class ControllerIG {
     }
 
     public void undo() {
-
+        model.undo();
+        //tests pour voir si l'ig fonctionne correctement
+        vt.afficheNiv(model);
+        //model.flow();
+        vue.update();
     }
 }

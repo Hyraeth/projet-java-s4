@@ -58,8 +58,8 @@ public class VueIG {
     public void update() {
         for (int i = 0; i < Pipes.length; i++) {
             for (int j = 0; j < Pipes[i].length; j++) {
-                Pipes[i][j].remplir(model.getPipe(i, j).getRempli());     
-                Pipes[i][j].repaint();   
+                Pipes[i][j].remplir(model.getPipe(i, j).getRempli());
+                Pipes[i][j].repaint();
             }
         }
     }
@@ -81,6 +81,6 @@ public class VueIG {
             VueIG gui = new VueIG(c, m);
             c.setVue(gui);
         });
-        
+
     }
 }

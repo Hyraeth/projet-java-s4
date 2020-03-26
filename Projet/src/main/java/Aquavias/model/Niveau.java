@@ -12,8 +12,8 @@ public class Niveau {
     private Pipe[][] niveau;
     private int coups;
     private int[] score;
-    private int contrainte; //Si = 0 aucune contrainte, = 1 limite de mouvement, = 2 limite de réserve
-    private int reserve;
+    private int[] retour;            // ça va enregistré les coordonées du derneir pipe tourné pour
+                                     // la fonction undo()
 
     
 
@@ -24,8 +24,9 @@ public class Niveau {
         this.score[0] = 20;
         this.score[1] = 15;
         this.score[2] = 10;
-        this.contrainte = 0;
-        this.reserve = -1;
+        this.retour = new int[2];  // on definit coordonées à -1 au debut parce qu'il n'y a pas
+        this.retour[0] = -1;       // de tuyaux qui a été déjà été deplacé
+        this.retour[1] = -1;
     }
 
     public Niveau() {
@@ -83,27 +84,44 @@ public class Niveau {
         return niveau[i][j];
     }
 
-    public int getCoups(){
-        return coups;
+    public int getCoups() {
+      return coups;
     }
 
-    public int getReserve(){
-        return reserve;
+    public void setSize(int m, int n) {
+        this.niveau = new Pipe[m][n];
     }
-    
+
     public int getLongueur(int i){
       return this.niveau[i].length;
     }
     public int getLongueur() {
         return getLongueur(0);
     }
-    
+
     public int getLargeur() {
         return this.niveau.length;
     }
 
     public int[] getScore() {
       return this.score;
+    }
+
+    public boolean getRetourVide() {  // retourne true si retour vide = on peut pas faire undo
+      return (this.retour[0] == -1);
+    }
+
+    public int getRetourx(){
+      return this.retour[0];
+    }
+
+    public int getRetoury(){
+      return this.retour[1];
+    }
+
+    public void setRetour(int i, int j) {
+      this.retour[0] = i;
+      this.retour[1] = j;
     }
 
     public boolean finis () {
@@ -202,7 +220,7 @@ public class Niveau {
         }
         return b;
     }
-    //return true si il y a une fuite 
+    //return true si il y a une fuite
     public boolean fuite(int i, int j) {
         if (niveau[i][j].connections[0]==true   //Si il est connecté au suivant
             && (i-1<0                        //Si la case n'est pas dans le plateau
@@ -239,6 +257,22 @@ public class Niveau {
                 coups--;
             }
         }
+    }
+
+    public void undo() {
+      if (this.retour[0] == -1) System.out.println("vous ne pouvez pas faire un undo");
+      else {
+        int i = this.retour[0];
+        int j = this.retour[1];
+        if (coups != 0 && niveau[i][j].moveable) {
+          if(niveau[i][j] != null) {
+            for (i=0; i<3; i++) {    // on tourne 3 fois
+              niveau[i][j].rotate();
+            }
+            coups--;
+          }
+        }
+      }
     }
 
     // Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)

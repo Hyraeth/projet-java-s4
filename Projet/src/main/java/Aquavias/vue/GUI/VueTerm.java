@@ -90,7 +90,7 @@ public class VueTerm{
   // affiche le plateau dans le terminal
   public void afficheNiv(Niveau n) {
       if (n.finis()){
-       System.out.println("TUE AS GUANIER !!!");
+       System.out.println("*** Félicitation !!! ***");
        System.exit(0);
       }
       if(n.getCoups() >= 0){

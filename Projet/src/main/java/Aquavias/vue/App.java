@@ -17,11 +17,11 @@ import Aquavias.vue.GUI.VueIG;
  * Hello world!
  *
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
-        EventQueue.invokeLater(() -> {
+      /*  EventQueue.invokeLater(() -> {
             File f = new File("assets/lvls/niveau.json");
             Niveau m = new Niveau();
             try {
@@ -32,6 +32,7 @@ public class App
             ControllerIG c = new ControllerIG(m);
             VueIG gui = new VueIG(c, m);
             c.setVue(gui);
-        });
+        }); */
+        Fenetre f = new Fenetre();
     }
 }
