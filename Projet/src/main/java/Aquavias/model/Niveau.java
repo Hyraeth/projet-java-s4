@@ -1,8 +1,10 @@
 package Aquavias.model;
 
 import java.io.*;
+import java.util.*;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.lang.Object.*;
 
 import Aquavias.vue.GUI.VueTerm;
 
@@ -15,14 +17,13 @@ public class Niveau {
     private int resources;
     private int[] score;
     //Utiliser autre chose car on ne peut pas faire plus que un undo
-    private int[] retour;            // ça va enregistré les coordonées du derneir pipe tourné pour
-                                     // la fonction undo()
+    private Stack<int[]> retour = new Stack<int[]>();            // pile avec tableau de taille 2 avec les coordonées des pipes tournées
     //Je comprends pas du tout le but de cet attribut
     private int type; //Si = 0 aucune type, = 1 limite de mouvement, = 2 limite de réserve
     //Pas besoin de reserve, la reverse d'eau et le combre de coups restant sont la meme chose (resource), on differencie par le type
     //private int reserve;
 
-    
+
 
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
@@ -32,9 +33,6 @@ public class Niveau {
         this.score[0] = 20;
         this.score[1] = 15;
         this.score[2] = 10;
-        this.retour = new int[2];  // on definit coordonées à -1 au debut parce qu'il n'y a pas
-        this.retour[0] = -1;       // de tuyaux qui a été déjà été deplacé
-        this.retour[1] = -1;
         this.type = 0;
     }
 
@@ -66,7 +64,7 @@ public class Niveau {
         //this.score = level.getInt("score");
     }
 
-    
+
 
     public void startCountdown() {
         Timer timer = new Timer();
@@ -90,6 +88,7 @@ public class Niveau {
         this.niveau = new Pipe[m][n];
     }
 
+
     public int getLongueur(int i){
       return this.niveau[i].length;
     }
@@ -105,25 +104,15 @@ public class Niveau {
       return this.score;
     }
 
-    public boolean getRetourVide() {  // retourne true si retour vide = on peut pas faire undo
-      return (this.retour[0] == -1);
-    }
-
-    public int getRetourx(){
-      return this.retour[0];
-    }
-
-    public int getRetoury(){
-      return this.retour[1];
-    }
-
-    public void setRetour(int i, int j) {
-      this.retour[0] = i;
-      this.retour[1] = j;
-    }
-
     public void setNiveau(Pipe[][] p) {
         this.niveau = p;
+    }
+
+    public void addRetour(int i, int j) {
+      int[] coordonnees = new int[2];
+      coordonnees[0] = i;
+      coordonnees[1] = j;
+      this.retour.push(coordonnees);
     }
 
     public boolean finis () {
@@ -259,10 +248,12 @@ public class Niveau {
     }
 
     public void undo() {
-      if (this.retour[0] == -1) System.out.println("vous ne pouvez pas faire un undo");
+      if (this.retour.isEmpty()) System.out.println("vous ne pouvez pas faire un undo");
       else {
-        int i = this.retour[0];
-        int j = this.retour[1];
+        int[] tuile = this.retour.peek();
+        int i = tuile[0];
+        int j = tuile[1];
+        this.retour.pop();
         if (resources != 0 && niveau[i][j].moveable) {
           if(niveau[i][j] != null) {
             for (i=0; i<3; i++) {    // on tourne 3 fois
@@ -271,7 +262,7 @@ public class Niveau {
             resources++;
           }
         }
-        }
+      }
     }
 
     // Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
@@ -337,7 +328,7 @@ public class Niveau {
       return false;  // pour tester en attendant
     }
 
-    
+
 
     public static void main(String[] args) {
       VueTerm vt = new VueTerm();

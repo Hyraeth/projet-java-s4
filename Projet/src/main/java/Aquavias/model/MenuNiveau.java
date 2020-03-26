@@ -58,7 +58,7 @@ public class MenuNiveau{
             int deuxieme = deuxieme(str);
             if (n.correct(premier, deuxieme)) {        // si la valeur rentré par le scanner est correct
               n.rotate(premier, deuxieme);             // on tourne
-              n.setRetour(premier, deuxieme);          // pour la fonction undo()
+              n.addRetour(premier, deuxieme);          // pour la fonction undo()
               coups++;
             }
             else System.out.println("Vous n'avez pas rentré une valeur correct. Réessayez.");
