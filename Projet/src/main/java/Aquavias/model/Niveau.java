@@ -1,6 +1,8 @@
 package Aquavias.model;
 
 import java.io.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Aquavias.vue.GUI.VueTerm;
 
@@ -10,8 +12,9 @@ import org.json.*;
 
 public class Niveau {
     private Pipe[][] niveau;
-    private int coups;
+    private int resources;
     private int[] score;
+    private int type;
 
     public void setNiveau(Pipe[][] pip) {
         niveau = pip;
@@ -19,7 +22,8 @@ public class Niveau {
 
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
-        this.coups = 0;
+        this.resources = 0;
+        this.type = 0;
         this.score = new int[3];
         this.score[0] = 20;
         this.score[1] = 15;
@@ -47,8 +51,20 @@ public class Niveau {
         System.out.println(config);
         initConfig(config);
 
-        this.coups = level.getInt("coups");
+        this.resources = level.getInt("resources");
+        this.type = level.getInt("type");
+
+        if(this.type == 1) startCountdown();
         //this.score = level.getInt("score");
+    }
+
+    public void startCountdown() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                if(resources!=0) resources--;
+            }
+        }, 0, 1000);
     }
 
     public Pipe getPipe(int i, int j) {
@@ -185,9 +201,9 @@ public class Niveau {
 
     //tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
-        if (coups != 0 && niveau[i][j].moveable) {
-            if(niveau[i][j] != null) niveau[i][j].rotate();
-            coups--;
+        if(resources != 0 && niveau[i][j] != null && niveau[i][j].moveable) niveau[i][j].rotate();
+        if (type==0) {
+            resources--;
         }
     }
 
@@ -244,7 +260,7 @@ public class Niveau {
 
 
     public boolean partieTerminee() {
-      if (coups > score[0]+5) return true;  // si nb de coups depassé
+      if (resources > score[0]+5) return true;  // si nb de resources depassé
       if (arrivee()) return true;
       return false;
     }

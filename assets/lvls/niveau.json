@@ -7,28 +7,32 @@
       "longueur" : 4,
       "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
       "score" : 0,
-      "coups" : 500
+      "resources" : 500,
+      "type" : 0
     },
     {
     "largeur" : 11,
     "longueur" : 12,
     "configuration" : "00F31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T10F",
     "score" : 0,
-    "coups" : 500
+    "resources" : 500,
+    "type" : 1
     },
     {
       "largeur" : 3,
       "longueur" : 4,
       "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
       "score" : 0,
-      "coups" : 500
+      "resources" : 500,
+      "type" : 0
     },
     {
       "largeur" : 3,
       "longueur" : 4,
       "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
       "score" : 0,
-      "coups" : 500
+      "resources" : 500,
+      "type" : 0
     }
   ],
 
