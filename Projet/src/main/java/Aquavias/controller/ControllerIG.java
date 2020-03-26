@@ -1,5 +1,8 @@
 package Aquavias.controller;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import Aquavias.model.Niveau;
 import Aquavias.vue.GUI.VueIG;
 import Aquavias.vue.GUI.VueTerm;
@@ -12,9 +15,20 @@ public class ControllerIG {
 
     public ControllerIG(Niveau n) {
         this.model = n;
-
+        if(n.getType() == 2) updateLoop();
 	    //String[] arg=new String[0];
 	    //Test.main(arg);
+    }
+
+    public void updateLoop() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                System.out.println("hello");
+                model.countdown();
+                if(vue != null) vue.update();
+            }
+        }, 0, 1000);
     }
 
     public void setVue(VueIG v) {

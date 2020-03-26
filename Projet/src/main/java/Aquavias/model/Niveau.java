@@ -60,20 +60,20 @@ public class Niveau {
         this.resources = level.getInt("resources");
         this.type = level.getInt("type");
 
-        if(this.type == 2) startCountdown();
         //this.score = level.getInt("score");
     }
 
 
 
-    public void startCountdown() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run() {
-                if(resources!=0) resources--;
-                finis();
-            }
-        }, 0, 1000);
+    public void countdown() {
+
+        if(resources!=0) resources--;
+        finis();
+
+    }
+
+    public int getType() {
+        return this.type;
     }
 
     public Pipe getPipe(int i, int j) {
