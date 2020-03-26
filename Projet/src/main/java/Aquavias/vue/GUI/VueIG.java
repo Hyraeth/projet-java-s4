@@ -18,6 +18,8 @@ public class VueIG {
 
     private JFrame jframe;
 
+    private JMenuBar actionBar;
+
     private JPanel zonePlateau;
     private JPanelPipe[][] Pipes;
 
