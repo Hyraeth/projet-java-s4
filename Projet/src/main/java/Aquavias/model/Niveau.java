@@ -66,11 +66,14 @@ public class Niveau {
         //this.score = level.getInt("score");
     }
 
+    
+
     public void startCountdown() {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
                 if(resources!=0) resources--;
+                finis();
             }
         }, 0, 1000);
     }
@@ -265,7 +268,7 @@ public class Niveau {
             for (i=0; i<3; i++) {    // on tourne 3 fois
               niveau[i][j].rotate();
             }
-            resources--;
+            resources++;
           }
         }
         }
