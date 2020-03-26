@@ -28,11 +28,12 @@ public class VueIG {
         jframe = new JFrame();
         JPanelPipe.loadImg();
         zonePlateau = new JPanel();
-        jframe.setSize(new Dimension(500,500));
+        zonePlateau.setPreferredSize(new Dimension(m.getLongueur()*200,m.getLargeur()*200));
         initPlateau(m,c);
 
         jframe.add(zonePlateau);
-        jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        jframe.pack();
+        //jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jframe.setTitle("Aquavias");
         jframe.setVisible(true);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

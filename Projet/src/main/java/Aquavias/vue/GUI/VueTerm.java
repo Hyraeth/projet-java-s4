@@ -93,8 +93,8 @@ public class VueTerm{
        System.out.println("*** Félicitation !!! ***");
        System.exit(0);
       }
-      if(n.getCoups() >= 0){
-        System.out.println("Coups restants: " + n.getCoups());
+      if(n.getresources() >= 0){
+        System.out.println("resources restants: " + n.getresources());
       }
       for (int i = 0; i < n.getLargeur(); i++) {
           for (int j = 0; j < n.getLongueur(i); j++) {

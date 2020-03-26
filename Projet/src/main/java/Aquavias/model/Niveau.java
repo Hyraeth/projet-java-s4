@@ -1,6 +1,8 @@
 package Aquavias.model;
 
 import java.io.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Aquavias.vue.GUI.VueTerm;
 
@@ -10,19 +12,24 @@ import org.json.*;
 
 public class Niveau {
     private Pipe[][] niveau;
-    private int coups;
+    private int resources;
     private int[] score;
+    //Utiliser autre chose car on ne peut pas faire plus que un undo
     private int[] retour;            // ça va enregistré les coordonées du derneir pipe tourné pour
                                      // la fonction undo()
+    //Je comprends pas du tout le but de cet attribut
     private int contrainte; //Si = 0 aucune contrainte, = 1 limite de mouvement, = 2 limite de réserve
-    private int reserve;
+    //Pas besoin de reserve, la reverse d'eau et le combre de coups restant sont la meme chose (resource), on differencie par le type
+    //private int reserve;
+    private int type;
 
 
     
 
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
-        this.coups = -1;
+        this.resources = 0;
+        this.type = 0;
         this.score = new int[3];
         this.score[0] = 20;
         this.score[1] = 15;
@@ -31,7 +38,6 @@ public class Niveau {
         this.retour[0] = -1;       // de tuyaux qui a été déjà été deplacé
         this.retour[1] = -1;
         this.contrainte = 0;
-        this.reserve = -1;
     }
 
     public Niveau() {
@@ -55,42 +61,28 @@ public class Niveau {
         System.out.println(config);
         initConfig(config);
 
-        this.coups = level.getInt("coups");
-        this.reserve = level.getInt("reserve");
+        this.resources = level.getInt("resources");
+        this.type = level.getInt("type");
 
-        if(coups > 0) this.contrainte = 1;
-        if(reserve > 0) this.contrainte = 2;
-        
+        if(this.type == 1) startCountdown();
         //this.score = level.getInt("score");
     }
 
-    //Setteurs
-
-    public void setNiveau(Pipe[][] pip) {
-        niveau = pip;
+    public void startCountdown() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                if(resources!=0) resources--;
+            }
+        }, 0, 1000);
     }
-
-    public void setCoups(int n){
-        coups = n;
-    }
-
-    public void setReserve(int n){
-        reserve = n;
-    }
-
-
-    //Getteurs
 
     public Pipe getPipe(int i, int j) {
         return niveau[i][j];
     }
 
-    public int getCoups() {
-      return coups;
-    }
-    
-    public int getReserve(){
-        return reserve;
+    public int getresources() {
+      return resources;
     }
 
     public void setSize(int m, int n) {
@@ -144,12 +136,12 @@ public class Niveau {
     }
 
     public boolean limMouv(){ //Return true si on a utilisé le nombre de coup limité
-        if( coups >= 0) return true;
+        if( resources >= 0) return true;
         return false;
     }
 
     public boolean limRes(){ //Return true si on il y a encore de l'eau dans le réservoir
-        if( reserve >= 0) return true;
+        if( resources >= 0) return true;
         return false;
     }
 
@@ -255,12 +247,9 @@ public class Niveau {
 
     //tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
-        
-        if (niveau[i][j].moveable) {
-            if(niveau[i][j] != null){
-                niveau[i][j].rotate();
-                coups--;
-            }
+        if(resources != 0 && niveau[i][j] != null && niveau[i][j].moveable) niveau[i][j].rotate();
+        if (type==0) {
+            resources--;
         }
     }
 
@@ -269,15 +258,15 @@ public class Niveau {
       else {
         int i = this.retour[0];
         int j = this.retour[1];
-        if (coups != 0 && niveau[i][j].moveable) {
+        if (resources != 0 && niveau[i][j].moveable) {
           if(niveau[i][j] != null) {
             for (i=0; i<3; i++) {    // on tourne 3 fois
               niveau[i][j].rotate();
             }
-            coups--;
+            resources--;
           }
         }
-      }
+        }
     }
 
     // Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
@@ -333,7 +322,7 @@ public class Niveau {
 
 
     public boolean partieTerminee() {
-      if (coups > score[0]+5) return true;  // si nb de coups depassé
+      if (resources > score[0]+5) return true;  // si nb de resources depassé
       if (arrivee()) return true;
       return false;
     }
