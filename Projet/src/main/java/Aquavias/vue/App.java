@@ -12,6 +12,7 @@ import org.w3c.dom.events.MouseEvent;
 
 import Aquavias.controller.ControllerIG;
 import Aquavias.model.Niveau;
+import Aquavias.vue.GUI.Fenetre;
 import Aquavias.vue.GUI.VueIG;
 /**
  * Hello world!

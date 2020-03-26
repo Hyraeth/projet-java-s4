@@ -66,10 +66,6 @@ public class Niveau {
 
     //Setteurs
 
-    public void setSize(int m, int n) {
-        this.niveau = new Pipe[m][n];
-    }
-
     public void setNiveau(Pipe[][] pip) {
         niveau = pip;
     }

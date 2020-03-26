@@ -1,4 +1,4 @@
-package Aquavias.vue;
+package Aquavias.vue.GUI;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

@@ -3,7 +3,6 @@ package Aquavias.controller;
 import Aquavias.model.Niveau;
 import Aquavias.vue.GUI.VueIG;
 import Aquavias.vue.GUI.VueTerm;
-import Aquavias.vue.GUI.Test;
 
 
 public class ControllerIG {
