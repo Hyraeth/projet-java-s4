@@ -217,7 +217,8 @@ public class Niveau {
         }
     }
 
-    public void undo(int i, int j) {
+    public void undo() {
+      if ()
       if (coups != 0 && niveau[i][j].moveable) {
         if(niveau[i][j] != null) {
           for (i=0; i<3; i++) {    // on tourne 3 fois

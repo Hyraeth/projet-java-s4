@@ -11,11 +11,17 @@ import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.border.EmptyBorder;
-
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.json.JSONObject;
 import java.awt.Insets;
 import java.awt.Dimension;
-
 import java.util.*;
+import java.io.File;
+
+import Aquavias.controller.ControllerIG;
+import Aquavias.model.Niveau;
+import Aquavias.vue.GUI.VueIG;
 
 
 public class Fenetre extends JFrame{
@@ -178,7 +184,18 @@ public class Fenetre extends JFrame{
 
 
   public void lancerNiv(int i) {
-    // à implementer
+    EventQueue.invokeLater(() -> {
+        File f = new File("assets/lvls/niveau.json");
+        Niveau m = new Niveau();
+        try {
+            m.load(f, "niveaux_off", i);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ControllerIG c = new ControllerIG(m);
+        VueIG gui = new VueIG(c, m);
+        c.setVue(gui);
+    });
   }
 
 
