@@ -93,6 +93,9 @@ public class VueTerm{
        System.out.println("TUE AS GUANIER !!!");
        System.exit(0);
       }
+      if(n.getCoups() >= 0){
+        System.out.println("Coups restants: " + n.getCoups());
+      }
       for (int i = 0; i < n.getLargeur(); i++) {
           for (int j = 0; j < n.getLongueur(i); j++) {
               if (n.getPipe(i,j) != null)
