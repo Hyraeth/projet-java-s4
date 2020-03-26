@@ -121,6 +121,10 @@ public class Niveau {
       this.retour[1] = j;
     }
 
+    public void setNiveau(Pipe[][] p) {
+        this.niveau = p;
+    }
+
     public boolean finis () {
         boolean cont = true;
         switch(contrainte){
