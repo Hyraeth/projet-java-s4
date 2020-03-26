@@ -1,4 +1,4 @@
-package Aquavias.vue.GUI;
+package Aquavias.vue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,11 +11,17 @@ import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.border.EmptyBorder;
-
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.json.JSONObject;
 import java.awt.Insets;
 import java.awt.Dimension;
-
 import java.util.*;
+import java.io.File;
+
+import Aquavias.controller.ControllerIG;
+import Aquavias.model.Niveau;
+import Aquavias.vue.GUI.VueIG;
 
 
 public class Fenetre extends JFrame{
@@ -107,18 +113,13 @@ public class Fenetre extends JFrame{
 
     // ATTENTION !!! quand on aura plusieurs niveaux et fichier json il faudra changer ca pour avoir liste niveaux normaux ET liste niveaux perso
 
-    /* Cette partie la marche pas très bien, explication du probleme : en gros pour que chaque bouton lance le niveau associé,
-    il faut qu'il y ait un action listener lié à chacun des boutons. Sauf que, vu qu'il y a un grand nombre de boutons on peut pas
-    créer manuellement chaque bouton pour lui ajouter un actionListener, du coup il faut utiliser une boucle for. SAUF que on peut pas recuperer
-    le nom d'un JButton créé dans une boucle for, du coup j'ai voulu les mettres dans une liste pour les recuperer deuis la liste et ajouter
-    un listener après. Le problème est que ça marche pas et je sais pas comment ajouter un listener à chaque bouton du coup.. */
-
-    ArrayList<JButton> listeNiveaux = new ArrayList<JButton>();   // on met tous les niveaux dans une liste pour les afficher dans
-    for(int i = 1; i<28;i++) {                                    // le deuxieme fort c'est peut etre pas la methode la plus optimale mais
-      listeNiveaux.add(new JButton("Niveau "+i));                 // je voyais pas comment ajouter l'actionListener sinon
+    ArrayList<JButton> listeNiveaux = new ArrayList<JButton>();
+    for(int i = 1; i<28;i++) {
+      listeNiveaux.add(new JButton("Niveau "+i));
     }
     for (int i=debut; i<debut+9; i++) {
-      //listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(i) );   ca fait une erreur
+      int j = i;
+      listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
       panCenter.add(listeNiveaux.get(i-1));
     }
     panCenter.setVisible(true);
@@ -178,7 +179,18 @@ public class Fenetre extends JFrame{
 
 
   public void lancerNiv(int i) {
-    // à implementer
+    EventQueue.invokeLater(() -> {
+        File f = new File("assets/lvls/niveau.json");
+        Niveau m = new Niveau();
+        try {
+            m.load(f, "niveaux_off", i);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ControllerIG c = new ControllerIG(m);
+        VueIG gui = new VueIG(c, m);
+        c.setVue(gui);
+    });
   }
 
 

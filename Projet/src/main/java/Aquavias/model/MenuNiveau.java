@@ -52,18 +52,8 @@ public class MenuNiveau{
           catch (NumberFormatException e){ //Si ce n'est pas un nombre
             System.out.println("Ce n'est pas un nombre");
           }
-          if (str == -1) {
-            if (n.getRetourVide()){
-              System.out.println("Vous ne pouvez pas faire un undo maintenant");
-              break;
-            }
-            else {
-              int i = n.getRetourx();
-              int j = n.getRetoury();
-              n.undo(i,j);
-            }
-          }
-          if (str != -1) {
+          if (str == -1) n.undo();
+          else {
             int premier = premier(str);
             int deuxieme = deuxieme(str);
             if (n.correct(premier, deuxieme)) {        // si la valeur rentré par le scanner est correct

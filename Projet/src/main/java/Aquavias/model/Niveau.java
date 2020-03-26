@@ -217,13 +217,18 @@ public class Niveau {
         }
     }
 
-    public void undo(int i, int j) {
-      if (coups != 0 && niveau[i][j].moveable) {
-        if(niveau[i][j] != null) {
-          for (i=0; i<3; i++) {    // on tourne 3 fois
-            niveau[i][j].rotate();
+    public void undo() {
+      if (this.retour[0] == -1) System.out.println("vous ne pouvez pas faire un undo");
+      else {
+        int i = this.retour[0];
+        int j = this.retour[1];
+        if (coups != 0 && niveau[i][j].moveable) {
+          if(niveau[i][j] != null) {
+            for (i=0; i<3; i++) {    // on tourne 3 fois
+              niveau[i][j].rotate();
+            }
+            coups--;
           }
-        coups--;
         }
       }
     }
