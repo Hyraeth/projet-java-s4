@@ -14,6 +14,9 @@ public class Niveau {
     private int[] score;
     private int[] retour;            // ça va enregistré les coordonées du derneir pipe tourné pour
                                      // la fonction undo()
+    private int contrainte; //Si = 0 aucune contrainte, = 1 limite de mouvement, = 2 limite de réserve
+    private int reserve;
+
 
     
 
@@ -27,6 +30,8 @@ public class Niveau {
         this.retour = new int[2];  // on definit coordonées à -1 au debut parce qu'il n'y a pas
         this.retour[0] = -1;       // de tuyaux qui a été déjà été deplacé
         this.retour[1] = -1;
+        this.contrainte = 0;
+        this.reserve = -1;
     }
 
     public Niveau() {
@@ -86,6 +91,10 @@ public class Niveau {
 
     public int getCoups() {
       return coups;
+    }
+    
+    public int getReserve(){
+        return reserve;
     }
 
     public void setSize(int m, int n) {
