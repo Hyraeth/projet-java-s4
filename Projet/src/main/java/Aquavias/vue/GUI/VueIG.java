@@ -4,7 +4,8 @@ import java.awt.*;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.*;
 
 import org.w3c.dom.events.MouseEvent;
@@ -18,22 +19,42 @@ public class VueIG {
 
     private JFrame jframe;
 
-    private JMenuBar actionBar;
+    private JPanel actionBar;
+    private JButton undoButton;
+    private JLabel resources;
 
     private JPanel zonePlateau;
     private JPanelPipe[][] Pipes;
 
     public VueIG(ControllerIG c, Niveau m) {
+        GridBagConstraints gbc = new GridBagConstraints();
         controller = c;
         model = m;
         m.remplir();
+
         jframe = new JFrame();
+        jframe.setLayout(new GridBagLayout());
+
         JPanelPipe.loadImg();
         zonePlateau = new JPanel();
         zonePlateau.setPreferredSize(new Dimension(m.getLongueur()*200,m.getLargeur()*200));
         initPlateau(m,c);
 
-        jframe.add(zonePlateau);
+        actionBar = new JPanel();
+        undoButton = new JButton("Undo");
+        resources = new JLabel(m.getresources()+"");
+        actionBar.add(undoButton);
+        actionBar.add(resources);
+
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weighty = 0.1;
+        gbc.weightx = 1;
+        gbc.gridy = 0;
+        jframe.add(actionBar,gbc);
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weighty = 0.9;
+        gbc.gridy = 1;
+        jframe.add(zonePlateau,gbc);
         jframe.pack();
         //jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jframe.setTitle("Aquavias");
@@ -65,6 +86,7 @@ public class VueIG {
                 Pipes[i][j].repaint();
             }
         }
+        resources.setText(model.getresources()+"");
     }
 
     public void displayWinScreen() {
