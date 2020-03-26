@@ -18,11 +18,9 @@ public class Niveau {
     private int[] retour;            // ça va enregistré les coordonées du derneir pipe tourné pour
                                      // la fonction undo()
     //Je comprends pas du tout le but de cet attribut
-    private int contrainte; //Si = 0 aucune contrainte, = 1 limite de mouvement, = 2 limite de réserve
+    private int type; //Si = 0 aucune type, = 1 limite de mouvement, = 2 limite de réserve
     //Pas besoin de reserve, la reverse d'eau et le combre de coups restant sont la meme chose (resource), on differencie par le type
     //private int reserve;
-    private int type;
-
 
     
 
@@ -37,7 +35,7 @@ public class Niveau {
         this.retour = new int[2];  // on definit coordonées à -1 au debut parce qu'il n'y a pas
         this.retour[0] = -1;       // de tuyaux qui a été déjà été deplacé
         this.retour[1] = -1;
-        this.contrainte = 0;
+        this.type = 0;
     }
 
     public Niveau() {
@@ -64,7 +62,7 @@ public class Niveau {
         this.resources = level.getInt("resources");
         this.type = level.getInt("type");
 
-        if(this.type == 1) startCountdown();
+        if(this.type == 2) startCountdown();
         //this.score = level.getInt("score");
     }
 
@@ -127,7 +125,7 @@ public class Niveau {
 
     public boolean finis () {
         boolean cont = true;
-        switch(contrainte){
+        switch(type){
             case 1: cont = limMouv(); //S'il y a une limite de mouvement
             case 2: cont = limRes();  //S'il y a une limite de réservoir
         }
