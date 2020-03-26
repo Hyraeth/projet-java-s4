@@ -242,7 +242,7 @@ public class Niveau {
     //tourne le Pipe à la position i,j
     public void rotate(int i, int j) {
         if(resources != 0 && niveau[i][j] != null && niveau[i][j].moveable) niveau[i][j].rotate();
-        if (type==0) {
+        if (type==1) {
             resources--;
         }
     }
