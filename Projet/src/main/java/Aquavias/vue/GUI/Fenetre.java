@@ -56,8 +56,7 @@ public class Fenetre extends JFrame{
     gc.weighty = 5;
 
     JButton boutonJouer = new JButton("Jouer");
-    //boutonJouer.addActionListener( (event) -> jouer());
-    boutonJouer.addActionListener( (event) -> niveaux("normaux"));
+    boutonJouer.addActionListener( (event) -> jouer());
     gc.gridx = 1; gc.gridy = 1;
     pan.add(boutonJouer, gc);
 
@@ -82,20 +81,34 @@ public class Fenetre extends JFrame{
     this.setVisible(true);
   }
 
-  /*public void jouer() {
+  public void jouer() {
     JPanel pan = (JPanel) this.getContentPane();
     pan.removeAll();
     pan.revalidate();
     pan.repaint();
 
+    pan.setLayout(new GridBagLayout());
+    GridBagConstraints gc = new GridBagConstraints();
+    gc.insets = new Insets(3,6,10,10);
+
+    gc.weightx = 1;
+    gc.weighty = 4;
+
     JButton boutonJouer = new JButton("Niveaux normaux");
     boutonJouer.addActionListener( (event) -> niveaux("normaux"));
-    pan.add(boutonJouer);
+    gc.gridx = 1; gc.gridy = 1;
+    pan.add(boutonJouer, gc);
 
     JButton boutonCreer = new JButton("Niveaux personalisés");
     boutonCreer.addActionListener( (event) -> niveaux("perso"));
-    pan.add(boutonCreer);
-  } */
+    gc.gridx = 1; gc.gridy = 2;
+    pan.add(boutonCreer, gc);
+
+    JButton boutonAlea = new JButton("Niveau aléatoir");
+    boutonAlea.addActionListener( (event) -> niveauAlea());
+    gc.gridx = 1; gc.gridy = 3;
+    pan.add(boutonAlea, gc);
+  }
 
 
 
@@ -200,9 +213,11 @@ public class Fenetre extends JFrame{
         VueIG gui = new VueIG(c, m);
         c.setVue(gui);
     });
-
   }
 
+  public void niveauAlea() {
+    // à impleter
+  }
 
 
 
