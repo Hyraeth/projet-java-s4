@@ -56,7 +56,8 @@ public class Fenetre extends JFrame{
     gc.weighty = 5;
 
     JButton boutonJouer = new JButton("Jouer");
-    boutonJouer.addActionListener( (event) -> jouer());
+    //boutonJouer.addActionListener( (event) -> jouer());
+    boutonJouer.addActionListener( (event) -> niveaux("normaux"));
     gc.gridx = 1; gc.gridy = 1;
     pan.add(boutonJouer, gc);
 
@@ -81,7 +82,7 @@ public class Fenetre extends JFrame{
     this.setVisible(true);
   }
 
-  public void jouer() {
+  /*public void jouer() {
     JPanel pan = (JPanel) this.getContentPane();
     pan.removeAll();
     pan.revalidate();
@@ -94,7 +95,7 @@ public class Fenetre extends JFrame{
     JButton boutonCreer = new JButton("Niveaux personalisés");
     boutonCreer.addActionListener( (event) -> niveaux("perso"));
     pan.add(boutonCreer);
-  }
+  } */
 
 
 
@@ -113,15 +114,21 @@ public class Fenetre extends JFrame{
 
     // ATTENTION !!! quand on aura plusieurs niveaux et fichier json il faudra changer ca pour avoir liste niveaux normaux ET liste niveaux perso
 
-    ArrayList<JButton> listeNiveaux = new ArrayList<JButton>();
-    for(int i = 1; i<4;i++) {
-      listeNiveaux.add(new JButton("Niveau "+i));
+    if (niv.equals("perso")) {
+      panCenter.add(new JLabel("Il n y a pas encore de niveaux personalisés, attendez une prochaine MAJ."));
     }
-    for (int i=debut; i<4; i++) {
-      int j = i;
-      if (listeNiveaux.get(i-1) != null ) {
-        listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
-        panCenter.add(listeNiveaux.get(i-1));
+
+    else {
+      ArrayList<JButton> listeNiveaux = new ArrayList<JButton>();
+      for(int i = 1; i<4;i++) {
+        listeNiveaux.add(new JButton("Niveau "+i));
+      }
+      for (int i=debut; i<4; i++) {
+        int j = i;
+        if (listeNiveaux.get(i-1) != null ) {
+          listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
+          panCenter.add(listeNiveaux.get(i-1));
+        }
       }
     }
     panCenter.setVisible(true);
@@ -193,6 +200,7 @@ public class Fenetre extends JFrame{
         VueIG gui = new VueIG(c, m);
         c.setVue(gui);
     });
+
   }
 
 
