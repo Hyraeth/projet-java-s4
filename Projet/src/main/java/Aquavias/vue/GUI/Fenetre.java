@@ -87,13 +87,37 @@ public class Fenetre extends JFrame{
     pan.revalidate();
     pan.repaint();
 
+    pan.setLayout(new GridBagLayout());
+    GridBagConstraints gc = new GridBagConstraints();
+    gc.insets = new Insets(3,6,10,10);
+
+    gc.weightx = 1;
+    gc.weighty = 6;
+
     JButton boutonJouer = new JButton("Niveaux normaux");
     boutonJouer.addActionListener( (event) -> niveaux("normaux"));
-    pan.add(boutonJouer);
+    gc.gridx = 1; gc.gridy = 1;
+    pan.add(boutonJouer, gc);
 
     JButton boutonCreer = new JButton("Niveaux personalisés");
     boutonCreer.addActionListener( (event) -> niveaux("perso"));
-    pan.add(boutonCreer);
+    gc.gridx = 1; gc.gridy = 2;
+    pan.add(boutonCreer, gc);
+
+    JButton boutonAleaF = new JButton("Niveau aléatoire Facile");
+    boutonAleaF.addActionListener( (event) -> niveauAleaF());
+    gc.gridx = 1; gc.gridy = 3;
+    pan.add(boutonAleaF, gc);
+
+    JButton boutonAleaN = new JButton("Niveau aléatoire Normal");
+    boutonAleaN.addActionListener( (event) -> niveauAleaN());
+    gc.gridx = 1; gc.gridy = 4;
+    pan.add(boutonAleaN, gc);
+
+    JButton boutonAleaD = new JButton("Niveau aléatoire Difficile");
+    boutonAleaD.addActionListener( (event) -> niveauAleaD());
+    gc.gridx = 1; gc.gridy = 5;
+    pan.add(boutonAleaD, gc);
   }
 
 
@@ -113,15 +137,21 @@ public class Fenetre extends JFrame{
 
     // ATTENTION !!! quand on aura plusieurs niveaux et fichier json il faudra changer ca pour avoir liste niveaux normaux ET liste niveaux perso
 
-    ArrayList<JButton> listeNiveaux = new ArrayList<JButton>();
-    for(int i = 1; i<4;i++) {
-      listeNiveaux.add(new JButton("Niveau "+i));
+    if (niv.equals("perso")) {
+      panCenter.add(new JLabel("Il n y a pas encore de niveaux personalisés, attendez une prochaine MAJ."));
     }
-    for (int i=debut; i<4; i++) {
-      int j = i;
-      if (listeNiveaux.get(i-1) != null ) {
-        listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
-        panCenter.add(listeNiveaux.get(i-1));
+
+    else {
+      ArrayList<JButton> listeNiveaux = new ArrayList<JButton>();
+      for(int i = 1; i<4;i++) {
+        listeNiveaux.add(new JButton("Niveau "+i));
+      }
+      for (int i=debut; i<4; i++) {
+        int j = i;
+        if (listeNiveaux.get(i-1) != null ) {
+          listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
+          panCenter.add(listeNiveaux.get(i-1));
+        }
       }
     }
     panCenter.setVisible(true);
@@ -195,6 +225,17 @@ public class Fenetre extends JFrame{
     });
   }
 
+  public void niveauAleaF() {
+    // à impleter
+  }
+
+  public void niveauAleaN() {
+    // à impleter
+  }
+
+  public void niveauAleaD() {
+    // à impleter
+  }
 
 
 

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
+import java.awt.event.*;
 
 import org.w3c.dom.events.MouseEvent;
 
@@ -41,6 +42,11 @@ public class VueIG {
         initPlateau(m,c);
 
         actionBar = new JPanel();
+        JButton boutonQuitter = new JButton("Quitter");
+        boutonQuitter.addActionListener((e)-> {
+    			jframe.dispose();
+    	  });
+        actionBar.add(boutonQuitter);
         undoButton = new JButton("Undo");
         undoButton.addActionListener((event) -> c.undo());
         resources = new JLabel(m.getresources()+"");

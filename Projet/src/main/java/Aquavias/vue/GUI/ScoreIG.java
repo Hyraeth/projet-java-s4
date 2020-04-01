@@ -14,6 +14,17 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.Insets;
 import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.*;
+import java.awt.event.*;
+
+import org.w3c.dom.events.MouseEvent;
+
+import Aquavias.controller.ControllerIG;
+import Aquavias.model.Niveau;
 
 import java.util.*;
 
@@ -21,8 +32,6 @@ import java.util.*;
 public class ScoreIG extends JFrame{
 
   private JPanel contenu = (JPanel) getContentPane();
-  private int debut = 1;
-  private int max = 27;  // faudra faire du json
 
   public ScoreIG(int[] scoreComparaison, int score, int lvl){
     this.setTitle("Aquavias");
@@ -97,7 +106,18 @@ public class ScoreIG extends JFrame{
   }
 
   public void lancerNiv(int lvl) {
-
+    EventQueue.invokeLater(() -> {
+        File f = new File("assets/lvls/niveau.json");
+        Niveau m = new Niveau();
+        try {
+            m.load(f, "niveaux_off", lvl);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ControllerIG c = new ControllerIG(m);
+        VueIG gui = new VueIG(c, m);
+        c.setVue(gui);
+    });
   }
 
   public void retour() {
