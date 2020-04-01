@@ -92,7 +92,7 @@ public class Fenetre extends JFrame{
     gc.insets = new Insets(3,6,10,10);
 
     gc.weightx = 1;
-    gc.weighty = 4;
+    gc.weighty = 6;
 
     JButton boutonJouer = new JButton("Niveaux normaux");
     boutonJouer.addActionListener( (event) -> niveaux("normaux"));
@@ -104,10 +104,20 @@ public class Fenetre extends JFrame{
     gc.gridx = 1; gc.gridy = 2;
     pan.add(boutonCreer, gc);
 
-    JButton boutonAlea = new JButton("Niveau aléatoir");
-    boutonAlea.addActionListener( (event) -> niveauAlea());
+    JButton boutonAleaF = new JButton("Niveau aléatoire Facile");
+    boutonAleaF.addActionListener( (event) -> niveauAleaF());
     gc.gridx = 1; gc.gridy = 3;
-    pan.add(boutonAlea, gc);
+    pan.add(boutonAleaF, gc);
+
+    JButton boutonAleaN = new JButton("Niveau aléatoire Normal");
+    boutonAleaN.addActionListener( (event) -> niveauAleaN());
+    gc.gridx = 1; gc.gridy = 4;
+    pan.add(boutonAleaN, gc);
+
+    JButton boutonAleaD = new JButton("Niveau aléatoire Difficile");
+    boutonAleaD.addActionListener( (event) -> niveauAleaD());
+    gc.gridx = 1; gc.gridy = 5;
+    pan.add(boutonAleaD, gc);
   }
 
 
@@ -215,7 +225,15 @@ public class Fenetre extends JFrame{
     });
   }
 
-  public void niveauAlea() {
+  public void niveauAleaF() {
+    // à impleter
+  }
+
+  public void niveauAleaN() {
+    // à impleter
+  }
+
+  public void niveauAleaD() {
     // à impleter
   }
 
