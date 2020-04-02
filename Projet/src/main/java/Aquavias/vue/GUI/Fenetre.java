@@ -50,31 +50,48 @@ public class Fenetre extends JFrame{
 
     pan.setLayout(new GridBagLayout());
     GridBagConstraints gc = new GridBagConstraints();
-    gc.insets = new Insets(3,6,10,10);
 
-    gc.weightx = 1;
+    gc.weightx = 3;
     gc.weighty = 5;
+
+    JLabel labelAquavias = new JLabel("Aquavias", JLabel.CENTER);
+    labelAquavias.setPreferredSize(new Dimension(300,100));
+    Font font = new Font("Arial",Font.BOLD,50);
+    labelAquavias.setFont(font);
+    gc.gridx = 2;
+    gc.gridy = 1;
+    gc.gridwidth = 1;
+    pan.add(labelAquavias, gc);
 
     JButton boutonJouer = new JButton("Jouer");
     boutonJouer.addActionListener( (event) -> jouer());
-    gc.gridx = 1; gc.gridy = 1;
+    boutonJouer.setBackground(Color.YELLOW);
+    boutonJouer.setPreferredSize(new Dimension(150,50));
+    gc.gridy = 2;
     pan.add(boutonJouer, gc);
 
     JButton boutonCreer = new JButton("Créer");
     boutonCreer.addActionListener( (event) -> creer());
-    gc.gridx = 1; gc.gridy = 2;
+    boutonCreer.setPreferredSize(new Dimension(150,50));
+    boutonCreer.setBackground(Color.ORANGE);
+    gc.gridy = 3;
     pan.add(boutonCreer, gc);
 
     JButton boutonAide = new JButton("Aide");
     boutonAide.addActionListener( (event) -> aide());
-    gc.gridx = 1; gc.gridy = 3;
+    boutonAide.setPreferredSize(new Dimension(150,50));
+    boutonAide.setBackground(Color.RED);
+    gc.gridy = 4;
     pan.add(boutonAide, gc);
 
     JButton boutonQuitter = new JButton("Quitter");
     boutonQuitter.addActionListener((e)-> {
 			this.dispose();
 	  });
-    gc.gridx = 1; gc.gridy = 4;
+    boutonQuitter.setPreferredSize(new Dimension(150,50));
+    boutonQuitter.setBackground(Color.BLACK);
+    boutonQuitter.setForeground(Color.WHITE);
+    gc.gridy = 5;
     pan.add(boutonQuitter, gc);
 
     this.setContentPane(pan);
@@ -89,35 +106,62 @@ public class Fenetre extends JFrame{
 
     pan.setLayout(new GridBagLayout());
     GridBagConstraints gc = new GridBagConstraints();
-    gc.insets = new Insets(3,6,10,10);
 
-    gc.weightx = 1;
-    gc.weighty = 6;
+    gc.weightx = 5;
+    gc.weighty = 7;
+
+    JButton bontonMenu = new JButton("Retour");
+    bontonMenu.addActionListener( (event) -> menuAccueil());
+    bontonMenu.setBackground(Color.BLACK);
+    bontonMenu.setForeground(Color.WHITE);
+    gc.gridx = 0; gc.gridy = 0;
+    pan.add(bontonMenu, gc);
 
     JButton boutonJouer = new JButton("Niveaux normaux");
     boutonJouer.addActionListener( (event) -> niveaux("normaux"));
-    gc.gridx = 1; gc.gridy = 1;
+    boutonJouer.setBackground(Color.YELLOW);
+    boutonJouer.setPreferredSize(new Dimension(300,50));
+    gc.gridx = 2; gc.gridy = 1;
     pan.add(boutonJouer, gc);
 
     JButton boutonCreer = new JButton("Niveaux personalisés");
     boutonCreer.addActionListener( (event) -> niveaux("perso"));
-    gc.gridx = 1; gc.gridy = 2;
+    boutonCreer.setBackground(Color.PINK);
+    boutonCreer.setPreferredSize(new Dimension(300,50));
+    gc.gridx = 2; gc.gridy = 2;
     pan.add(boutonCreer, gc);
 
-    JButton boutonAleaF = new JButton("Niveau aléatoire Facile");
+    JLabel labelChoix = new JLabel("Niveau aléatoire:");
+    Font font = new Font("Arial",Font.BOLD,20);
+    labelChoix.setFont(font);
+    gc.gridx = 2; gc.gridy = 3;
+    pan.add(labelChoix, gc);
+
+    JButton boutonAleaF = new JButton("Facile");
     boutonAleaF.addActionListener( (event) -> niveauAleaF());
-    gc.gridx = 1; gc.gridy = 3;
+    boutonAleaF.setBackground(Color.GREEN);
+    boutonAleaF.setPreferredSize(new Dimension(150,50));
+    gc.gridx = 1; gc.gridy = 4;
     pan.add(boutonAleaF, gc);
 
-    JButton boutonAleaN = new JButton("Niveau aléatoire Normal");
+    JButton boutonAleaN = new JButton("Normale");
     boutonAleaN.addActionListener( (event) -> niveauAleaN());
-    gc.gridx = 1; gc.gridy = 4;
+    boutonAleaN.setBackground(Color.BLUE);
+    boutonAleaN.setPreferredSize(new Dimension(150,50));
+    gc.gridx = 2; gc.gridy = 4;
     pan.add(boutonAleaN, gc);
 
-    JButton boutonAleaD = new JButton("Niveau aléatoire Difficile");
+    JButton boutonAleaD = new JButton("Difficile");
     boutonAleaD.addActionListener( (event) -> niveauAleaD());
-    gc.gridx = 1; gc.gridy = 5;
+    boutonAleaD.setBackground(Color.RED);
+    boutonAleaD.setPreferredSize(new Dimension(150,50));
+    gc.gridx = 3; gc.gridy = 4;
     pan.add(boutonAleaD, gc);
+
+    JPanel vide = new JPanel();
+    gc.gridx = 4; gc.gridy = 6;
+    pan.add(vide, gc);
+
   }
 
 
@@ -133,12 +177,12 @@ public class Fenetre extends JFrame{
     pan.repaint();
 
     JPanel panCenter = new JPanel();            // partie au centre (les niveaux)
-    panCenter.setLayout(new GridLayout(3,3));
+    panCenter.setLayout(new GridLayout(3,3,40,40));
 
     // ATTENTION !!! quand on aura plusieurs niveaux et fichier json il faudra changer ca pour avoir liste niveaux normaux ET liste niveaux perso
 
     if (niv.equals("perso")) {
-      panCenter.add(new JLabel("Il n y a pas encore de niveaux personalisés, attendez une prochaine MAJ."));
+      panCenter.add(new JLabel("Il n y a pas encore de niveaux personalisés, attendez une prochaine MAJ.", JLabel.CENTER));
     }
 
     else {
@@ -146,14 +190,21 @@ public class Fenetre extends JFrame{
       for(int i = 1; i<4;i++) {
         listeNiveaux.add(new JButton("Niveau "+i));
       }
-      for (int i=debut; i<4; i++) {
+      for (int i=debut; i<9; i++) {
         int j = i;
-        if (listeNiveaux.get(i-1) != null ) {
-          listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
-          panCenter.add(listeNiveaux.get(i-1));
+        if (i < listeNiveaux.size()+1) {
+          if (listeNiveaux.get(j-1) != null) {
+            listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
+            listeNiveaux.get(i-1).setBackground(Color.GREEN);
+            listeNiveaux.get(i-1).setForeground(Color.WHITE);
+            panCenter.add(listeNiveaux.get(i-1));
+          }
+        } else {
+          panCenter.add(new JPanel());
         }
       }
     }
+    panCenter.setBorder(BorderFactory.createEmptyBorder(40,40,40,40));
     panCenter.setVisible(true);
 
 
@@ -170,6 +221,8 @@ public class Fenetre extends JFrame{
     JPanel panNorth = new JPanel();                               // Jpanel du nord avec le boutons retour, le label et le bouton pour passer de
     JButton boutonRetour = new JButton("Retour");                 // niveau personalisés à niveau normaux ou l'inverse
     boutonRetour.addActionListener( (event) -> menuAccueil());
+    boutonRetour.setBackground(Color.BLACK);
+    boutonRetour.setForeground(Color.WHITE);
     panNorth.add(boutonRetour);
     if (niv.equals("normaux")) {
       JLabel label = new JLabel("Selection de niveaux normaux");
