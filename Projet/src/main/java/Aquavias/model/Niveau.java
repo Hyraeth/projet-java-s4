@@ -268,6 +268,10 @@ public class Niveau {
       }
     }
 
+    public void quit() {
+      this.resources = 0;
+    }
+
     // Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
     public void flow() {
 

@@ -44,6 +44,7 @@ public class VueIG {
         actionBar = new JPanel();
         JButton boutonQuitter = new JButton("Quitter");
         boutonQuitter.addActionListener((e)-> {
+          controller.quit();
     			jframe.dispose();
     	  });
         actionBar.add(boutonQuitter);

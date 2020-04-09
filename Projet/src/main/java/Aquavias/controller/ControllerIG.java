@@ -12,6 +12,7 @@ public class ControllerIG {
     private VueIG vue;
     private Niveau model;
     private VueTerm vt = new VueTerm();
+    private Timer timer;
 
     public ControllerIG(Niveau n) {
         this.model = n;
@@ -21,7 +22,7 @@ public class ControllerIG {
     }
 
     public void updateLoop() {
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
                 System.out.println("hello");
@@ -56,9 +57,14 @@ public class ControllerIG {
 
     public void undo() {
         model.undo();
-        //tests pour voir si l'ig fonctionne correctement
         vt.afficheNiv(model);
-        //model.flow();
         vue.update();
+    }
+
+    public void quit() {
+      timer.cancel();
+      timer.purge();
+      model.quit();
+      System.out.print("fin");
     }
 }

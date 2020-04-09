@@ -46,13 +46,18 @@ public class MenuNiveau{
         while(!n.partieTerminee()) {    // tant que la partie n'est pas terminée
           int str = 0;
           try{
-            System.out.println("Choisissez un tuyau à tourner (entrez -1 pour undo)");
+            System.out.println("Choisissez un tuyau à tourner (entrez -1 pour undo, -2 pour quitter)");
             str = Jeu.sc.nextInt();
           }
           catch (NumberFormatException e){ //Si ce n'est pas un nombre
             System.out.println("Ce n'est pas un nombre");
           }
           if (str == -1) n.undo();
+          if (str == -2) {
+            coups = 0;
+            n.quit();
+            break;
+          }
           else {
             int premier = premier(str);
             int deuxieme = deuxieme(str);
