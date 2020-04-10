@@ -26,7 +26,7 @@ public class MenuNiveau{
     System.out.println("Disponible dans une prochaîne mise à jour...");
     int i=5;
     int j=15;
-    Generation g1 = Generation.generer(i,j);
+    Generation g1 = Generation.generer(i,j,300);
     Niveau n1 = new Niveau(i,j);
     n1.setNiveau(Generation.const1(g1.getTab()));
     vt.afficheNiv(n1);

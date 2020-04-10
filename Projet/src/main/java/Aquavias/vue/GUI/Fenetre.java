@@ -21,6 +21,7 @@ import java.io.File;
 
 import Aquavias.controller.ControllerIG;
 import Aquavias.model.Niveau;
+import Aquavias.model.Generation;
 import Aquavias.vue.GUI.VueIG;
 
 
@@ -280,15 +281,30 @@ public class Fenetre extends JFrame{
   }
 
   public void niveauAleaF() {
-    // à impleter
+    int int1 = (int)(Math.random() * 2);
+    int int2 = (int)(Math.random() * 2);
+    String str1 = Integer.toString(int1+2);
+    String str2 = Integer.toString(int2+2);
+    String[] a = {str1,str2,"25"};
+    Generation.main(a);
   }
 
   public void niveauAleaN() {
-    // à impleter
+    int int1 = (int)(Math.random() * 2);
+    int int2 = (int)(Math.random() * 2);
+    String str1 = Integer.toString(int1+4);
+    String str2 = Integer.toString(int2+4);
+    String[] a = {str1,str2,"10"};
+    Generation.main(a);
   }
 
   public void niveauAleaD() {
-    // à impleter
+    int int1 = (int)(Math.random() * 2);
+    int int2 = (int)(Math.random() * 2);
+    String str1 = Integer.toString(int1+6);
+    String str2 = Integer.toString(int2+6);
+    String[] a = {str1,str2,"5"};
+    Generation.main(a);
   }
 
 
