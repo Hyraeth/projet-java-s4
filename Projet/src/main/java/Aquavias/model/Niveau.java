@@ -15,6 +15,7 @@ import org.json.*;
 public class Niveau {
     private Pipe[][] niveau;
     private int resources;
+    public void setResources(int nb) {this.resources = nb;}
     private int[] score;
     //Utiliser autre chose car on ne peut pas faire plus que un undo
     private Stack<int[]> retour = new Stack<int[]>();            // pile avec tableau de taille 2 avec les coordonées des pipes tournées

@@ -33,6 +33,14 @@
       "score" : 0,
       "resources" : 500,
       "type" : 2
+    },
+    {
+      "largeur" : 6,
+      "longueur" : 9,
+      "configuration" : "31T21T30T21T22T21T31T22T40T40T30T30T21T30T23T42T40T10F30T21T31T23T50F30T23T30T21T20T40T22T30T21T30T21T23T30T00T23T30T21T41T31T23T21T31T20T30T20T43T23T21T30T30T23T",
+      "score" : 0,
+      "resources" : 500,
+      "type" : 1
     }
   ],
 
