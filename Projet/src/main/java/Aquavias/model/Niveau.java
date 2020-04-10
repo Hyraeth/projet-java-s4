@@ -182,13 +182,13 @@ public class Niveau {
         return (!fuite && a && b && c && d);
     }
 
-    //return les possibilité d'acces aux cases suivantes.
+    //return les possibilités d'accès aux cases suivantes.
     public boolean[] possible (int i, int j, int prec) {
         boolean[] b = new boolean[4];
         if (i-1>=0             //Si la case est dans le plateau
-            && niveau[i][j].connections[0]==true   //Si il est connecté au suivant
-            && niveau[i-1][j]!=null                 //Si le suivant n'est pas null
-            && !niveau[i-1][j].rempli) {          //Si le suivant n'est pas deja rempli
+            && niveau[i][j].connections[0]==true   //S'il est connecté au suivant
+            && niveau[i-1][j]!=null                //Si le suivant n'est pas null
+            && !niveau[i-1][j].rempli) {           //Si le suivant n'est pas déjà rempli
                 b[0] = true;
         }
         if (j+1<niveau[0].length
@@ -213,10 +213,10 @@ public class Niveau {
     }
     //return true si il y a une fuite
     public boolean fuite(int i, int j) {
-        if (niveau[i][j].connections[0]==true   //Si il est connecté au suivant
-            && (i-1<0                        //Si la case n'est pas dans le plateau
-                || niveau[i-1][j]==null                 //Si le suivant est null
-                || !niveau[i-1][j].connect(2))){          //Si le suivant n'est pas connecté a lui
+        if (niveau[i][j].connections[0]==true        //S'il est connecté au suivant
+            && (i-1<0                                //Si la case n'est pas dans le plateau
+                || niveau[i-1][j]==null              //Si le suivant est null
+                || !niveau[i-1][j].connect(2))){     //Si le suivant n'est pas connecté à lui
             return true;
         }
         if (niveau[i][j].connections[1]==true

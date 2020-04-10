@@ -47,7 +47,7 @@ public class Jeu{
   public void lanceNiv(String s){
     while(true){
       MenuNiveau n = new MenuNiveau(25,13);
-      if(s.equals("n")){ //Si il faut lancer un niveau normal
+      if(s.equals("n")){ //S'il faut lancer un niveau normal
         vt.afficheNorm(); //Affiche la liste des niveaux normaux
         int x;
         String rep = sc.next();
@@ -66,7 +66,7 @@ public class Jeu{
             System.out.println("Ce nombre n'est pas compris entre 1 et " + n.getNorm());
           }
         }
-      }else{ //Si il faut lancer un niveau personnalisé
+      }else{ //S'il faut lancer un niveau personnalisé
         vt.affichePers(); //Affiche la liste des niveaux personnalisés
         int x;
         String rep = sc.next();

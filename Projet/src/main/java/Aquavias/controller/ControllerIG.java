@@ -25,7 +25,7 @@ public class ControllerIG {
         timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
-                System.out.println("hello");
+                //System.out.println("hello");
                 model.countdown();
                 if(vue != null) vue.update();
             }
