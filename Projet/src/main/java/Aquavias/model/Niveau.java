@@ -23,7 +23,8 @@ public class Niveau {
     private int type; //Si = 0 aucune type, = 1 limite de mouvement, = 2 limite de réserve
     //Pas besoin de reserve, la reverse d'eau et le combre de coups restant sont la meme chose (resource), on differencie par le type
     //private int reserve;
-
+    private int lvlNumber;
+    private String lvlType;
 
 
     public Niveau(int m, int n) {
@@ -61,6 +62,8 @@ public class Niveau {
         this.resources = level.getInt("resources");
         this.type = level.getInt("type");
 
+        lvlNumber = lvl;
+        lvlType = type;
         //this.score = level.getInt("score");
     }
 
@@ -71,6 +74,14 @@ public class Niveau {
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
         return lvl_liste.length();
+    }
+
+    public int getLvlNumber() {
+        return lvlNumber;
+    }
+
+    public String getLvlType() {
+        return lvlType;
     }
 
     public void countdown() {

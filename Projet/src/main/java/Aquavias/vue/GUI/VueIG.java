@@ -44,8 +44,8 @@ public class VueIG {
         actionBar = new JPanel();
         JButton boutonQuitter = new JButton("Quitter");
         boutonQuitter.addActionListener((e)-> {
-          controller.quit();
-    			jframe.dispose();
+            controller.quit();
+    	    jframe.dispose();
     	  });
         actionBar.add(boutonQuitter);
         undoButton = new JButton("Undo");
@@ -97,8 +97,36 @@ public class VueIG {
         resources.setText(model.getresources()+"");
     }
 
-    public void displayWinScreen() {
+    public void close() {
+        jframe.dispose();
+    }
 
+    public void displayWinScreen() {
+        String options[] = {"Oui","Non"};
+        int result = JOptionPane.showOptionDialog(jframe, "Bravo vous avez gagné.\nFaire le prochain niveau?", "Félicitation", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if(result == JOptionPane.YES_OPTION) {
+            int nblvl;
+            try {
+                File f = new File("assets/lvls/niveau.json");
+                nblvl = model.getNumberLvl(f, model.getLvlType());
+                if(nblvl == model.getLvlNumber()+1) {
+                    JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                    this.close();
+                }
+                else {
+                    this.close();
+                    model.load(f, model.getLvlType(), model.getLvlNumber()+1);
+                    ControllerIG c = new ControllerIG(model);
+                    VueIG gui = new VueIG(c, model);
+                    c.setVue(gui);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            this.close();
+        }
     }
 
     public static void main(String[] args) {
