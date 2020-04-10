@@ -64,7 +64,14 @@ public class Niveau {
         //this.score = level.getInt("score");
     }
 
-
+    public int getNumberLvl(File f, String type) throws IOException {
+        if (!f.exists())
+            return 0;
+        System.out.println("file found");
+        JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
+        JSONArray lvl_liste = json.getJSONArray(type);
+        return lvl_liste.length();
+    }
 
     public void countdown() {
 
