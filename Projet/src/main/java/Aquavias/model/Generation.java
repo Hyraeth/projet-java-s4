@@ -14,7 +14,7 @@ public class Generation {
         tab = a;
     }
 
-    public static Generation generer(int hau, int lon) {
+    public static Generation generer(int hau, int lon, int facilité) {
         int a = (int)(Math.random() * hau);
         int b = (int)(Math.random() * hau);
         int[][][] t = new int[hau][lon][3];
@@ -28,7 +28,7 @@ public class Generation {
         }
         g.tab[a][0][0] = 5;   // 5 = tuyau depart
         g.tab[b][lon-1][0] = 6;  // 6 = tuyau arrivé
-        boolean c = g.cree(a,1);
+        boolean c = g.cree(a,1,facilité);
         while(!c) {
             for (int i = 0; i<hau; i++) {
                 for (int j = 0; j<lon; j++) {
@@ -37,19 +37,19 @@ public class Generation {
                     g.tab[i][j][2] = 9;
                 }
             }
-            c = g.cree(a,1);
+            c = g.cree(a,1,facilité);
         }
 
         return g;
     }
 
-    public boolean cree(int x, int y){
+    public boolean cree(int x, int y, int facilité){
         if (this.finis(x,y)) {
             this.tab[x][y][0]=1;
             return true;
         }
         int n = (int)(Math.random() * 4);
-        int tuyau3 = (int)(Math.random() * 4);
+        int tuyau3 = (int)(Math.random() * facilité);
         boolean[] possible = this.disponible(x,y);
         while (!tableauDeFalse(possible)){
             while (possible[n]==false) {
@@ -58,10 +58,10 @@ public class Generation {
             this.tab[x][y][0]=n;
             boolean b = false;
             switch(n) {
-                case 0: b=this.cree(x-1,y);break;   //haut
-                case 1: b=this.cree(x,y+1);break;
-                case 2: b=this.cree(x+1,y);break;
-                case 3: b=this.cree(x,y-1);break;   //gauche
+                case 0: b=this.cree(x-1,y,facilité);break;   //haut
+                case 1: b=this.cree(x,y+1,facilité);break;
+                case 2: b=this.cree(x+1,y,facilité);break;
+                case 3: b=this.cree(x,y-1,facilité);break;   //gauche
             }
             possible[n]=false;
             if (b) {
@@ -75,10 +75,10 @@ public class Generation {
 
                             boolean c = false;
                             switch(n) {
-                                case 0: c=this.creeT(x-1,y,2);break;   //haut
-                                case 1: c=this.creeT(x,y+1,3);break;   //droite
-                                case 2: c=this.creeT(x+1,y,0);break;   //bas
-                                case 3: c=this.creeT(x,y-1,1);break;   //gauche
+                                case 0: c=this.creeT(x-1,y,2,facilité);break;   //haut
+                                case 1: c=this.creeT(x,y+1,3,facilité);break;   //droite
+                                case 2: c=this.creeT(x+1,y,0,facilité);break;   //bas
+                                case 3: c=this.creeT(x,y-1,1,facilité);break;   //gauche
                             }
                             if (!c) {
                                 if (this.tab[x][y][2]!=9) this.tab[x][y][2]=9;
@@ -97,14 +97,14 @@ public class Generation {
         return false;
     }
 
-    public boolean creeT(int x, int y, int prec) {
+    public boolean creeT(int x, int y, int prec, int facilité) {
         if (this.tab[x][y][0]!=9) {
             if (tab[x][y][1]==9) this.tab[x][y][1]=prec;
             else this.tab[x][y][2]=prec;
             return true;
         }
         int n = (int)(Math.random() * 4);
-        int tuyau3 = (int)(Math.random() * 2);
+        int tuyau3 = (int)(Math.random() * facilité+4);
         boolean[] possible = this.disponibleT(x,y,prec);
         while (!tableauDeFalse(possible)){
             while (possible[n]==false) {
@@ -113,10 +113,10 @@ public class Generation {
             this.tab[x][y][0]=n;
             boolean b = false;
             switch(n) {
-                case 0: b=this.creeT(x-1,y,2);break;   //haut
-                case 1: b=this.creeT(x,y+1,3);break;
-                case 2: b=this.creeT(x+1,y,0);break;
-                case 3: b=this.creeT(x,y-1,1);break;   //gauche
+                case 0: b=this.creeT(x-1,y,2,facilité);break;   //haut
+                case 1: b=this.creeT(x,y+1,3,facilité);break;
+                case 2: b=this.creeT(x+1,y,0,facilité);break;
+                case 3: b=this.creeT(x,y-1,1,facilité);break;   //gauche
             }
             possible[n]=false;
             if (b) {
@@ -186,15 +186,15 @@ public class Generation {
 
     public static void main(String[] args) {
         VueTerm vt = new VueTerm();
-        Niveau n = init(Integer.valueOf(args[0]),Integer.valueOf(args[1]));
+        Niveau n = init(Integer.valueOf(args[0]),Integer.valueOf(args[1]),Integer.valueOf(args[2]));
         vt.afficheNiv(n);
         ControllerIG c = new ControllerIG(n);
         VueIG v = new VueIG(c, n);
         c.setVue(v);
     }
 
-    public static Niveau init(int i, int j) {
-        Generation g1 = generer(i,j);
+    public static Niveau init(int i, int j, int facilité) {
+        Generation g1 = generer(i,j,facilité);
         g1.affiche();
         Niveau n1 = new Niveau(i,j);
         n1.setNiveau(const1(g1.tab));
