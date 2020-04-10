@@ -70,7 +70,7 @@ public class MenuNiveau{
             vt.afficheNiv(n);                 // affiche le niveau à chaque fois qu'on tourne un tuyau
           }
         }
-        vt.afficheScore(n.getScore(), coups, lvl);  // en attendant de coder json, on fait pour niveau 1
+        vt.afficheScore(n.getScore(), coups, lvl);  
       }
 
       private int premier(int str) {

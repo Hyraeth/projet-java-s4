@@ -97,6 +97,7 @@ public class Fenetre extends JFrame{
     this.setContentPane(pan);
     this.setVisible(true);
   }
+  
 
   public void jouer() {
     JPanel pan = (JPanel) this.getContentPane();

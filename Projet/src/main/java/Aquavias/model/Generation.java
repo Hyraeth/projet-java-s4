@@ -94,7 +94,7 @@ public class Generation {
   public static Pipe[][] const1(int[][] t) {
     Pipe[][] pip = new Pipe[t.length][t[0].length];
     int i=0;
-    while(t[i][0] != 5) {  //tant que ce n'est pas le depart
+    while(t[i][0] != 5) {  //tant que ce n'est pas le départ
       i++;
     }
     pip[i][0] = new PipeDepart();
@@ -114,7 +114,7 @@ public class Generation {
       pip[x][y] = new PipeArrivee();
       return;
     }
-    if((t[x][y]+prec)%2 == 0) {  //pour savoir si on met un L ou un I.
+    if((t[x][y]+prec)%2 == 0) {  //pour savoir si on met un L ou un I
       pip[x][y]=new PipeI(true);
     } else {
       pip[x][y]=new PipeL(true);

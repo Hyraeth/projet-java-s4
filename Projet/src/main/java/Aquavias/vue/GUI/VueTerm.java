@@ -107,7 +107,7 @@ public class VueTerm{
       }
   }
 
-  // affiche le plateau dans le terminal avec des séparation.
+  // affiche le plateau dans le terminal avec des séparations.
   public void afficheAvecCase(Niveau n) {
       for (int i = 0; i < n.getLargeur(); i++) {
           for (int j = 0; j < n.getLongueur(i); j++) {
