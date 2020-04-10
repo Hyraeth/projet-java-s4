@@ -13,7 +13,7 @@ public class ControllerIG {
     private Niveau model;
     private VueTerm vt = new VueTerm();
     private Timer timer;
-    private boolean debug;
+    public boolean debug;
 
     public ControllerIG(Niveau n) {
         this.model = n;
@@ -41,7 +41,7 @@ public class ControllerIG {
     public void rotate(int i, int j) {
         model.rotate(i,j);
         //tests pour voir si l'ig fonctionne correctement
-        System.out.println(model.getPipe(i, j));
+        if(debug) System.out.println(model.getPipe(i, j));
         if(debug) vt.afficheNiv(model);
         //model.flow();
         vue.update();
