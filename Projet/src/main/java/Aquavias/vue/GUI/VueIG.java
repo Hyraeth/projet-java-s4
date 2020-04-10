@@ -48,6 +48,11 @@ public class VueIG {
     	    jframe.dispose();
     	  });
         actionBar.add(boutonQuitter);
+        JButton debugbutton = new JButton("Debug");
+        boutonQuitter.addActionListener((e)-> {
+            controller.debug();
+    	  });
+        actionBar.add(debugbutton);
         undoButton = new JButton("Undo");
         undoButton.addActionListener((event) -> c.undo());
         resources = new JLabel(m.getresources()+"");

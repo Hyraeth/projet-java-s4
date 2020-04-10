@@ -20,18 +20,18 @@ public class JPanelPipe extends JPanel {
     private int index;
     private boolean remplit;
     private Pipe p;
-    private ControllerIG c;
+    private ControllerIG con;
 
     public JPanelPipe(int i, Pipe p, boolean remp, ControllerIG co, int x, int y, boolean moveable) {
         this.index = i;
         this.p = p;
         this.remplit = remp;
-        this.c = co;
+        this.con = co;
         if(moveable) {
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    c.rotate(x, y);
+                    con.rotate(x, y);
                     repaint();
                 }
             });
@@ -70,7 +70,7 @@ public class JPanelPipe extends JPanel {
         } 
         int w = (int) d.getWidth();
             int h = (int) d.getHeight();
-            int s = (w/this.c.getLongueur() < h/this.c.getLargeur() ? w/this.c.getLongueur() : h/this.c.getLargeur());
+            int s = (w/this.con.getLongueur() < h/this.con.getLargeur() ? w/this.con.getLongueur() : h/this.con.getLargeur());
         g2d.drawImage(img[i][j], 0, 0, s, s, null);
     }
 
@@ -87,8 +87,8 @@ public class JPanelPipe extends JPanel {
         }
         int w = (int) d.getWidth();
         int h = (int) d.getHeight();
-        System.out.println(w+" "+h);
-        int s = (w/this.c.getLongueur() < h/this.c.getLargeur() ? w/this.c.getLongueur() : h/this.c.getLargeur());
+        if(con.debug) System.out.println(w+" "+h);
+        int s = (w/this.con.getLongueur() < h/this.con.getLargeur() ? w/this.con.getLongueur() : h/this.con.getLargeur());
         return new Dimension(s, s);
     }
 }
