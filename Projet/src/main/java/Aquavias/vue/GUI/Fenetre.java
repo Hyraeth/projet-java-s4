@@ -21,6 +21,7 @@ import java.io.File;
 
 import Aquavias.controller.ControllerIG;
 import Aquavias.model.Niveau;
+import Aquavias.model.Generation;
 import Aquavias.vue.GUI.VueIG;
 
 
