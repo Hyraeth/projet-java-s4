@@ -63,6 +63,7 @@ public class Generation {
                 case 2: b=this.cree(x+1,y,facilité);break;
                 case 3: b=this.cree(x,y-1,facilité);break;   //gauche
             }
+            System.out.println("dgdsfg");
             possible[n]=false;
             if (b) {
                 if (tuyau3 == 0 && this.tab[x][y][1]==9) {
@@ -106,9 +107,11 @@ public class Generation {
         int n = (int)(Math.random() * 4);
         int tuyau3 = (int)(Math.random() * facilité+4);
         boolean[] possible = this.disponibleT(x,y,prec);
+        System.out.println("dfhgf");
         while (!tableauDeFalse(possible)){
+            n = (int)(Math.random() * 4);
             while (possible[n]==false) {
-                n = (int)(Math.random() * 4);
+                n = (n+1)%4;
             }
             this.tab[x][y][0]=n;
             boolean b = false;
