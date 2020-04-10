@@ -91,7 +91,6 @@ public class VueTerm{
   public void afficheNiv(Niveau n) {
       if (n.finis()){
        System.out.println("*** Félicitation !!! ***");
-       System.exit(0);
       }
       if(n.getresources() >= 0){
         System.out.println("resources restants: " + n.getresources());

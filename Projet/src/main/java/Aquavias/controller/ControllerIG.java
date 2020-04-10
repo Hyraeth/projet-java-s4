@@ -44,7 +44,13 @@ public class ControllerIG {
         //model.flow();
         vue.update();
 
-        //if(model.finish()) vue.displayWinScreen();
+        if(model.finis()) {
+            timer.cancel();
+            timer.purge();
+            model.quit();
+            vue.displayWinScreen();
+            System.out.print("fin");
+        }
     }
 
     public int getLongueur() {
