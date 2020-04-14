@@ -9,6 +9,7 @@ import java.util.TimerTask;
 import javax.swing.*;
 import java.awt.event.*;
 
+import org.json.JSONException;
 import org.w3c.dom.events.MouseEvent;
 
 import Aquavias.controller.ControllerIG;
@@ -127,6 +128,12 @@ public class VueIG {
                     c.setVue(gui);
                 }
             } catch (IOException e) {
+                JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                this.close();
+                e.printStackTrace();
+            } catch (JSONException e) {
+                JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                this.close();
                 e.printStackTrace();
             }
         } else {
