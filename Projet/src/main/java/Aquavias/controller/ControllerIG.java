@@ -41,14 +41,16 @@ public class ControllerIG {
     public void rotate(int i, int j) {
         model.rotate(i,j);
         //tests pour voir si l'ig fonctionne correctement
-        if(debug) System.out.println(model.getPipe(i, j));
-        if(debug) vt.afficheNiv(model);
+        System.out.println(model.getPipe(i, j));
+        vt.afficheNiv(model);
         //model.flow();
         vue.update();
-
+        
         if(model.finis()) {
-            timer.cancel();
-            timer.purge();
+            if(timer != null) {
+                timer.cancel();
+                timer.purge();
+            }
             model.quit();
             vue.displayWinScreen();
             System.out.print("fin");
@@ -70,10 +72,13 @@ public class ControllerIG {
     }
 
     public void quit() {
-      timer.cancel();
-      timer.purge();
-      model.quit();
-      System.out.print("fin");
+        if(timer != null) {
+            timer.cancel();
+        timer.purge();
+        }
+        
+        model.quit();
+        System.out.print("fin");
     }
 
     public void debug() {
