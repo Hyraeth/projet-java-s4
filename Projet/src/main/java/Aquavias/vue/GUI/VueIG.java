@@ -39,26 +39,9 @@ public class VueIG {
 
         JPanelPipe.loadImg();
         zonePlateau = new JPanel();
+        zonePlateau();
         zonePlateau.setPreferredSize(new Dimension(m.getLongueur()*200,m.getLargeur()*200));
         initPlateau(m,c);
-
-        actionBar = new JPanel();
-        JButton boutonQuitter = new JButton("Quitter");
-        boutonQuitter.addActionListener((e)-> {
-            controller.quit();
-    	    jframe.dispose();
-    	  });
-        actionBar.add(boutonQuitter);
-        JButton debugbutton = new JButton("Debug");
-        boutonQuitter.addActionListener((e)-> {
-            controller.debug();
-    	  });
-        actionBar.add(debugbutton);
-        undoButton = new JButton("Undo");
-        undoButton.addActionListener((event) -> c.undo());
-        resources = new JLabel(m.getresources()+"");
-        actionBar.add(undoButton);
-        actionBar.add(resources);
 
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 0.1;
@@ -68,12 +51,36 @@ public class VueIG {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 0.9;
         gbc.gridy = 1;
+
         jframe.add(zonePlateau,gbc);
         jframe.pack();
         //jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jframe.setTitle("Aquavias");
         jframe.setVisible(true);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void zonePlateau() {
+      actionBar = new JPanel();
+
+      JButton boutonQuitter = new JButton("Quitter");
+      boutonQuitter.addActionListener((e)-> {
+          controller.quit();
+          jframe.dispose();
+      });
+      actionBar.add(boutonQuitter);
+
+      JButton debugbutton = new JButton("Debug");
+      debugbutton.addActionListener((e)-> {
+          controller.debug();
+      });
+      actionBar.add(debugbutton);
+
+      undoButton = new JButton("Undo");
+      undoButton.addActionListener((event) -> controller.undo());
+      resources = new JLabel(model.getresources()+"");
+      actionBar.add(undoButton);
+      actionBar.add(resources);
     }
 
     public void initPlateau(Niveau model, ControllerIG controller) {
