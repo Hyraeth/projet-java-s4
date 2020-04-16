@@ -98,7 +98,7 @@ public class Fenetre extends JFrame{
     this.setContentPane(pan);
     this.setVisible(true);
   }
-  
+
 
   public void jouer() {
     JPanel pan = (JPanel) this.getContentPane();
@@ -320,11 +320,44 @@ public class Fenetre extends JFrame{
     pan.revalidate();
     pan.repaint();
 
-    JButton boutonRetour = new JButton("Retour");
+    /*JButton boutonRetour = new JButton("Retour");
     boutonRetour.addActionListener( (event) -> menuAccueil());
     pan.add(boutonRetour);
 
     pan.add(new JLabel("Regles"));                      // il faut trouver les regles sur internet et les mettre ici.....
+    */
+
+    pan.setLayout(new GridBagLayout());
+    GridBagConstraints gc = new GridBagConstraints();
+
+    gc.weightx = 5;
+    gc.weighty = 7;
+
+    JButton bontonMenu = new JButton("Retour");
+    bontonMenu.addActionListener( (event) -> menuAccueil());
+    bontonMenu.setBackground(Color.BLACK);
+    bontonMenu.setForeground(Color.WHITE);
+    gc.gridx = 0; gc.gridy = 0;
+    pan.add(bontonMenu, gc);
+
+    JLabel titre = new JLabel("REGLES");
+    Font font = new Font("Arial",Font.BOLD,20);
+    titre.setFont(font);
+    gc.gridx = 1; gc.gridy = 0;
+    pan.add(titre, gc);
+
+    JLabel regleun = new JLabel("Il faut faire arriver l'eau jusqu'au tuyau rouge.");
+    gc.gridx = 1; gc.gridy = 1;
+    pan.add(regleun, gc);
+
+    JLabel regledeux = new JLabel("vous pouvez choisir entre des niveaux aléatoires ou déjà créés.");
+    gc.gridx = 1; gc.gridy = 2;
+    pan.add(regledeux, gc);
+
+    JPanel vide = new JPanel();
+    gc.gridx = 3; gc.gridy = 4;
+    pan.add(vide, gc);
+
 
     this.setContentPane(pan);
     this.setVisible(true);
