@@ -30,8 +30,10 @@ public class Fenetre extends JFrame{
   private JPanel contenu = (JPanel) getContentPane();
   private int debut = 1;
   private int max = 27;  // faudra faire du json
+  private ControllerIG c;
 
   public Fenetre(){
+    c = new ControllerIG();
     this.setTitle("Aquavias");
     this.setSize(800, 600);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -183,7 +185,7 @@ public class Fenetre extends JFrame{
         int j = i;
         if (i < listeNiveaux.size()+1) {
           if (listeNiveaux.get(j-1) != null) {
-            listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
+            listeNiveaux.get(i-1).addActionListener( (event) -> c.lancerNiv(j) );
             listeNiveaux.get(i-1).setBackground(Color.GREEN);
             listeNiveaux.get(i-1).setForeground(Color.WHITE);
             panCenter.add(listeNiveaux.get(i-1));
@@ -251,21 +253,6 @@ public class Fenetre extends JFrame{
     niveaux(niv);
   }
 
-
-  public void lancerNiv(int i) {
-    EventQueue.invokeLater(() -> {
-        File f = new File("assets/lvls/niveau.json");
-        Niveau m = new Niveau();
-        try {
-            m.load(f, "niveaux_off", i);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ControllerIG c = new ControllerIG(m);
-        VueIG gui = new VueIG(c, m);
-        c.setVue(gui);
-    });
-  }
 
   public void niveauAleaF() {
     int int1 = (int)(Math.random() * 2);
