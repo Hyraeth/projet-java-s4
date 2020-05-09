@@ -129,6 +129,7 @@ WIP
 
 ## Arbre des fichiers
 
+```BASH
 Projet
  ┣ src
  ┃ ┣ main
@@ -155,6 +156,7 @@ Projet
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ VueIG.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ VueTerm.java
  ┃ ┃ ┃ ┃ ┃ ┗ App.java
+```
 
 ### Jeu
 
