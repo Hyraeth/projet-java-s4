@@ -88,21 +88,21 @@ public class VueTerm{
   }
 
   // affiche le plateau dans le terminal
-  public void afficheNiv(Niveau n) {
-      if (n.finis()){
+  public void afficheNiv(Niveau n, boolean debug) {
+      if (n.finis() && debug){
        System.out.println("*** Félicitation !!! ***");
       }
-      if(n.getresources() >= 0){
+      if(n.getresources() >= 0 && debug ){
         System.out.println("resources restants: " + n.getresources());
       }
       for (int i = 0; i < n.getLargeur(); i++) {
           for (int j = 0; j < n.getLongueur(i); j++) {
               if (n.getPipe(i,j) != null)
-                  affichePipe(n.getPipe(i,j));
+                  if(debug) affichePipe(n.getPipe(i,j));
               else
-                  System.out.print(" ");
+                  if(debug) System.out.print(" ");
           }
-          System.out.println();
+          if(debug) System.out.println();
       }
   }
 

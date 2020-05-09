@@ -359,7 +359,7 @@ public class Niveau {
     public static void main(String[] args) {
       VueTerm vt = new VueTerm();
         Niveau n = new Niveau();
-        vt.afficheNiv(n);
+        vt.afficheNiv(n, true);
         File f = new File("assets\\lvls\\niveau.json");
         System.out.println(f.toPath());
         try {
@@ -367,10 +367,10 @@ public class Niveau {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        vt.afficheNiv(n);
+        vt.afficheNiv(n, true);
         System.out.println(n.niveau[1][1]);
         n.rotate(1, 1);
         System.out.println();
-        vt.afficheNiv(n);
+        vt.afficheNiv(n, true);
     }
 }

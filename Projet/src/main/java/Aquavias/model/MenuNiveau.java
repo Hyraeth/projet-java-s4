@@ -29,7 +29,7 @@ public class MenuNiveau{
     Generation g1 = Generation.generer(i,j,300);
     Niveau n1 = new Niveau(i,j);
     n1.setNiveau(Generation.const1(g1.getTab()));
-    vt.afficheNiv(n1);
+    vt.afficheNiv(n1, true);
   }
 
   //Permet de lancer le niveau personnalisé numéro x
@@ -67,7 +67,7 @@ public class MenuNiveau{
               coups++;
             }
             else System.out.println("Vous n'avez pas rentré une valeur correct. Réessayez.");
-            vt.afficheNiv(n);                 // affiche le niveau à chaque fois qu'on tourne un tuyau
+            vt.afficheNiv(n, true);                 // affiche le niveau à chaque fois qu'on tourne un tuyau
           }
         }
         vt.afficheScore(n.getScore(), coups, lvl);  
