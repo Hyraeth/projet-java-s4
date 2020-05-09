@@ -67,12 +67,12 @@ Cette classe sera modéliser par une matrice de tuyaux.
 Exemple d'affichage d'un niveau dans l'interface terminale :
 
 ```bash
- ╔╝║═╚╔╝═╝
- ║═╗╝║═╔╚╝
-═╗═╔╔═╝╗╝══
- ╝╚╗║╗║╗╔║
- ║╝╚╝═║╗═║
- ╝╚═╔╚╝║╔╗
+╔╝║═╚╔╝═╝
+║═╗╝║═╔╚╝
+╞═╔╔═╝╗╝╡
+╝╚╗║╗║╗╔║
+║╝╚╝═║╗═║
+╝╚═╔╚╝║╔╗
 ```
 
 ## Stockage des niveaux de jeu
