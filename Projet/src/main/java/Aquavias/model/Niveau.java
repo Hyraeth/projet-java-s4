@@ -41,7 +41,7 @@ public class Niveau {
     public void load(File f, String type, int lvl) throws IOException {
         if (!f.exists())
             return;
-        System.out.println("file found");
+        //System.out.println("file found");
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
 
@@ -64,7 +64,7 @@ public class Niveau {
     public static int getNumberLvl(File f, String type) throws IOException {
         if (!f.exists())
             return 0;
-        System.out.println("file found");
+        //System.out.println("file found");
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
         return lvl_liste.length();
