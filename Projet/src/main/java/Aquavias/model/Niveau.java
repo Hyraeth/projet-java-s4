@@ -354,8 +354,8 @@ public class Niveau {
         for (int i = 0; i<4; i++) {
             if (finis()) return true;
             int[] tab = this.caseSuivante(x, y);
-            if ((tab[0] == 0) && (tab[1] == 0)) {
-                return false;
+            if ((tab[0] == this.niveau.length-1) && (tab[1] == this.niveau[0].length-1)) {
+                this.niveau[x][y].rotate();
             } else {
                 b = estGagne(tab[0], tab[1]);
                 if (b) return true;
@@ -367,16 +367,18 @@ public class Niveau {
 
     public int[] caseSuivante(int x, int y) {
         int[] tab = new int[2];
-        tab[0] = x+1;
-        tab[1] = y;
+
         if ((x == this.niveau.length-1) && (y == this.niveau[0].length-1)) {
-            tab[0] = 0;
-            tab[1] = 0;
+            tab[0] = x;
+            tab[1] = y;
             return tab;
         }
         if (y<this.niveau[0].length - 1) {
             tab[0] = x;
             tab[1] = y+1;
+        } else {
+            tab[0] = x+1;
+            tab[1] = 0;
         }
         return tab;
     }
