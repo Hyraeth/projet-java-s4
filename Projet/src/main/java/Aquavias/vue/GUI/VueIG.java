@@ -140,7 +140,7 @@ public class VueIG {
             int nblvl;
             try {
                 File f = new File("assets/lvls/niveau.json");
-                nblvl = model.getNumberLvl(f, model.getLvlType());
+                nblvl = Niveau.getNumberLvl(f, model.getLvlType());
                 if(nblvl == model.getLvlNumber()+1) {
                     JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
                     this.close();
