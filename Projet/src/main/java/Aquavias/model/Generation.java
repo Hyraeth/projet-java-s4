@@ -231,7 +231,7 @@ public class Generation {
             i++;
         }
         pip[i][0] = new PipeDepart();
-        const2(pip,t,i,1,3);
+        const2(pip,t,i,1,3,new boolean[t.length][t[0].length]);
 
         for (int k=0; k<t.length; k++) {
             for (int j=0; j<t[0].length; j++) {
@@ -248,12 +248,13 @@ public class Generation {
         }
         return pip;
     }
-    public static void const2(Pipe[][] pip, int[][][] t, int x, int y, int prec) {
+    public static void const2(Pipe[][] pip, int[][][] t, int x, int y, int prec, boolean[][] vis) {
         //System.out.println(vis[x][y]);
         if (t[x][y][0]==6) {
             pip[x][y] = new PipeArrivee();
             return;
         }
+        vis[x][y] = true;
         int suiv = t[x][y][0];
 
         if((suiv+prec)%2 == 0) {  //pour savoir si on met un L ou un I.
@@ -262,10 +263,43 @@ public class Generation {
             pip[x][y]=new PipeL(true);
         }
         switch (suiv) {
-            case 0 : const2(pip,t,x-1,y,(suiv+2)%4);break;
-            case 1 : const2(pip,t,x,y+1,(suiv+2)%4);break;
-            case 2 : const2(pip,t,x+1,y,(suiv+2)%4);break;
-            case 3 : const2(pip,t,x,y-1,(suiv+2)%4);break;
+            case 0 : const2(pip,t,x-1,y,(suiv+2)%4,vis);break;
+            case 1 : const2(pip,t,x,y+1,(suiv+2)%4,vis);break;
+            case 2 : const2(pip,t,x+1,y,(suiv+2)%4,vis);break;
+            case 3 : const2(pip,t,x,y-1,(suiv+2)%4,vis);break;
+        }
+        boolean directSuivOk = false;
+        if (t[x][y][1] != 9 && t[x][y][1] != prec) {
+            switch (t[x][y][1]) {
+                case 0 : directSuivOk = ( t[x-1][y][0]!=2 && t[x-1][y][1]!=2 && t[x-1][y][2]!=2 && vis[x-1][y]==false );break;
+                case 1 : directSuivOk = ( t[x][y+1][0]!=3 && t[x][y+1][1]!=3 && t[x][y+1][2]!=3 && vis[x][y+1]==false );break;
+                case 2 : directSuivOk = ( t[x+1][y][0]!=0 && t[x+1][y][1]!=0 && t[x+1][y][2]!=0 && vis[x+1][y]==false );break;
+                case 3 : directSuivOk = ( t[x][y-1][0]!=1 && t[x][y-1][1]!=1 && t[x][y-1][2]!=1 && vis[x][y-1]==false );break;
+            }
+            if (directSuivOk){
+                switch (t[x][y][1]) {
+                    case 0 : const2(pip,t,x-1,y,(t[x][y][1]+2)%4,vis);break;
+                    case 1 : const2(pip,t,x,y+1,(t[x][y][1]+2)%4,vis);break;
+                    case 2 : const2(pip,t,x+1,y,(t[x][y][1]+2)%4,vis);break;
+                    case 3 : const2(pip,t,x,y-1,(t[x][y][1]+2)%4,vis);break;
+                }
+            }
+        }
+        if (t[x][y][2] != 9 && t[x][y][2] != prec) {
+            switch (t[x][y][2]) {
+                case 0 : directSuivOk = ( t[x-1][y][0]!=2 && t[x-1][y][1]!=2 && t[x-1][y][2]!=2 && vis[x-1][y]==false );break;
+                case 1 : directSuivOk = ( t[x][y+1][0]!=3 && t[x][y+1][1]!=3 && t[x][y+1][2]!=3 && vis[x][y+1]==false );break;
+                case 2 : directSuivOk = ( t[x+1][y][0]!=0 && t[x+1][y][1]!=0 && t[x+1][y][2]!=0 && vis[x+1][y]==false );break;
+                case 3 : directSuivOk = ( t[x][y-1][0]!=1 && t[x][y-1][1]!=1 && t[x][y-1][2]!=1 && vis[x][y-1]==false );break;
+            }
+            if (directSuivOk){
+                switch (t[x][y][2]) {
+                    case 0 : const2(pip,t,x-1,y,(t[x][y][2]+2)%4,vis);break;
+                    case 1 : const2(pip,t,x,y+1,(t[x][y][2]+2)%4,vis);break;
+                    case 2 : const2(pip,t,x+1,y,(t[x][y][2]+2)%4,vis);break;
+                    case 3 : const2(pip,t,x,y-1,(t[x][y][2]+2)%4,vis);break;
+                }
+            }
         }
         
     }
