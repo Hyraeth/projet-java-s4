@@ -190,7 +190,7 @@ public class Fenetre extends JFrame{
 
   int nblvl() {
     try {
-      return Niveau.getNumberLvl(new File("assets/lvls/niveau.json"), "niveau_off");
+      return Niveau.getNumberLvl(new File("assets/lvls/niveau.json"), "niveaux_off");
     }
     catch(Exception e) {
       return 4;  // si on arrive pas à acceder au nombre de niveau, on affiche que les 4 premiers
