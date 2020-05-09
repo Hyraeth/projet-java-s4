@@ -67,7 +67,7 @@ public class Niveau {
         //this.score = level.getInt("score");
     }
 
-    public int getNumberLvl(File f, String type) throws IOException {
+    public static int getNumberLvl(File f, String type) throws IOException {
         if (!f.exists())
             return 0;
         System.out.println("file found");

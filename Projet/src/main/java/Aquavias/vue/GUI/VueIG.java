@@ -55,7 +55,7 @@ public class VueIG {
     	  });
         actionBar.add(debugbutton);
         undoButton = new JButton("Undo");
-        undoButton.addActionListener((event) -> c.undo());
+        undoButton.addActionListener((event) -> c.debug());
         resources = new JLabel(m.getresources()+"");
         actionBar.add(undoButton);
         actionBar.add(resources);
@@ -68,6 +68,7 @@ public class VueIG {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 0.9;
         gbc.gridy = 1;
+        
         jframe.add(zonePlateau,gbc);
         jframe.pack();
         //jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);

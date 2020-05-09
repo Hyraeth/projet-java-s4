@@ -42,7 +42,7 @@ public class ControllerIG {
         model.rotate(i,j);
         //tests pour voir si l'ig fonctionne correctement
         System.out.println(model.getPipe(i, j));
-        vt.afficheNiv(model);
+        if(debug) vt.afficheNiv(model);
         //model.flow();
         vue.update();
         
@@ -67,7 +67,7 @@ public class ControllerIG {
 
     public void undo() {
         model.undo();
-        vt.afficheNiv(model);
+        if(debug) vt.afficheNiv(model);
         vue.update();
     }
 
