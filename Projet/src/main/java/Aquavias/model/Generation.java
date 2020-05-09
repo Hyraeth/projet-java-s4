@@ -55,6 +55,7 @@ public class Generation {
             while (possible[n]==false) {
                 n = (int)(Math.random() * 4);
             }
+            possible[n]=false;
             this.tab[x][y][0]=n;
             boolean b = false;
             switch(n) {
@@ -63,10 +64,9 @@ public class Generation {
                 case 2: b=this.cree(x+1,y,facilité);break;
                 case 3: b=this.cree(x,y-1,facilité);break;   //gauche
             }
-            System.out.println("dgdsfg");
-            possible[n]=false;
-            if (b) {
-                /*if (tuyau3 == 0 && this.tab[x][y][1]==9) {
+            if (b && facilité < 100) {
+                possible = this.disponible(x,y);
+                if (tuyau3 == 0 && this.tab[x][y][1]==9) {
                     int aleat = (int)(Math.random() * 4);
                     for (int i = 0; i<4; i++) {
                         n = (aleat + i)%4;
@@ -85,10 +85,9 @@ public class Generation {
                                 if (this.tab[x][y][2]!=9) this.tab[x][y][2]=9;
                                 else this.tab[x][y][1]=9;    //si ca n'a pas marcher et si c'est un T
                             }
-                            else return true;
                         }
                     }
-                }*/
+                }
                 return true;
             } 
         }
@@ -107,7 +106,6 @@ public class Generation {
         int n = (int)(Math.random() * 4);
         int tuyau3 = (int)(Math.random() * facilité+4);
         boolean[] possible = this.disponibleT(x,y,prec);
-        System.out.println("dfhgf");
         while (!tableauDeFalse(possible)){
             n = (int)(Math.random() * 4);
             while (possible[n]==false) {
@@ -122,8 +120,9 @@ public class Generation {
                 case 3: b=this.creeT(x,y-1,1,facilité);break;   //gauche
             }
             possible[n]=false;
-            if (b) {
-                /*if (tuyau3 == 0 && this.tab[x][y][1]==9) {
+            if (b && facilité < 100) {
+                possible = this.disponibleT(x,y,prec);
+                if (tuyau3 == 0 && this.tab[x][y][1]==9) {
                     int aleat = (int)(Math.random() * 4);
                     for (int i = 0; i<4; i++) {
                         n = (aleat + i)%4;
@@ -133,19 +132,18 @@ public class Generation {
 
                             boolean c = false;
                             switch(n) {
-                                case 0: c=this.creeT(x-1,y,2);break;   //haut
-                                case 1: c=this.creeT(x,y+1,3);break;   //droite
-                                case 2: c=this.creeT(x+1,y,0);break;   //bas
-                                case 3: c=this.creeT(x,y-1,1);break;   //gauche
+                                case 0: c=this.creeT(x-1,y,2,facilité);break;   //haut
+                                case 1: c=this.creeT(x,y+1,3,facilité);break;   //droite
+                                case 2: c=this.creeT(x+1,y,0,facilité);break;   //bas
+                                case 3: c=this.creeT(x,y-1,1,facilité);break;   //gauche
                             }
                             if (!c) {
                                 tab[x][y][1]=9;
                                 tab[x][y][2]=9;    //si ca n'a pas marcher et si c'est un X
                             }
-                            else return true;
                         }
                     }
-                }*/
+                }
                 return true;
             }
         }
@@ -158,10 +156,10 @@ public class Generation {
 
     public boolean[] disponibleT(int i, int j, int prec) {
         boolean[] b = new boolean[4];
-        if (i-1>=0 && prec != 0) b[0] = true;            //verifie si la case est dans le plateau
-        if (j+1<this.tab[0].length && prec != 1) b[1] = true;
-        if (i+1<this.tab.length && prec != 2) b[2] = true;
-        if (j-1>=0 && prec != 3) b[3] = true;
+        if (i-1>=0 && prec != 0 && this.tab[i-1][j][0] != 5 && this.tab[i-1][j][0] != 6) b[0] = true;            //verifie si la case est dans le plateau
+        if (j+1<this.tab[0].length && prec != 1 && this.tab[i][j+1][0] != 5 && this.tab[i][j+1][0] != 6) b[1] = true;
+        if (i+1<this.tab.length && prec != 2 && this.tab[i+1][j][0] != 5 && this.tab[i+1][j][0] != 6) b[2] = true;
+        if (j-1>=0 && prec != 3 && this.tab[i][j-1][0] != 5 && this.tab[i][j-1][0] != 6) b[3] = true;
         return b;
     } 
 
@@ -169,13 +167,9 @@ public class Generation {
     public boolean[] disponible(int i, int j) {
         boolean[] b = new boolean[4];
         if (i-1>=0 && this.tab[i-1][j][0] == 9) b[0] = true;            //verifie si la case est dans le plateau
-        else b[0] = false;
         if (j+1<this.tab[0].length && this.tab[i][j+1][0] == 9) b[1] = true;   //et si la case n'a pas deja été visitée.
-        else b[1] = false;
         if (i+1<this.tab.length && this.tab[i+1][j][0] == 9) b[2] = true;
-        else b[2] = false;
         if (j-1>=0 && this.tab[i][j-1][0] == 9) b[3] = true;
-        else b[3] = false;
         return b;
     }
 
