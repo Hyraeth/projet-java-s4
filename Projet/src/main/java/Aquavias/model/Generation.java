@@ -64,7 +64,7 @@ public class Generation {
                 case 2: b=this.cree(x+1,y,facilité);break;
                 case 3: b=this.cree(x,y-1,facilité);break;   //gauche
             }
-            if (b) {
+            if (b && facilité < 100) {
                 possible = this.disponible(x,y);
                 if (tuyau3 == 0 && this.tab[x][y][1]==9) {
                     int aleat = (int)(Math.random() * 4);
@@ -120,7 +120,7 @@ public class Generation {
                 case 3: b=this.creeT(x,y-1,1,facilité);break;   //gauche
             }
             possible[n]=false;
-            if (b) {
+            if (b && facilité < 100) {
                 possible = this.disponibleT(x,y,prec);
                 if (tuyau3 == 0 && this.tab[x][y][1]==9) {
                     int aleat = (int)(Math.random() * 4);
