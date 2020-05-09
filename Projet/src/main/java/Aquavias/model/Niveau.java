@@ -56,7 +56,6 @@ public class Niveau {
         this.setSize(largeur, longueur);
 
         String config = level.getString("configuration");
-        System.out.println(config);
         initConfig(config);
 
         this.resources = level.getInt("resources");
@@ -161,7 +160,6 @@ public class Niveau {
     public void initConfig(String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
-        System.out.println(longueur);
         if (s.length() % 3 == 0) {
             for (int i = 0; i < s.length(); i += 3) {
                 boolean moveable = (s.charAt(i + 2) == 'T') ? true : false;
