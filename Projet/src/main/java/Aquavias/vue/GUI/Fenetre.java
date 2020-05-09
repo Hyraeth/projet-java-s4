@@ -283,9 +283,9 @@ public class Fenetre extends JFrame{
   public void niveauAleaF() {
     int int1 = (int)(Math.random() * 2);
     int int2 = (int)(Math.random() * 2);
-    String str1 = Integer.toString(int1+2);
-    String str2 = Integer.toString(int2+2);
-    String[] a = {str1,str2,"25"};
+    String str1 = Integer.toString(int1+3);
+    String str2 = Integer.toString(int2+3);
+    String[] a = {str1,str2,"500"};
     Generation.main(a);
   }
 
