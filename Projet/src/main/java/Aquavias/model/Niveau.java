@@ -56,7 +56,6 @@ public class Niveau {
         this.setSize(largeur, longueur);
 
         String config = level.getString("configuration");
-        System.out.println(config);
         initConfig(config);
 
         this.resources = level.getInt("resources");
@@ -67,7 +66,7 @@ public class Niveau {
         //this.score = level.getInt("score");
     }
 
-    public int getNumberLvl(File f, String type) throws IOException {
+    public static int getNumberLvl(File f, String type) throws IOException {
         if (!f.exists())
             return 0;
         System.out.println("file found");
@@ -161,7 +160,6 @@ public class Niveau {
     public void initConfig(String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
-        System.out.println(longueur);
         if (s.length() % 3 == 0) {
             for (int i = 0; i < s.length(); i += 3) {
                 boolean moveable = (s.charAt(i + 2) == 'T') ? true : false;
@@ -359,7 +357,7 @@ public class Niveau {
     public static void main(String[] args) {
       VueTerm vt = new VueTerm();
         Niveau n = new Niveau();
-        vt.afficheNiv(n);
+        vt.afficheNiv(n, true);
         File f = new File("assets\\lvls\\niveau.json");
         System.out.println(f.toPath());
         try {
@@ -367,10 +365,10 @@ public class Niveau {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        vt.afficheNiv(n);
+        vt.afficheNiv(n, true);
         System.out.println(n.niveau[1][1]);
         n.rotate(1, 1);
         System.out.println();
-        vt.afficheNiv(n);
+        vt.afficheNiv(n, true);
     }
 }

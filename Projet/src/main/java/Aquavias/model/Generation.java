@@ -194,7 +194,7 @@ public class Generation {
     public static void main(String[] args) {
         VueTerm vt = new VueTerm();
         Niveau n = init(Integer.valueOf(args[0]),Integer.valueOf(args[1]),Integer.valueOf(args[2]));
-        vt.afficheNiv(n);
+        vt.afficheNiv(n, true);
         ControllerIG c = new ControllerIG(n);
         VueIG v = new VueIG(c, n);
         c.setVue(v);
