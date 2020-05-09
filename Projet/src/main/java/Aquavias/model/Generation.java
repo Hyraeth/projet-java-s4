@@ -189,7 +189,8 @@ public class Generation {
         VueTerm vt = new VueTerm();
         Niveau n = init(Integer.valueOf(args[0]),Integer.valueOf(args[1]),Integer.valueOf(args[2]));
         vt.afficheNiv(n, true);
-        ControllerIG c = new ControllerIG(n);
+        ControllerIG c = new ControllerIG();
+        c.setNiveau(n);
         VueIG v = new VueIG(c, n);
         c.setVue(v);
     }

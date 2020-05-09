@@ -17,12 +17,8 @@ public class Niveau {
     private int resources;
     public void setResources(int nb) {this.resources = nb;}
     private int[] score;
-    //Utiliser autre chose car on ne peut pas faire plus que un undo
     private Stack<int[]> retour = new Stack<int[]>();            // pile avec tableau de taille 2 avec les coordonées des pipes tournées
-    //Je comprends pas du tout le but de cet attribut
     private int type; //Si = 0 aucune type, = 1 limite de mouvement, = 2 limite de réserve
-    //Pas besoin de reserve, la reverse d'eau et le combre de coups restant sont la meme chose (resource), on differencie par le type
-    //private int reserve;
     private int lvlNumber;
     private String lvlType;
 
@@ -45,7 +41,7 @@ public class Niveau {
     public void load(File f, String type, int lvl) throws IOException {
         if (!f.exists())
             return;
-        System.out.println("file found");
+        //System.out.println("file found");
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
 
@@ -63,13 +59,12 @@ public class Niveau {
 
         lvlNumber = lvl;
         lvlType = type;
-        //this.score = level.getInt("score");
     }
 
     public static int getNumberLvl(File f, String type) throws IOException {
         if (!f.exists())
             return 0;
-        System.out.println("file found");
+        //System.out.println("file found");
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
         return lvl_liste.length();
