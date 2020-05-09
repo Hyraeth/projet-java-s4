@@ -232,89 +232,41 @@ public class Generation {
             i++;
         }
         pip[i][0] = new PipeDepart();
-        const2(pip,t,i,1,3,new boolean[t.length][t[0].length]);
+        const2(pip,t,i,1,3);
 
         for (int k=0; k<t.length; k++) {
             for (int j=0; j<t[0].length; j++) {
-                if (pip[k][j] == null) {
+                if (t[k][j][2] != 9) {
+                    pip[k][j] = new PipeX();
+                }
+                else if (t[k][j][1] != 9) {
+                    pip[k][j] = new PipeT(true);
+                }
+                else if (pip[k][j] == null) {
                     pip[k][j] = pipeAlea();
                 }
             }
         }
         return pip;
     }
-    public static void const2(Pipe[][] pip, int[][][] t, int x, int y, int prec, boolean[][] vis) {
+    public static void const2(Pipe[][] pip, int[][][] t, int x, int y, int prec) {
         //System.out.println(vis[x][y]);
         if (t[x][y][0]==6) {
             pip[x][y] = new PipeArrivee();
             return;
         }
-        if (vis[x][y] || prec==t[x][y][0] || prec==t[x][y][1] || prec==t[x][y][2]) {
-            return;
+        int suiv = t[x][y][0];
+
+        if((suiv+prec)%2 == 0) {  //pour savoir si on met un L ou un I.
+            pip[x][y]=new PipeI(true);
         } else {
-            vis[x][y]=true;
+            pip[x][y]=new PipeL(true);
         }
-        int suiv;
-
-        if (t[x][y][1] == 9) {   
-            if((t[x][y][0]+prec)%2 == 0) {  //pour savoir si on met un L ou un I.
-                pip[x][y]=new PipeI(true);
-                suiv = (prec+2)%4;
-            } else {
-                pip[x][y]=new PipeL(true);
-                if (t[x][y][0] == (prec+1)%4){
-                    suiv = (prec+1)%4;
-                    prec = (prec+3)%4;
-                } else {
-                    suiv = (prec+3)%4;
-                    prec = (prec+1)%4;
-                }
-            }
-            switch (prec) {
-                case 0 : const2(pip,t,x+1,y,prec,vis);break;
-                case 1 : const2(pip,t,x,y-1,prec,vis);break;
-                case 2 : const2(pip,t,x-1,y,prec,vis);break;
-                case 3 : const2(pip,t,x,y+1,prec,vis);break;
-            }
-        }
-
-        //cas tuyau en T ou tuyau en X
-        else {
-            if (t[x][y][2]!=9) {
-                pip[x][y]=new PipeX();
-                switch (t[x][y][0]) {
-                    case 0 : const2(pip,t,x-1,y,2,vis);break;
-                    case 1 : const2(pip,t,x,y+1,3,vis);break;
-                    case 2 : const2(pip,t,x+1,y,0,vis);break;
-                    case 3 : const2(pip,t,x,y-1,1,vis);break;
-                }
-                switch (t[x][y][1]) {
-                    case 0 : const2(pip,t,x-1,y,2,vis);break;
-                    case 1 : const2(pip,t,x,y+1,3,vis);break;
-                    case 2 : const2(pip,t,x+1,y,0,vis);break;
-                    case 3 : const2(pip,t,x,y-1,1,vis);break;
-                }
-                switch (t[x][y][2]) {
-                    case 0 : const2(pip,t,x-1,y,2,vis);break;
-                    case 1 : const2(pip,t,x,y+1,3,vis);break;
-                    case 2 : const2(pip,t,x+1,y,0,vis);break;
-                    case 3 : const2(pip,t,x,y-1,1,vis);break;
-                }
-            } else {
-                pip[x][y]=new PipeT(true);
-                switch (t[x][y][0]) {
-                    case 0 : const2(pip,t,x-1,y,2,vis);break;
-                    case 1 : const2(pip,t,x,y+1,3,vis);break;
-                    case 2 : const2(pip,t,x+1,y,0,vis);break;
-                    case 3 : const2(pip,t,x,y-1,1,vis);break;
-                }
-                switch (t[x][y][1]) {
-                    case 0 : const2(pip,t,x-1,y,2,vis);break;
-                    case 1 : const2(pip,t,x,y+1,3,vis);break;
-                    case 2 : const2(pip,t,x+1,y,0,vis);break;
-                    case 3 : const2(pip,t,x,y-1,1,vis);break;
-                }
-            }
+        switch (suiv) {
+            case 0 : const2(pip,t,x-1,y,(suiv+2)%4);break;
+            case 1 : const2(pip,t,x,y+1,(suiv+2)%4);break;
+            case 2 : const2(pip,t,x+1,y,(suiv+2)%4);break;
+            case 3 : const2(pip,t,x,y-1,(suiv+2)%4);break;
         }
         
     }
