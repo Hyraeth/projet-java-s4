@@ -67,12 +67,12 @@ Cette classe sera modéliser par une matrice de tuyaux.
 Exemple d'affichage d'un niveau dans l'interface terminale :
 
 ```bash
- ╔╝║═╚╔╝═╝
- ║═╗╝║═╔╚╝
-═╗═╔╔═╝╗╝══
- ╝╚╗║╗║╗╔║
- ║╝╚╝═║╗═║
- ╝╚═╔╚╝║╔╗
+╔╝║═╚╔╝═╝
+║═╗╝║═╔╚╝
+╞═╔╔═╝╗╝╡
+╝╚╗║╗║╗╔║
+║╝╚╝═║╗═║
+╝╚═╔╚╝║╔╗
 ```
 
 ## Stockage des niveaux de jeu
@@ -126,6 +126,37 @@ Cela permettra de pouvoir refaire un niveau afin d'avoir un meilleur score.
 WIP
 
 ## Règles du Jeu
+
+## Arbre des fichiers
+
+```BASH
+Projet
+ ┣ src
+ ┃ ┣ main
+ ┃ ┃ ┗ java
+ ┃ ┃ ┃ ┗ Aquavias
+ ┃ ┃ ┃ ┃ ┣ controller
+ ┃ ┃ ┃ ┃ ┃ ┗ ControllerIG.java
+ ┃ ┃ ┃ ┃ ┣ model
+ ┃ ┃ ┃ ┃ ┃ ┣ Color.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Generation.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Jeu.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Lanceur.java
+ ┃ ┃ ┃ ┃ ┃ ┣ MenuNiveau.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Niveau.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Pipe.java
+ ┃ ┃ ┃ ┃ ┃ ┣ PipeFactory.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Readme.md
+ ┃ ┃ ┃ ┃ ┃ ┗ Score.java
+ ┃ ┃ ┃ ┃ ┗ vue
+ ┃ ┃ ┃ ┃ ┃ ┣ GUI
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ Fenetre.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ JPanelPipe.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ ScoreIG.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ VueIG.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ VueTerm.java
+ ┃ ┃ ┃ ┃ ┃ ┗ App.java
+```
 
 ### Jeu
 

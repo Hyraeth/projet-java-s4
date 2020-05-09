@@ -43,6 +43,24 @@ public class VueIG {
         zonePlateau.setPreferredSize(new Dimension(m.getLongueur()*200,m.getLargeur()*200));
         initPlateau(m,c);
 
+        actionBar = new JPanel();
+        JButton boutonQuitter = new JButton("Quitter");
+        boutonQuitter.addActionListener((e)-> {
+            c.quit();
+    	    jframe.dispose();
+    	  });
+        actionBar.add(boutonQuitter);
+        JButton debugbutton = new JButton("Debug");
+        debugbutton.addActionListener((e)-> {
+            c.debug();
+    	  });
+        actionBar.add(debugbutton);
+        undoButton = new JButton("Undo");
+        undoButton.addActionListener((event) -> c.undo());
+        resources = new JLabel(m.getresources()+"");
+        actionBar.add(undoButton);
+        actionBar.add(resources);
+
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 0.1;
         gbc.weightx = 1;
@@ -51,7 +69,7 @@ public class VueIG {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 0.9;
         gbc.gridy = 1;
-
+        
         jframe.add(zonePlateau,gbc);
         jframe.pack();
         //jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
