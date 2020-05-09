@@ -322,18 +322,4 @@ public class Generation {
                 return new PipeX();
         }
     }
-
-
-
-
-
-
-
-
-    /*public class position{
-        public ArrayList<Integer> Suivant = new ArrayList<>();
-
-        public position () {}
-    }*/
-
 }
