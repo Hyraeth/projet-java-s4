@@ -66,7 +66,7 @@ public class Generation {
             System.out.println("dgdsfg");
             possible[n]=false;
             if (b) {
-                if (tuyau3 == 0 && this.tab[x][y][1]==9) {
+                /*if (tuyau3 == 0 && this.tab[x][y][1]==9) {
                     int aleat = (int)(Math.random() * 4);
                     for (int i = 0; i<4; i++) {
                         n = (aleat + i)%4;
@@ -88,7 +88,7 @@ public class Generation {
                             else return true;
                         }
                     }
-                }
+                }*/
                 return true;
             } 
         }
@@ -169,9 +169,13 @@ public class Generation {
     public boolean[] disponible(int i, int j) {
         boolean[] b = new boolean[4];
         if (i-1>=0 && this.tab[i-1][j][0] == 9) b[0] = true;            //verifie si la case est dans le plateau
+        else b[0] = false;
         if (j+1<this.tab[0].length && this.tab[i][j+1][0] == 9) b[1] = true;   //et si la case n'a pas deja été visitée.
+        else b[1] = false;
         if (i+1<this.tab.length && this.tab[i+1][j][0] == 9) b[2] = true;
+        else b[2] = false;
         if (j-1>=0 && this.tab[i][j-1][0] == 9) b[3] = true;
+        else b[3] = false;
         return b;
     }
 
