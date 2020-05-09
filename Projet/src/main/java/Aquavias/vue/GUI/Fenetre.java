@@ -30,8 +30,10 @@ public class Fenetre extends JFrame{
   private JPanel contenu = (JPanel) getContentPane();
   private int debut = 1;
   private int max = 27;  // faudra faire du json
+  private ControllerIG c;
 
   public Fenetre(){
+    c = new ControllerIG();
     this.setTitle("Aquavias");
     this.setSize(800, 600);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +55,7 @@ public class Fenetre extends JFrame{
     GridBagConstraints gc = new GridBagConstraints();
 
     gc.weightx = 3;
-    gc.weighty = 5;
+    gc.weighty = 4;
 
     JLabel labelAquavias = new JLabel("Aquavias", JLabel.CENTER);
     labelAquavias.setPreferredSize(new Dimension(300,100));
@@ -71,18 +73,11 @@ public class Fenetre extends JFrame{
     gc.gridy = 2;
     pan.add(boutonJouer, gc);
 
-    JButton boutonCreer = new JButton("Créer");
-    boutonCreer.addActionListener( (event) -> creer());
-    boutonCreer.setPreferredSize(new Dimension(150,50));
-    boutonCreer.setBackground(Color.ORANGE);
-    gc.gridy = 3;
-    pan.add(boutonCreer, gc);
-
     JButton boutonAide = new JButton("Aide");
     boutonAide.addActionListener( (event) -> aide());
     boutonAide.setPreferredSize(new Dimension(150,50));
     boutonAide.setBackground(Color.RED);
-    gc.gridy = 4;
+    gc.gridy = 3;
     pan.add(boutonAide, gc);
 
     JButton boutonQuitter = new JButton("Quitter");
@@ -92,7 +87,7 @@ public class Fenetre extends JFrame{
     boutonQuitter.setPreferredSize(new Dimension(150,50));
     boutonQuitter.setBackground(Color.BLACK);
     boutonQuitter.setForeground(Color.WHITE);
-    gc.gridy = 5;
+    gc.gridy = 4;
     pan.add(boutonQuitter, gc);
 
     this.setContentPane(pan);
@@ -126,38 +121,32 @@ public class Fenetre extends JFrame{
     gc.gridx = 2; gc.gridy = 1;
     pan.add(boutonJouer, gc);
 
-    JButton boutonCreer = new JButton("Niveaux personalisés");
-    boutonCreer.addActionListener( (event) -> niveaux("perso"));
-    boutonCreer.setBackground(Color.PINK);
-    boutonCreer.setPreferredSize(new Dimension(300,50));
-    gc.gridx = 2; gc.gridy = 2;
-    pan.add(boutonCreer, gc);
 
     JLabel labelChoix = new JLabel("Niveau aléatoire:");
     Font font = new Font("Arial",Font.BOLD,20);
     labelChoix.setFont(font);
-    gc.gridx = 2; gc.gridy = 3;
+    gc.gridx = 2; gc.gridy = 2;
     pan.add(labelChoix, gc);
 
     JButton boutonAleaF = new JButton("Facile");
     boutonAleaF.addActionListener( (event) -> niveauAleaF());
     boutonAleaF.setBackground(Color.GREEN);
     boutonAleaF.setPreferredSize(new Dimension(150,50));
-    gc.gridx = 1; gc.gridy = 4;
+    gc.gridx = 1; gc.gridy = 3;
     pan.add(boutonAleaF, gc);
 
     JButton boutonAleaN = new JButton("Normale");
     boutonAleaN.addActionListener( (event) -> niveauAleaN());
     boutonAleaN.setBackground(Color.BLUE);
     boutonAleaN.setPreferredSize(new Dimension(150,50));
-    gc.gridx = 2; gc.gridy = 4;
+    gc.gridx = 2; gc.gridy = 3;
     pan.add(boutonAleaN, gc);
 
     JButton boutonAleaD = new JButton("Difficile");
     boutonAleaD.addActionListener( (event) -> niveauAleaD());
     boutonAleaD.setBackground(Color.RED);
     boutonAleaD.setPreferredSize(new Dimension(150,50));
-    gc.gridx = 3; gc.gridy = 4;
+    gc.gridx = 3; gc.gridy = 3;
     pan.add(boutonAleaD, gc);
 
     JPanel vide = new JPanel();
@@ -196,7 +185,7 @@ public class Fenetre extends JFrame{
         int j = i;
         if (i < listeNiveaux.size()+1) {
           if (listeNiveaux.get(j-1) != null) {
-            listeNiveaux.get(i-1).addActionListener( (event) -> lancerNiv(j) );
+            listeNiveaux.get(i-1).addActionListener( (event) -> c.lancerNiv(j) );
             listeNiveaux.get(i-1).setBackground(Color.GREEN);
             listeNiveaux.get(i-1).setForeground(Color.WHITE);
             panCenter.add(listeNiveaux.get(i-1));
@@ -265,21 +254,6 @@ public class Fenetre extends JFrame{
   }
 
 
-  public void lancerNiv(int i) {
-    EventQueue.invokeLater(() -> {
-        File f = new File("assets/lvls/niveau.json");
-        Niveau m = new Niveau();
-        try {
-            m.load(f, "niveaux_off", i);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ControllerIG c = new ControllerIG(m);
-        VueIG gui = new VueIG(c, m);
-        c.setVue(gui);
-    });
-  }
-
   public void niveauAleaF() {
     int int1 = (int)(Math.random() * 2);
     int int2 = (int)(Math.random() * 2);
@@ -307,12 +281,6 @@ public class Fenetre extends JFrame{
     Generation.main(a);
   }
 
-
-
-  // Partie création de niveaux (à implementer plus tard)
-  public void creer() {
-
-  }
 
   public void aide() {
     JPanel pan = (JPanel) this.getContentPane();
@@ -363,6 +331,5 @@ public class Fenetre extends JFrame{
     this.setVisible(true);
   }
 
-  public void actionPerformed(ActionEvent e) {}
 
 }

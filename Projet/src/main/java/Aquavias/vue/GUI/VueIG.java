@@ -140,7 +140,7 @@ public class VueIG {
             int nblvl;
             try {
                 File f = new File("assets/lvls/niveau.json");
-                nblvl = model.getNumberLvl(f, model.getLvlType());
+                nblvl = Niveau.getNumberLvl(f, model.getLvlType());
                 if(nblvl == model.getLvlNumber()+1) {
                     JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
                     this.close();
@@ -148,7 +148,8 @@ public class VueIG {
                 else {
                     this.close();
                     model.load(f, model.getLvlType(), model.getLvlNumber()+1);
-                    ControllerIG c = new ControllerIG(model);
+                    ControllerIG c = new ControllerIG();
+                    c.setNiveau(model);
                     VueIG gui = new VueIG(c, model);
                     c.setVue(gui);
                 }
@@ -164,21 +165,5 @@ public class VueIG {
         } else {
             this.close();
         }
-    }
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            File f = new File("assets/lvls/niveau.json");
-            Niveau m = new Niveau();
-            try {
-                m.load(f, "niveaux_off", 0);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            ControllerIG c = new ControllerIG(m);
-            VueIG gui = new VueIG(c, m);
-            c.setVue(gui);
-        });
-
     }
 }

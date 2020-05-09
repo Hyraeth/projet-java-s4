@@ -70,7 +70,7 @@ public class MenuNiveau{
             vt.afficheNiv(n, true);                 // affiche le niveau à chaque fois qu'on tourne un tuyau
           }
         }
-        vt.afficheScore(n.getScore(), coups, lvl);  
+        VueTerm.afficheScore(n.getScore(), coups, lvl);
       }
 
       private int premier(int str) {

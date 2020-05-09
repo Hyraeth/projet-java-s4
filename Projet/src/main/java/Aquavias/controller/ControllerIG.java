@@ -6,6 +6,9 @@ import java.util.TimerTask;
 import Aquavias.model.Niveau;
 import Aquavias.vue.GUI.VueIG;
 import Aquavias.vue.GUI.VueTerm;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 
 public class ControllerIG {
@@ -13,14 +16,30 @@ public class ControllerIG {
     private Niveau model;
     private VueTerm vt = new VueTerm();
     private Timer timer;
-    private  boolean debug;
+    private boolean debug = false;
 
-    public ControllerIG(Niveau n) {
+    public ControllerIG() {
+        debug = false;
+    }
+
+    public void setNiveau(Niveau n) {
         this.model = n;
         if(n.getType() == 2) updateLoop();
-        debug = false;
-	    //String[] arg=new String[0];
-	    //Test.main(arg);
+    }
+
+    public void lancerNiv(int j) {
+        EventQueue.invokeLater(() -> {
+            File f = new File("assets/lvls/niveau.json");
+            Niveau m = new Niveau();
+            try {
+                m.load(f, "niveaux_off", j);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            this.setNiveau(m);
+            VueIG gui = new VueIG(this, m);
+            this.setVue(gui);
+        });
     }
 
     public void updateLoop() {
