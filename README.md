@@ -127,6 +127,35 @@ WIP
 
 ## Règles du Jeu
 
+## Arbre des fichiers
+
+Projet
+ ┣ src
+ ┃ ┣ main
+ ┃ ┃ ┗ java
+ ┃ ┃ ┃ ┗ Aquavias
+ ┃ ┃ ┃ ┃ ┣ controller
+ ┃ ┃ ┃ ┃ ┃ ┗ ControllerIG.java
+ ┃ ┃ ┃ ┃ ┣ model
+ ┃ ┃ ┃ ┃ ┃ ┣ Color.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Generation.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Jeu.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Lanceur.java
+ ┃ ┃ ┃ ┃ ┃ ┣ MenuNiveau.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Niveau.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Pipe.java
+ ┃ ┃ ┃ ┃ ┃ ┣ PipeFactory.java
+ ┃ ┃ ┃ ┃ ┃ ┣ Readme.md
+ ┃ ┃ ┃ ┃ ┃ ┗ Score.java
+ ┃ ┃ ┃ ┃ ┗ vue
+ ┃ ┃ ┃ ┃ ┃ ┣ GUI
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ Fenetre.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ JPanelPipe.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ ScoreIG.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ VueIG.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ VueTerm.java
+ ┃ ┃ ┃ ┃ ┃ ┗ App.java
+
 ### Jeu
 
 La règle principale est de réussir à relier la source à la ville en formant une série finie de "tuyau" ou de "pont".
