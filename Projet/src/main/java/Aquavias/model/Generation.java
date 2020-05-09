@@ -121,7 +121,7 @@ public class Generation {
             }
             possible[n]=false;
             if (b && facilité < 100) {
-                possible = this.disponibleT(x,y,prec);
+                possible = this.disponible(x,y);
                 if (tuyau3 == 0 && this.tab[x][y][1]==9) {
                     int aleat = (int)(Math.random() * 4);
                     for (int i = 0; i<4; i++) {
@@ -269,7 +269,7 @@ public class Generation {
             case 3 : const2(pip,t,x,y-1,(suiv+2)%4,vis);break;
         }
         boolean directSuivOk = false;
-        if (t[x][y][1] != 9 && t[x][y][1] != prec) {
+        if (t[x][y][1] != 9) {
             switch (t[x][y][1]) {
                 case 0 : directSuivOk = ( t[x-1][y][0]!=2 && t[x-1][y][1]!=2 && t[x-1][y][2]!=2 && vis[x-1][y]==false );break;
                 case 1 : directSuivOk = ( t[x][y+1][0]!=3 && t[x][y+1][1]!=3 && t[x][y+1][2]!=3 && vis[x][y+1]==false );break;
@@ -285,7 +285,7 @@ public class Generation {
                 }
             }
         }
-        if (t[x][y][2] != 9 && t[x][y][2] != prec) {
+        if (t[x][y][2] != 9) {
             switch (t[x][y][2]) {
                 case 0 : directSuivOk = ( t[x-1][y][0]!=2 && t[x-1][y][1]!=2 && t[x-1][y][2]!=2 && vis[x-1][y]==false );break;
                 case 1 : directSuivOk = ( t[x][y+1][0]!=3 && t[x][y+1][1]!=3 && t[x][y+1][2]!=3 && vis[x][y+1]==false );break;
