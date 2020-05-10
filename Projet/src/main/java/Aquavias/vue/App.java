@@ -22,18 +22,6 @@ public class App
 {
     public static void main( String[] args )
     {
-      /*  EventQueue.invokeLater(() -> {
-            File f = new File("assets/lvls/niveau.json");
-            Niveau m = new Niveau();
-            try {
-                m.load(f, "niveaux_off", 0);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            ControllerIG c = new ControllerIG(m);
-            VueIG gui = new VueIG(c, m);
-            c.setVue(gui);
-        }); */
         Fenetre f = new Fenetre();
     }
 }

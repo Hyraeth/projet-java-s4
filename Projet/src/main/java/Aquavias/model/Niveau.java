@@ -41,7 +41,6 @@ public class Niveau {
     public void load(File f, String type, int lvl) throws IOException {
         if (!f.exists())
             return;
-        //System.out.println("file found");
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
 
@@ -64,7 +63,6 @@ public class Niveau {
     public static int getNumberLvl(File f, String type) throws IOException {
         if (!f.exists())
             return 0;
-        //System.out.println("file found");
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
         return lvl_liste.length();
@@ -284,15 +282,6 @@ public class Niveau {
       this.resources = 0;
     }
 
-    // Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
-    public void flow() {
-
-    }
-
-    /*public void calculateScore() {
-        score = "qqchose".length();
-    } */
-
     public void saveScore() {
 
     }
@@ -338,15 +327,9 @@ public class Niveau {
 
     public boolean partieTerminee() {
       if (resources > score[0]+5) return true;  // si nb de resources depassé
-      if (arrivee()) return true;
+      if (finis()) return true;
       return false;
     }
-
-    public boolean arrivee() { // return true si eau arrivee à destination
-      // à coder
-      return false;  // pour tester en attendant
-    }
-
 
 
     public boolean estGagne(int x, int y) {

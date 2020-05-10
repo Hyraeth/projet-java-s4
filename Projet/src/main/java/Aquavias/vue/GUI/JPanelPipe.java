@@ -79,15 +79,12 @@ public class JPanelPipe extends JPanel {
         Dimension d = super.getPreferredSize();
         Container c = getParent();
         if (c != null) {
-            //System.out.println(c);
-            //System.out.println(d);
             d = c.getSize();
         } else {
             return new Dimension(25, 25);
         }
         int w = (int) d.getWidth();
         int h = (int) d.getHeight();
-        //System.out.println(w+" "+h);
         int s = (w/this.con.getLongueur() < h/this.con.getLargeur() ? w/this.con.getLongueur() : h/this.con.getLargeur());
         return new Dimension(s, s);
     }
