@@ -46,8 +46,17 @@ public class ControllerIG {
         timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
-                model.countdown();
+                boolean b = model.countdown();
                 if(vue != null) vue.update();
+                if(model.getresources() == 0 && !b) {
+                    if(timer != null) {
+                        timer.cancel();
+                        timer.purge();
+                    }
+                    model.quit();
+                    vue.displayLoseScreen();
+                    System.out.print("fin");
+                }
             }
         }, 0, 1000);
     }
@@ -65,8 +74,18 @@ public class ControllerIG {
         vt.afficheNiv(model, debug);
 
         vue.update();
+        boolean f = model.finis();
+        if(model.getresources() == 0 && !f) {
+            if(timer != null) {
+                timer.cancel();
+                timer.purge();
+            }
+            model.quit();
+            vue.displayLoseScreen();
+            System.out.print("fin");
+        }
         
-        if(model.finis()) {
+        if(f) {
             if(timer != null) {
                 timer.cancel();
                 timer.purge();

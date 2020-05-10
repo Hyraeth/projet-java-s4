@@ -76,11 +76,9 @@ public class Niveau {
         return lvlType;
     }
 
-    public void countdown() {
-
+    public boolean countdown() {
         if(resources!=0) resources--;
-        finis();
-
+        return finis();
     }
 
     public int getType() {
