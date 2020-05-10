@@ -137,8 +137,6 @@ public class Fenetre extends JFrame{
     JPanel panCenter = new JPanel();            // partie au centre (les niveaux)
     panCenter.setLayout(new GridLayout(3,3,40,40));
 
-    if (max == 0) max = 4;  // mesure de sécurité pour afficher au moins 4 premiers niveaux si il y a un soucis avec nblvl().
-
     ArrayList<JButton> listeNiveaux = new ArrayList<JButton>();     // on regroupe tous les niveaux dans une ArrayList pour les afficher
     for(int i = 1; i < max; i++) {                                  // on fait ça pour pouvoir ajouter un ActionListener à chaque bouton
       listeNiveaux.add(new JButton("Niveau "+i));
@@ -189,7 +187,7 @@ public class Fenetre extends JFrame{
 
   int nblvl() {                  // retourne le nombre de niveaux stockés dans le fichier Json
     try {
-      return Niveau.getNumberLvl(new File("assets/lvls/niveaux.json"), "niveau_off");
+      return Niveau.getNumberLvl(new File("assets/lvls/niveau.json"), "niveaux_off");
     }
     catch(Exception e) {
       return 4;  // si on arrive pas à acceder au nombre de niveau, on affiche que les 4 premiers
