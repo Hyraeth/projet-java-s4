@@ -189,9 +189,7 @@ public class Fenetre extends JFrame{
 
   int nblvl() {                  // retourne le nombre de niveaux stockés dans le fichier Json
     try {
-      int res = Niveau.getNumberLvl(new File("assets/lvls/niveaux.json"), "niveau_off");
-      System.out.println(res);
-      return res;
+      return Niveau.getNumberLvl(new File("assets/lvls/niveaux.json"), "niveau_off");
     }
     catch(Exception e) {
       return 4;  // si on arrive pas à acceder au nombre de niveau, on affiche que les 4 premiers
