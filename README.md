@@ -89,30 +89,19 @@ Le fichier JSON sera structuré de la manière suivante :
     [
         {
             //La taille du niveau
-            "longueur" : n,
-            "largeur" : m,
-            //Configuration du niveau, i.e. la répartition des tuyaux
-            "configuration" : ,
-            "score" : ,
-            "coups" ; ,
+            "largeur" : 3,
+            "longueur" : 4,
+            //Placement des tuyaux dans la grille
+            "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
+            //Resources pour jouer aux jeux(temps ou nombre de coups)
+            "resources" : 500,
+            //Mode de jeu, temps, nombre de coups, resources infinies
+            "type" : 1
         },
         {
             ...
         }
-    ],
-//Niveaux créés à l'aide de l'éditeur de niveau
-"niveaux_cus" :
-    [
-       {
-            "taille" : ,
-            "configuration" : ,
-            "score" : ,
-            "coups" ; ,
-        },
-        {
-            ...
-        }
-    ],
+    ]
 }
 ```
 
@@ -126,6 +115,26 @@ Cela permettra de pouvoir refaire un niveau afin d'avoir un meilleur score.
 WIP
 
 ## Règles du Jeu
+
+## Architecture du programme
+
+Notre programme est divisé en 3 partie : la partie logique du programme (le model), la partie graphique(la vue) et un controller qui gère la communication entre la vue et le model.
+
+### Le model
+
+La partie logique du code qui s'occupe de toute les manipulations du plateau (rotation des tuyaux, chargement de niveau, faire couler l'eau, tester si le niveau est finis, ...) se trouve dans la classe Niveau. Chaque niveau est en faite une matrice de Pipe.
+La classe Pipe sert de block de construction pour notre programme. Chaque Pipe est un tableau de boolean de taille 4 qui indique les côtés du tuyaux qui peuvent être connectés et possèdes d'autres attributs qui servent d'informations sur le tuyaux (comme par exemple s'il peut être tourner, s'il est rempli, etc).
+La classe Generation sert à générer des niveaux aléatoirement.
+
+### La vue
+
+La classe fenêtre est le menu de notre interface graphique. C'est ce qui nous affiche la liste des niveaux qui sont disponibles et qui  nous permet de générer des niveaux aléatoirement. Lorsqu'on clique sur un bouton, on appelle une fonction du controller qui lui va s'occcuper d'initialisé un niveau et d'ouvrir une interface graphique adaptée (VueIG).
+VueIG sert à afficher une fenêtre avec un plateau de jeu et ouvre une fenêtre lorsque le joueur gagne ou perd. Le plateau du affiché est un tableau de JPanelPipe. Cette classe sert à afficher les images qui correspondent aux tuyaux du niveau.
+VueTerm est l'affichage du jeu dans le terminal. C'est une classe qui sert de debuggage.
+
+### Le controller
+
+Le controller s'occupe de lancer un niveau et avertit la vue lorsqu'il y a des changement à faire. Il sert aussi à dire au model lorsqu'il y a quelque chose à faire. Par exemple si le joueur clique sur un tuyau, le controller dit au model de tourner ce tuyau et une fois qu'il est tourner, dire à la vue de se mettre à jour afin d'afficher le tuyau bien tourner.
 
 ## Arbre des fichiers
 

@@ -6,7 +6,6 @@
       "largeur" : 3,
       "longueur" : 4,
       "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
-      "score" : 0,
       "resources" : 500,
       "type" : 1
     },
@@ -14,15 +13,13 @@
     "largeur" : 11,
     "longueur" : 12,
     "configuration" : "00F31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T32T10F",
-    "score" : 0,
-    "resources" : 500,
+    "resources" : 5,
     "type" : 2
     },
     {
       "largeur" : 3,
       "longueur" : 4,
       "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
-      "score" : 0,
       "resources" : 500,
       "type" : 1
     },
@@ -30,7 +27,6 @@
       "largeur" : 3,
       "longueur" : 4,
       "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
-      "score" : 0,
       "resources" : 500,
       "type" : 2
     },
@@ -38,14 +34,8 @@
       "largeur" : 6,
       "longueur" : 9,
       "configuration" : "31T21T30T21T22T21T31T22T40T40T30T30T21T30T23T42T40T10F30T21T31T23T50F30T23T30T21T20T40T22T30T21T30T21T23T30T00T23T30T21T41T31T23T21T31T20T30T20T43T23T21T30T30T23T",
-      "score" : 0,
       "resources" : 500,
       "type" : 1
     }
-  ],
-
-  "niveaux_cus" :
-  [
-
   ]
 }

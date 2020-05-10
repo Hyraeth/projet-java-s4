@@ -148,4 +148,17 @@ public class VueIG {
             this.close();
         }
     }
+
+    public void displayLoseScreen() {
+        String options[] = {"Oui","Non"};
+        int result = JOptionPane.showOptionDialog(jframe, "Pas terrible, voulez-vous recommender ?", "Boo", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if(result == JOptionPane.YES_OPTION) {
+            controller.lancerNiv(model.getLvlNumber());
+            this.close();
+            
+        } else {
+            this.close();
+        }
+    }
 }
