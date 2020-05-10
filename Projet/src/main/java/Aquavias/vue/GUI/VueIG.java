@@ -138,11 +138,9 @@ public class VueIG {
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
                 this.close();
-                e.printStackTrace();
             } catch (JSONException e) {
                 JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
                 this.close();
-                e.printStackTrace();
             }
         } else {
             this.close();
