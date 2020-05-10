@@ -126,6 +126,10 @@ La partie logique du code qui s'occupe de toute les manipulations du plateau (ro
 La classe Pipe sert de block de construction pour notre programme. Chaque Pipe est un tableau de boolean de taille 4 qui indique les côtés du tuyaux qui peuvent être connectés et possèdes d'autres attributs qui servent d'informations sur le tuyaux (comme par exemple s'il peut être tourner, s'il est rempli, etc).
 La classe Generation sert à générer des niveaux aléatoirement.
 
+Lanceur c'est la classe qu'on appelle pour lancer le jeu
+Jeu c'est ce qui concerne le menu principal
+MenuNiveau c'est ce qui concerne les sous niveaux et aussi Ruslan y a ajouté la fonction jouer qui permet de lancer une partie
+
 ### La vue
 
 La classe fenêtre est le menu de notre interface graphique. C'est ce qui nous affiche la liste des niveaux qui sont disponibles et qui  nous permet de générer des niveaux aléatoirement. Lorsqu'on clique sur un bouton, on appelle une fonction du controller qui lui va s'occcuper d'initialisé un niveau et d'ouvrir une interface graphique adaptée (VueIG).
