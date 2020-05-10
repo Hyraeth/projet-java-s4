@@ -282,10 +282,6 @@ public class Niveau {
       this.resources = 0;
     }
 
-    public void saveScore() {
-
-    }
-
 
     public String toString() {
         String s = "";
