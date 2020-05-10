@@ -56,7 +56,6 @@ public class VueIG {
         
         jframe.add(zonePlateau,gbc);
         jframe.pack();
-        //jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jframe.setTitle("Aquavias");
         jframe.setVisible(true);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,7 +93,6 @@ public class VueIG {
                 gbc.gridx = j;
                 gbc.gridy = i;
                 Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j), model.getPipe(i, j).getRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
-                //System.out.println(model.getPipe(i, j).getIndexGui()+" "+model.getPipe(i, j).getRotation()+" "+model.getPipe(i, j).getRempli());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 if(model.getPipe(i,j).isMoveable()) Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
                 zonePlateau.add(Pipes[i][j], gbc);

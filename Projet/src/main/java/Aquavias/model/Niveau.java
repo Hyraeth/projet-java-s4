@@ -41,7 +41,6 @@ public class Niveau {
     public void load(File f, String type, int lvl) throws IOException {
         if (!f.exists())
             return;
-        //System.out.println("file found");
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
 
@@ -64,7 +63,6 @@ public class Niveau {
     public static int getNumberLvl(File f, String type) throws IOException {
         if (!f.exists())
             return 0;
-        //System.out.println("file found");
         JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
         JSONArray lvl_liste = json.getJSONArray(type);
         return lvl_liste.length();
@@ -284,19 +282,6 @@ public class Niveau {
       this.resources = 0;
     }
 
-    // Calcule l'écoulement de l'eau (rempli les tuyaux qu'il faut)
-    public void flow() {
-
-    }
-
-    /*public void calculateScore() {
-        score = "qqchose".length();
-    } */
-
-    public void saveScore() {
-
-    }
-
 
     public String toString() {
         String s = "";
@@ -338,15 +323,9 @@ public class Niveau {
 
     public boolean partieTerminee() {
       if (resources > score[0]+5) return true;  // si nb de resources depassé
-      if (arrivee()) return true;
+      if (finis()) return true;
       return false;
     }
-
-    public boolean arrivee() { // return true si eau arrivee à destination
-      // à coder
-      return false;  // pour tester en attendant
-    }
-
 
 
     public boolean estGagne(int x, int y) {
@@ -354,8 +333,8 @@ public class Niveau {
         for (int i = 0; i<4; i++) {
             if (finis()) return true;
             int[] tab = this.caseSuivante(x, y);
-            if ((tab[0] == 0) && (tab[1] == 0)) {
-                return false;
+            if ((tab[0] == this.niveau.length-1) && (tab[1] == this.niveau[0].length-1)) {
+                this.niveau[x][y].rotate();
             } else {
                 b = estGagne(tab[0], tab[1]);
                 if (b) return true;
@@ -367,16 +346,18 @@ public class Niveau {
 
     public int[] caseSuivante(int x, int y) {
         int[] tab = new int[2];
-        tab[0] = x+1;
-        tab[1] = y;
+
         if ((x == this.niveau.length-1) && (y == this.niveau[0].length-1)) {
-            tab[0] = 0;
-            tab[1] = 0;
+            tab[0] = x;
+            tab[1] = y;
             return tab;
         }
         if (y<this.niveau[0].length - 1) {
             tab[0] = x;
             tab[1] = y+1;
+        } else {
+            tab[0] = x+1;
+            tab[1] = 0;
         }
         return tab;
     }
