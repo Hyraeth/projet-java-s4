@@ -100,7 +100,7 @@ public class Generation {
 
     public boolean creeT(int x, int y, int prec, int facilité) {
         if (this.tab[x][y][0]!=9) {
-            if (tab[x][y][1]==9) this.tab[x][y][1]=prec;
+            if (tab[x][y][1]==9 || tab[x][y][1]==prec) this.tab[x][y][1]=prec;
             else this.tab[x][y][2]=prec;
             return true;
         }
