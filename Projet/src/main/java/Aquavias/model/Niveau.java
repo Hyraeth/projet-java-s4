@@ -326,18 +326,26 @@ public class Niveau {
     }
 
 
-    public boolean estGagne(int x, int y) {
+    public boolean gagnable(int x, int y) {
         boolean b = false;
-        for (int i = 0; i<4; i++) {
-            if (finis()) return true;
-            int[] tab = this.caseSuivante(x, y);
-            if ((tab[0] == this.niveau.length-1) && (tab[1] == this.niveau[0].length-1)) {
-                this.niveau[x][y].rotate();
+        int[] tab = this.caseSuivante(x, y);
+        for (int i = 0; i < 4; i++) {
+
+            if (this.finis())
+                return true;
+
+            if ((x == this.getLargeur() - 1) && (y == this.getLongueur() - 1)) {
+                this.rotate(x, y);
+
             } else {
-                b = estGagne(tab[0], tab[1]);
-                if (b) return true;
-                this.niveau[x][y].rotate();
+                b = gagnable(tab[0], tab[1]);
+                if (b)
+                    return true;
+                this.rotate(x, y);
+
             }
+            
+
         }
         return false;
     }
@@ -350,12 +358,12 @@ public class Niveau {
             tab[1] = y;
             return tab;
         }
-        if (y<this.niveau[0].length - 1) {
-            tab[0] = x;
-            tab[1] = y+1;
-        } else {
+        if (y == this.niveau[0].length-1) {
             tab[0] = x+1;
             tab[1] = 0;
+        } else {
+            tab[0] = x;
+            tab[1] = y+1;
         }
         return tab;
     }

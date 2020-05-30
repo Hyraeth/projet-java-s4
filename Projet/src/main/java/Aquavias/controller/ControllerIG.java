@@ -10,7 +10,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-
 public class ControllerIG {
     private VueIG vue;
     private Niveau model;
@@ -24,7 +23,8 @@ public class ControllerIG {
 
     public void setNiveau(Niveau n) {
         this.model = n;
-        if(n.getType() == 2) updateLoop();
+        if (n.getType() == 2)
+            updateLoop();
     }
 
     public void lancerNiv(int j) {
@@ -47,9 +47,10 @@ public class ControllerIG {
         timer.schedule(new TimerTask() {
             public void run() {
                 boolean b = model.countdown();
-                if(vue != null) vue.update();
-                if(model.getresources() == 0 && !b) {
-                    if(timer != null) {
+                if (vue != null)
+                    vue.update();
+                if (model.getresources() == 0 && !b) {
+                    if (timer != null) {
                         timer.cancel();
                         timer.purge();
                     }
@@ -63,6 +64,10 @@ public class ControllerIG {
 
     public void setVue(VueIG v) {
         vue = v;
+    }
+
+    public void solve() {
+        model.gagnable(0, 0);
     }
 
     public void rotate(int i, int j) {
