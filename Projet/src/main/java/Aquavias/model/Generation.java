@@ -72,7 +72,8 @@ public class Generation {
                         n = (aleat + i)%4;
                         if (possible[n]) {
                             possible[n] = false;
-                            tab[x][y][1] = n;
+                            if (this.tab[x][y][1] != 9) this.tab[x][y][1] = n;
+                            else this.tab[x][y][2] = n;
 
                             boolean c = false;
                             switch(n) {
@@ -82,7 +83,7 @@ public class Generation {
                                 case 3: c=this.creeT(x,y-1,1,facilité);break;   //gauche
                             }
                             if (!c) {
-                                if (this.tab[x][y][2]!=9) this.tab[x][y][2]=9;
+                                if (this.tab[x][y][2]!=9 && this.tab[x][y][2]==n) this.tab[x][y][2]=9;
                                 else this.tab[x][y][1]=9;    //si ca n'a pas marcher et si c'est un T
                             }
                         }
@@ -147,9 +148,9 @@ public class Generation {
                 return true;
             }
         }
-        if (this.tab[x][y][2]!=9) this.tab[x][y][2]=9;
-        else if (this.tab[x][y][1]!=9) this.tab[x][y][1]=9;
-        else this.tab[x][y][0]=9;
+        this.tab[x][y][0]=9;
+        this.tab[x][y][1]=9;
+        this.tab[x][y][2]=9;
         return false;
     }
 
