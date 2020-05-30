@@ -148,7 +148,8 @@ public class Generation {
             }
         }
         if (this.tab[x][y][2]!=9) this.tab[x][y][2]=9;
-        else this.tab[x][y][1]=9;
+        else if (this.tab[x][y][1]!=9) this.tab[x][y][1]=9;
+        else this.tab[x][y][0]=9;
         return false;
     }
 
