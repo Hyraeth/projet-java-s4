@@ -77,6 +77,13 @@ public class VueIG {
       });
       actionBar.add(debugbutton);
 
+      JButton solvebutton = new JButton("Solve");
+      solvebutton.addActionListener((e)-> {
+          controller.solve();
+          update();
+      });
+      actionBar.add(solvebutton);
+
       undoButton = new JButton("Undo");
       undoButton.addActionListener((event) -> controller.undo());
       resources = new JLabel(model.getresources()+"");
