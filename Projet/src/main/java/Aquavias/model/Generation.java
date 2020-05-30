@@ -72,7 +72,7 @@ public class Generation {
                         n = (aleat + i)%4;
                         if (possible[n]) {
                             possible[n] = false;
-                            if (this.tab[x][y][1] != 9) this.tab[x][y][1] = n;
+                            if (this.tab[x][y][1] == 9) this.tab[x][y][1] = n;
                             else this.tab[x][y][2] = n;
 
                             boolean c = false;
