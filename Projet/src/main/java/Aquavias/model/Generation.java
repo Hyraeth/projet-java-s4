@@ -235,8 +235,12 @@ public class Generation {
             i++;
         }
         pip[i][0] = new PipeDepart();
-        const2(pip,t,i,1,3,new boolean[t.length][t[0].length]);
-
+        try {
+            const2(pip,t,i,1,3,new boolean[t.length][t[0].length]);
+        } catch (StackOverflowError e) {
+            System.out.println("petit bug");
+        }
+        
         for (int k=0; k<t.length; k++) {
             for (int j=0; j<t[0].length; j++) {
                 if (t[k][j][2] != 9) {
