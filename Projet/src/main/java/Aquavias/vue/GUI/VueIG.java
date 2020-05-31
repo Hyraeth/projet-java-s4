@@ -40,7 +40,7 @@ public class VueIG {
         JPanelPipe.loadImg();
         zonePlateau = new JPanel();
         zonePlateau();
-        zonePlateau.setPreferredSize(new Dimension(m.getLongueur()*200,m.getLargeur()*200));
+        zonePlateau.setPreferredSize(new Dimension(m.getLongueur()*100,m.getLargeur()*100));
         initPlateau(m,c);
 
         zonePlateau();
