@@ -12,33 +12,68 @@ import Aquavias.vue.GUI.VueTerm;
 import org.apache.commons.io.FileUtils;
 import org.json.*;
 
-
+/**
+ * Représente un plateau de jeu, un Niveau
+ */
 public class Niveau {
+    /**
+     * Représente le plateau
+     */
     private Pipe[][] niveau;
+    /**
+     * Représente soit le temps soit le nombre de coup restant
+     */
     private int resources;
+    /**
+     * Modifie le nombre de resources
+     */
     public void setResources(int nb) {this.resources = nb;}
     private int[] score;
-    private Stack<int[]> retour = new Stack<int[]>();            // pile avec tableau de taille 2 avec les coordonées des pipes tournées
-    private int type; //Si = 0 aucune type, = 1 limite de mouvement, = 2 limite de réserve
+    /**
+     * pile avec tableau de taille 2 avec les coordonées des pipes tournées
+     */
+    private Stack<int[]> retour = new Stack<int[]>();
+    /**
+     * 0 aucune type, 1 limite de mouvement, 2 limite de réserve
+     */
+    private int type; 
+    /**
+     * Indique le numéro du niveau dans le fichier json
+     */
     private int lvlNumber;
+    /**
+     * Indique s'il s'agit d'un niveau du fichier ou un niveau généré.
+     */
     private String lvlType;
 
 
+    /**
+     * Crée un niveau de la taille spécifiée
+     * @param m largeur
+     * @param n longueur
+     */
     public Niveau(int m, int n) {
         this.niveau = new Pipe[m][n];
         this.resources = 0;
         this.type = 0;
-        this.score = new int[3];
-        this.score[0] = 20;
-        this.score[1] = 15;
-        this.score[2] = 10;
+
         this.type = 0;
     }
 
+    /**
+     * Crée un niveau vide de taille 0,0.
+     */
     public Niveau() {
         this(0, 0);
     }
 
+    /**
+     * Charge le niveau lvl depuis le fichier f
+     * @param f le fichier
+     * @param type string indiquant le type de niveau 
+     * @param lvl int indiquant le niveau 
+     * @throws IOException si le fichier n'existe pas
+     */
     public void load(File f, String type, int lvl) throws IOException {
         if (!f.exists())
             return;
@@ -61,6 +96,13 @@ public class Niveau {
         lvlType = type;
     }
 
+    /**
+     * Donne le nombre de niveau d'un certain type dans le fichier f
+     * @param f le fichier
+     * @param type le type de niveau
+     * @return le nombre de niveau
+     * @throws IOException si le fichier n'existe pas
+     */
     public static int getNumberLvl(File f, String type) throws IOException {
         if (!f.exists())
             return 0;
@@ -69,43 +111,70 @@ public class Niveau {
         return lvl_liste.length();
     }
 
+    /**
+     * Donne le numéro du niveau actuel
+     * @return le numéro du niveua actuel
+     */
     public int getLvlNumber() {
         return lvlNumber;
     }
 
+    /**
+     * Renvoie le type  du niveau
+     */
     public String getLvlType() {
         return lvlType;
     }
 
+    /**
+     * Décrémente le nombre de resources et renvoie true si le niveua est finis
+     */
     public boolean countdown() {
         if(resources!=0) resources--;
         return finis();
     }
 
+    /**
+     * Renvoie le type de règle du niveau
+     */
     public int getType() {
         return this.type;
     }
 
+    /**
+     * Renvoie le tuyau à la position i,j du niveau
+     * @return un tuyau
+     */
     public Pipe getPipe(int i, int j) {
         return niveau[i][j];
     }
 
+    /**
+     * Renvoie le nombre de resouces restantes dans le niveau
+     */
     public int getresources() {
       return resources;
     }
 
+    /**
+     * Modifie la taille du niveau (écrase son contenu)
+     */
     public void setSize(int m, int n) {
         this.niveau = new Pipe[m][n];
     }
 
-
-    public int getLongueur(int i){
-      return this.niveau[i].length;
-    }
+    /**
+     * Renvoie la longueur du niveau
+     * @return int
+     */
     public int getLongueur() {
-        return getLongueur(0);
+        return this.niveau[0].length;
     }
 
+    /**
+     * Renvoie la largeur du niveau
+     * @return int
+     */
     public int getLargeur() {
         return this.niveau.length;
     }
@@ -114,10 +183,19 @@ public class Niveau {
       return this.score;
     }
 
+    /**
+     * Modifie le contenu du niveau
+     * @param p tableau de Pipe
+     */
     public void setNiveau(Pipe[][] p) {
         this.niveau = p;
     }
 
+    /**
+     * Ajoute à la pile retour les coordonées i,j
+     * @param i int
+     * @param j int
+     */
     public void addRetour(int i, int j) {
       int[] coordonnees = new int[2];
       coordonnees[0] = i;
@@ -125,6 +203,10 @@ public class Niveau {
       this.retour.push(coordonnees);
     }
 
+    /**
+     * Vérifie si le nivau est finis
+     * @return true si le niveau est finis
+     */
     public boolean finis () {
         boolean cont = true;
         switch(type){
@@ -139,16 +221,26 @@ public class Niveau {
         return false;
     }
 
-    public boolean limMouv(){ //Return true si on a utilisé le nombre de coup limité
+    /**
+     * Return true si on a utilisé le nombre de coup limité
+     */
+    public boolean limMouv(){ 
         if( resources >= 0) return true;
         return false;
     }
 
-    public boolean limRes(){ //Return true si on il y a encore de l'eau dans le réservoir
+    /**
+     * Return true si on il y a encore de l'eau dans le réservoir
+     */
+    public boolean limRes(){ 
         if( resources >= 0) return true;
         return false;
     }
 
+    /**
+     * Initialise un niveau à partir d'un string
+     * @param s string
+     */
     public void initConfig(String s) {
         PipeFactory initPipe = new PipeFactory();
         int longueur = getLongueur();
@@ -161,6 +253,10 @@ public class Niveau {
         }
     }
 
+    /**
+     * Fait couler l'eau dans le niveau
+     * @return true s'il n'y a pas de fuite
+     */
     public boolean remplir() {
         int k=0;
         for (int i = 0; i<this.getLargeur(); i++) {
@@ -176,7 +272,14 @@ public class Niveau {
             return this.remplir(k,1,3);
         } else return false;
     }
-    //rempli d'eau et renvoie true si il n'y a pas de fuite.
+
+    /**
+     * rempli d'eau et renvoie true si il n'y a pas de fuite.
+     * @param x int
+     * @param y int
+     * @param prec int
+     * @return true si il n'y a pas de fuite.
+     */
     public boolean remplir(int x, int y, int prec) {
         if (niveau[x][y].connections[prec]){  //Si il est connecté au precedent.
             niveau[x][y].remplir();
@@ -191,7 +294,13 @@ public class Niveau {
         return (!fuite && a && b && c && d);
     }
 
-    //return les possibilités d'accès aux cases suivantes.
+    /**
+     * Retourne les possibilités d'accès aux cases suivantes.
+     * @param i int
+     * @param j int
+     * @param prec int
+     * @return les possibilités d'accès aux cases suivantes.
+     */
     public boolean[] possible (int i, int j, int prec) {
         boolean[] b = new boolean[4];
         if (i-1>=0             //Si la case est dans le plateau
@@ -220,7 +329,12 @@ public class Niveau {
         }
         return b;
     }
-    //return true si il y a une fuite
+    /**
+     * Retourne true si il y a une fuite
+     * @param i int
+     * @param j int
+     * @return true si il y a une fuite
+     */
     public boolean fuite(int i, int j) {
         if (niveau[i][j].connections[0]==true        //S'il est connecté au suivant
             && (i-1<0                                //Si la case n'est pas dans le plateau
@@ -248,7 +362,11 @@ public class Niveau {
         }return false;
     }
 
-    //tourne le Pipe à la position i,j
+    /**
+     * tourne le Pipe à la position i,j
+     * @param i int
+     * @param j int
+     */
     public void rotate(int i, int j) {
         if(resources != 0 && niveau[i][j] != null && niveau[i][j].moveable) {
             retour.add(new int[]{i,j});
@@ -259,6 +377,9 @@ public class Niveau {
         }
     }
 
+    /**
+     * Tourne vers la gauche le dernier tuyau tourné et incrémente le nombre de resource selon le type de règle
+     */
     public void undo() {
       if (this.retour.isEmpty()) System.out.println("vous ne pouvez pas faire un undo");
       else {
@@ -277,11 +398,16 @@ public class Niveau {
       }
     }
 
+    /**
+     * Remet à 0 les recources
+     */
     public void quit() {
       this.resources = 0;
     }
 
-
+    /**
+     * renvoie un String qui représente le niveau
+     */
     public String toString() {
         String s = "";
         for (int i = 0; i < niveau.length; i++) {
@@ -293,8 +419,13 @@ public class Niveau {
         return s;
     }
 
-
-    public boolean correct(int premier, int deuxieme) {        // renvoie true si les coordonnées sont bonnes
+    /**
+     * renvoie true si les coordonnées sont bonnes
+     * @param premier int
+     * @param deuxieme int
+     * @return true si les coordonnées sont bonnes
+     */
+    public boolean correct(int premier, int deuxieme) {        
       if (premier == -1 || deuxieme == -1) return false;
       if (premier >= 0  && premier < niveau.length) {
         if (deuxieme >= 0  && deuxieme < niveau[0].length) {
@@ -319,14 +450,18 @@ public class Niveau {
       return false;
     }
 
-
+    /**
+     * revoie true si la partie est finie
+     */
     public boolean partieTerminee() {
       if (resources > score[0]+5) return true;  // si nb de resources depassé
       if (finis()) return true;
       return false;
     }
 
-
+    /**
+     * @deprecated complexité trop élevée
+     */
     public boolean gagnable(int x, int y) {
         boolean b = false;
         int[] tab = this.caseSuivante(x, y);
@@ -351,7 +486,10 @@ public class Niveau {
         return false;
     }
 
-    //resolveur de niveau :
+    /**
+     * resolveur de niveau
+     * @return true si la niveau peut etre fini
+     */
     public boolean resolution() {
         ArrayList<Point> list = new ArrayList<Point>();
         int i = 0;
@@ -363,6 +501,8 @@ public class Niveau {
 
         return true;
     }
+
+    
     public boolean resolve() {
         return true;
     }
@@ -375,6 +515,9 @@ public class Niveau {
         return false;
     }
 
+    /**
+     * @deprecated utilisée dans la fonction gagnable() de la classe Niveau
+     */
     public int[] caseSuivante(int x, int y) {
         int[] tab = new int[2];
 

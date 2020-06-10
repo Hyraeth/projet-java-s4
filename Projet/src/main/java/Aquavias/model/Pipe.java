@@ -1,37 +1,72 @@
 package Aquavias.model;
 
 import Aquavias.vue.GUI.VueTerm;
-
+/**
+ * Représente un tuyau
+ */
 public abstract class Pipe {
-    //Si la pièce peut etre tournée
+    /**
+     * Boolean qui indique si le tuyau peut être tourner.
+     */
     protected boolean moveable;
-    //liste des entrées possibles
+    /**
+     * Représente les connexions du tuyau
+     */
     protected boolean[] connections;
-    //savoir si un Pipe est rempli
+    /**
+     * Boolean qui indique si le tuyau est rempli
+     */
     protected boolean rempli;
-    //affiche un char associé à un Pipe
+    /**
+     * Tableau de char qui représentent chacun un tuyaux sous forme textuel.
+     */
     protected static char[] afficheTerm = new char[]{'╨','╞','╥','╡','╚','╔', '╗', '╝','║','═','║','═','╠', '╦', '╣', '╩','╬'};
-    //pour faciliter l'interface graphique
+    /**
+     * Indique quel fichier image choisir pour afficher le tuyau correctement dans l'interface graphique.
+     */
     protected String fileName;
-
+    /**
+     * Indique quelle est la rotation actuelle du tuyau (i.e combien de fois le tuyau a été tourner depuis sa position initiale)
+     */
     protected int rotation;
-
+    /**
+     * Donne la position dans le tableau de char où se trouve le char associé au tuyau.
+     */
     protected int indexTerm;
-
+    /**
+     * Donne la position dans le tableau de Bufferedimage où se trouve l'image associée au tuyau (voir classe JPanelPipe)
+     */
     protected int indexGUI;
 
+    /**
+     * Recupère le nom du  image correspondant au tuyau.
+     * @return Un string représentant le nom du fichier.
+     */
     public String getFilename() {
         return fileName;
     }
-    
+
+    /**
+     * Récupère la position du charactère correspondant au tuyau
+     * @return Un int correspondant à la position.
+     */
     public int getIndexTerm(){
       return indexTerm;
     }
 
+    /**
+     * Récupère le charactère à la position i du tableau
+     * @param i la position où se trouve le charactère à récupérer
+     * @return Un charactère  qui représente le tuyau.
+     */
     public char getTerm(int i){
       return afficheTerm[i];
     }
 
+    /**
+     * Tourne le tuyau de 90° vers la droite.
+     * Il s'agit d'un décalage vers la droite du tableau de boolean des connections du tuyau.
+     */
     public void rotate() {
         boolean last = connections[3];
         for( int i =2; i >= 0 ; i-- )
@@ -40,7 +75,10 @@ public abstract class Pipe {
         rotation = (rotation+1)%4;
     }
 
-
+    /**
+     * Tourne le tuyau i fois vers la droite.
+     * @param i nombre de fois qu'il faut tourner le tuyau.
+     */
     public void rotate(int i) {
         if(moveable) {
             for (int j = 0; j < i; j++) {
@@ -49,26 +87,48 @@ public abstract class Pipe {
         }
     }
 
+    /**
+     * Rempli un tuyau
+     */
     public void remplir() {
         rempli = true;
     }
 
+    /**
+     * Vide un tuyau
+     */
     public void vide() {
         rempli = false;
     }
 
-    public boolean connect(int suivant) {
-        return this.connections[suivant];
+    /**
+     * Indique s'il y a une connexion possible à la position i du tableau de connexions.
+     * @param i position à vérifiée
+     * @return un boolean indiquant si la position i est une connexion
+     */
+    public boolean connect(int i) {
+        return this.connections[i];
     }
 
+    /**
+     * Récupère le nombre de rotation du tuyau (modulo 4).
+     * @return un int représentant le nombre de rotation depuis la position initiale
+     */
     public int getRotation() {
         return rotation;
     }
 
+    /**
+     * Indique si un tuyau peut être tourner.
+     * @return true si le tuyau peut etre trouner.
+     */
     public boolean isMoveable() {
       return moveable;
     }
 
+    /**
+     * Affiche le tuyau sur le terminal avec des couleurs. (bleu si le tuyau est rempli blanc sinon)
+     */
     public void affiche() {
         if(rempli){
             System.out.print(Color.BLUE_BRIGHT );
@@ -78,6 +138,10 @@ public abstract class Pipe {
             System.out.print(afficheTerm[indexTerm+getRotation()]);
         }
     }
+
+    /**
+     * Return un string donnant des informations sur le tuyau.
+     */
     public String toString() {
         return "moveable :"+moveable+"; rempli :"+rempli+"; rotation :"+rotation+"; indexTerm :"+indexTerm+"; indexGui :"+indexGUI;
     }
@@ -100,19 +164,27 @@ public abstract class Pipe {
         vt.affichePipe(pd);
     }
 
+    /**
+     * Indique si le tuyau est rempli
+     * @return true si c'est le cas
+     */
 	public boolean isRempli() {
 		return rempli;
 	}
 
+    /**
+     * Indique la position de l'image dans le tabbleau de bufferedImage
+     * @return la position de l'image associée au tuyau
+     */
 	public int getIndexGui() {
 		return this.indexGUI;
     }
     
-    public boolean getRempli() {
-        return rempli;
-    }
 } 
 
+/**
+ * Représente le tuyau de départ.
+ */
 class PipeDepart extends Pipe{
 
     public PipeDepart() {
@@ -127,6 +199,9 @@ class PipeDepart extends Pipe{
 
 }
 
+/**
+ * Représente le tuyau d'arrivé.
+ */
 class PipeArrivee extends Pipe {
 
     public PipeArrivee() {
@@ -141,6 +216,9 @@ class PipeArrivee extends Pipe {
 
 }
 
+/**
+ * Représente un tuyau de la forme L.
+ */
 class PipeL extends Pipe {
 
     public PipeL(boolean move) {
@@ -155,6 +233,9 @@ class PipeL extends Pipe {
 
 }
 
+/**
+ * Représente un tuyau de la forme I.
+ */
 class PipeI extends Pipe {
 
     public PipeI(boolean move) {
@@ -168,6 +249,9 @@ class PipeI extends Pipe {
     }
 }
 
+/**
+ * Représente un tuyau de la forme T.
+ */
 class PipeT extends Pipe {
 
     public PipeT(boolean move) {
@@ -181,6 +265,9 @@ class PipeT extends Pipe {
     }
 }
 
+/**
+ * Représente un tuyau de la forme +.
+ */
 class PipeX extends Pipe {
 
     public PipeX() {

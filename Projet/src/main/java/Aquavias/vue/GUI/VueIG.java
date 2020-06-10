@@ -99,7 +99,7 @@ public class VueIG {
             for (int j = 0; j < Pipes[i].length; j++) {
                 gbc.gridx = j;
                 gbc.gridy = i;
-                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j), model.getPipe(i, j).getRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
+                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j), model.getPipe(i, j).isRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 if(model.getPipe(i,j).isMoveable()) Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
                 zonePlateau.add(Pipes[i][j], gbc);
@@ -110,7 +110,7 @@ public class VueIG {
     public void update() {
         for (int i = 0; i < Pipes.length; i++) {
             for (int j = 0; j < Pipes[i].length; j++) {
-                Pipes[i][j].remplir(model.getPipe(i, j).getRempli());
+                Pipes[i][j].remplir(model.getPipe(i, j).isRempli());
                 Pipes[i][j].repaint();
             }
         }

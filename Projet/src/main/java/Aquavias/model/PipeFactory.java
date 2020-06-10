@@ -1,6 +1,14 @@
 package Aquavias.model;
-
+/**
+ * Classe factory pour fabriquer des tuyaux.
+ */
 public class PipeFactory {
+    /**
+     * Crée un tuyau d'un certain type PipeType et peut être tourner ou pas selon la valeur de moveable
+     * @param PipeType un int qui représente le tuyau à fabriquer
+     * @param moveable un boolean qui indique si ce tuyau peut être tourner
+     * @return un Tuyau.
+     */
     public Pipe getPipe(int PipeType, boolean moveable) {
         switch (PipeType) {
             case 0:

@@ -96,7 +96,7 @@ public class VueTerm{
         System.out.println("resources restants: " + n.getresources());
       }
       for (int i = 0; i < n.getLargeur(); i++) {
-          for (int j = 0; j < n.getLongueur(i); j++) {
+          for (int j = 0; j < n.getLongueur(); j++) {
               if (n.getPipe(i,j) != null)
                   if(debug) affichePipe(n.getPipe(i,j));
               else
@@ -109,7 +109,7 @@ public class VueTerm{
   // affiche le plateau dans le terminal avec des séparations.
   public void afficheAvecCase(Niveau n) {
       for (int i = 0; i < n.getLargeur(); i++) {
-          for (int j = 0; j < n.getLongueur(i); j++) {
+          for (int j = 0; j < n.getLongueur(); j++) {
               if (j == 0)
                   System.out.print("|");
               if (n.getPipe(i,j) != null)
@@ -119,7 +119,7 @@ public class VueTerm{
               System.out.print("|");
           }
           System.out.println();
-          for (int j = 0; j < 2 * n.getLongueur(i) + 1; j++) {
+          for (int j = 0; j < 2 * n.getLongueur() + 1; j++) {
               System.out.print("-");
           }
           System.out.println();
