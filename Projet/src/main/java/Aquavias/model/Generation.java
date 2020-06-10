@@ -72,7 +72,8 @@ public class Generation {
                         n = (aleat + i)%4;
                         if (possible[n]) {
                             possible[n] = false;
-                            tab[x][y][1] = n;
+                            if (this.tab[x][y][1] == 9) this.tab[x][y][1] = n;
+                            else this.tab[x][y][2] = n;
 
                             boolean c = false;
                             switch(n) {
@@ -82,7 +83,7 @@ public class Generation {
                                 case 3: c=this.creeT(x,y-1,1,facilité);break;   //gauche
                             }
                             if (!c) {
-                                if (this.tab[x][y][2]!=9) this.tab[x][y][2]=9;
+                                if (this.tab[x][y][2]!=9 && this.tab[x][y][2]==n) this.tab[x][y][2]=9;
                                 else this.tab[x][y][1]=9;    //si ca n'a pas marcher et si c'est un T
                             }
                         }
@@ -99,7 +100,7 @@ public class Generation {
 
     public boolean creeT(int x, int y, int prec, int facilité) {
         if (this.tab[x][y][0]!=9) {
-            if (tab[x][y][1]==9) this.tab[x][y][1]=prec;
+            if (tab[x][y][1]==9 || tab[x][y][1]==prec) this.tab[x][y][1]=prec;
             else this.tab[x][y][2]=prec;
             return true;
         }
@@ -147,9 +148,9 @@ public class Generation {
                 return true;
             }
         }
-        if (this.tab[x][y][2]!=9) this.tab[x][y][2]=9;
-        else if (this.tab[x][y][1]!=9) this.tab[x][y][1]=9;
-        else this.tab[x][y][0]=9;
+        this.tab[x][y][0]=9;
+        this.tab[x][y][1]=9;
+        this.tab[x][y][2]=9;
         return false;
     }
 
@@ -199,9 +200,15 @@ public class Generation {
 
     public static Niveau init(int i, int j, int facilité) {
         Generation g1 = generer(i,j,facilité);
-        g1.affiche();
         Niveau n1 = new Niveau(i,j);
-        n1.setNiveau(const1(g1.tab));
+
+        Pipe[][] tp = const1(g1.tab);
+        while(tp == null){
+            g1 = generer(i,j,facilité);
+            tp = const1(g1.tab);
+        }
+        g1.affiche();
+        n1.setNiveau(tp);
         n1.setResources(1);
         return n1;
 
@@ -234,8 +241,13 @@ public class Generation {
             i++;
         }
         pip[i][0] = new PipeDepart();
-        const2(pip,t,i,1,3,new boolean[t.length][t[0].length]);
-
+        try {
+            const2(pip,t,i,1,3,new boolean[t.length][t[0].length]);
+        } catch (StackOverflowError e) {
+            System.out.println("bug");
+            return null;
+        }
+        
         for (int k=0; k<t.length; k++) {
             for (int j=0; j<t[0].length; j++) {
                 if (t[k][j][2] != 9) {
@@ -243,6 +255,10 @@ public class Generation {
                 }
                 else if (t[k][j][1] != 9) {
                     pip[k][j] = new PipeT(true);
+                    if(t[k][j][1] == t[k][j][0]) {
+                        System.out.println("GROS BUG");
+                        return null;
+                    }
                 }
                 else if (pip[k][j] == null) {
                     pip[k][j] = pipeAlea();

@@ -1,5 +1,6 @@
 package Aquavias.model;
 
+import java.awt.Point;
 import java.io.*;
 import java.util.*;
 import java.util.Timer;
@@ -346,6 +347,30 @@ public class Niveau {
             }
             
 
+        }
+        return false;
+    }
+
+    //resolveur de niveau :
+    public boolean resolution() {
+        ArrayList<Point> list = new ArrayList<Point>();
+        int i = 0;
+        int j = 0;
+        while ( !(niveau[i][j] instanceof PipeArrivee) ) {
+            j++;
+        }
+        list.add(new Point(i,j));
+
+        return true;
+    }
+    public boolean resolve() {
+        return true;
+    }
+
+    //verifie si il appartient deja a la list
+    public boolean appartient(Point p, ArrayList<Point> list) {
+        for (Point point : list) {
+            if ( point.equals(p) ) return true;
         }
         return false;
     }

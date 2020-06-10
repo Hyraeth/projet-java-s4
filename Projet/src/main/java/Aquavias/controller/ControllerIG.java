@@ -87,7 +87,7 @@ public class ControllerIG {
             }
             model.quit();
             vue.displayLoseScreen();
-            System.out.print("fin");
+            System.out.println("fin");
         }
         
         if(f) {
@@ -97,7 +97,7 @@ public class ControllerIG {
             }
             model.quit();
             vue.displayWinScreen();
-            System.out.print("fin");
+            System.out.println("fin");
         }
     }
 
@@ -122,7 +122,7 @@ public class ControllerIG {
         }
         
         model.quit();
-        System.out.print("fin");
+        System.out.println("fin");
     }
 
     public void debug() {
