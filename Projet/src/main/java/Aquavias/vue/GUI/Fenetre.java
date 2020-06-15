@@ -100,7 +100,7 @@ public class Fenetre extends JFrame{
 
 
 /**
-     * affiche le menu "jouer" avec les différents boutons et labels
+     * affiche le menu "jouer" avec les différents boutons et labels utilisé dans la classe fenetre, fonction: menuAccueil()
      */
 
   public void jouer() {               // lance le menu jouer depuis lequel on selectionne un niveau
@@ -140,7 +140,7 @@ public class Fenetre extends JFrame{
   // PARTIE SELECTION DE NIVEAU
 
 /**
-     * affiche le menu de sélection de niveau avec les différents boutons et labels
+     * affiche le menu de sélection de niveau avec les différents boutons et labels utilisé dans la classe fenetre, fonction: jouer()
      */
      
   public void niveaux() {
@@ -166,7 +166,7 @@ public class Fenetre extends JFrame{
   // SOUS FONCTIONS DE NIVEAU
 
 /**
-     * fonction qui gére la partie centrale, c'est à dire les boutons pour selectionner un niveau
+     * fonction qui gére la partie centrale, c'est à dire les boutons pour selectionner un niveau utilisé dans la classe fenetre, fonction: niveaux()
      * @return le panel central
      */
      
@@ -198,7 +198,7 @@ public class Fenetre extends JFrame{
   }
   
   /**
-     * fonction qui gére la partie du bas, c'est à dire les boutons pour faire défiler la selection de niveau
+     * fonction qui gére la partie du bas, c'est à dire les boutons pour faire défiler la selection de niveau utilisé dans la classe fenetre, fonction: niveaux()
      * @return le panel du bas
      */
   JPanel panSouth() {
@@ -214,7 +214,7 @@ public class Fenetre extends JFrame{
   }
 
   /**
-     * fonction qui gére la partie du haut, c'est à dire le bouton retour et le label
+     * fonction qui gére la partie du haut, c'est à dire le bouton retour et le label utilisé dans la classe fenetre, fonction: niveaux()
      * @return le panel du haut
      */
   JPanel panNorth() {
@@ -231,7 +231,7 @@ public class Fenetre extends JFrame{
   }
 
   /**
-     * fonction connaître le nombre de niveaux dans le fichier Json
+     * fonction connaître le nombre de niveaux dans le fichier Json utilisé dans la classe fenetre, définir la constante max utilisé dans centre()
      * @return le nombre de niveaux stockés dans le fichier Json
      */
   int nblvl() {                  
@@ -244,7 +244,7 @@ public class Fenetre extends JFrame{
   }
 
   /**
-     * fonction pour avancer dans la selection de niveau
+     * fonction pour avancer dans la selection de niveau utilisé dans la classe fenetre, fonction: panSouth()
      */
   public void suivant() {   // avancer dans le tableau de niveaux
     if (debut < max-9) debut += 9;
@@ -252,7 +252,7 @@ public class Fenetre extends JFrame{
   }
 
   /**
-     * fonction pour reculer dans la selection de niveau
+     * fonction pour reculer dans la selection de niveau utilisé dans la classe fenetre, fonction: panSouth()
      */
   public void precedent() {  // reculer dans le tableau de niveaux
     if (debut > 9) debut -= 9;
@@ -260,7 +260,7 @@ public class Fenetre extends JFrame{
   }
 
   /**
-     * fonction pour afficher l'aide
+     * fonction pour afficher l'aide utilisé dans la classe fenetre, fonction: boutonAide()
      */
   public void aide() {
     JPanel pan = (JPanel) this.getContentPane();
@@ -294,7 +294,7 @@ public class Fenetre extends JFrame{
   // BOUTONS ET LABELS
 
  /**
-     * fonction pour afficher le titre "Aquavias"
+     * fonction pour afficher le titre "Aquavias" utilisé dans la classe fenetre, fonction: menuAccueil()
      * @return le label labelAquavias
      */
   JLabel titre() {
@@ -306,7 +306,7 @@ public class Fenetre extends JFrame{
   }
 
  /**
-     * fonction pour créer le bouton jouer qui redirige vers la page "jouer"
+     * fonction pour créer le bouton jouer qui redirige vers la page "jouer" utilisé dans la classe fenetre, fonction: menuAccueil()
      * @return le bouton boutonJouer
      */
   JButton boutonJouer() {
@@ -318,7 +318,7 @@ public class Fenetre extends JFrame{
   }
 
  /**
-     * fonction pour créer le bouton aide qui redirige vers la page "aide"
+     * fonction pour créer le bouton aide qui redirige vers la page "aide" utilisé dans la classe fenetre, fonction: menuAccueil()
      * @return le bouton boutonAide
      */
   JButton boutonAide() {
@@ -330,7 +330,7 @@ public class Fenetre extends JFrame{
   }
 
  /**
-     * fonction pour créer le bouton jouer qui permet de quitter le jeu
+     * fonction pour créer le bouton jouer qui permet de quitter le jeu utilisé dans la classe fenetre, fonction: menuAccueil()
      * @return le bouton boutonQuitter
      */
   JButton boutonQuitter() {
@@ -345,7 +345,7 @@ public class Fenetre extends JFrame{
   }
 
  /**
-     * fonction pour créer le bouton qui redirige vers la page de selection de niveau
+     * fonction pour créer le bouton qui redirige vers la page de selection de niveau utilisé dans la classe fenetre, fonction: jouer()
      * @return le bouton boutonJouer
      */
   JButton lancerJeu() {
@@ -357,7 +357,7 @@ public class Fenetre extends JFrame{
   }
 
  /**
-     * fonction pour créer le label "niveau aleatoire"
+     * fonction pour créer le label "niveau aleatoire" utilisé dans la classe fenetre, fonction: jouer()
      * @return le label labelChoix
      */
   JLabel labelChoix() {
@@ -368,7 +368,7 @@ public class Fenetre extends JFrame{
   }
 
  /**
-     * fonction pour créer le bouton permettant de jouer à un niveau aléatoire facile
+     * fonction pour créer le bouton permettant de jouer à un niveau aléatoire facile utilisé dans la classe fenetre, fonction: jouer()
      * @return le bouton boutonAleaF
      */
   JButton boutonAleaFacile() {
@@ -380,7 +380,7 @@ public class Fenetre extends JFrame{
   }
 
 /**
-     * fonction pour créer le bouton permettant de jouer à un niveau aléatoire normal
+     * fonction pour créer le bouton permettant de jouer à un niveau aléatoire normal utilisé dans la classe fenetre, fonction: jouer()
      * @return le bouton boutonAleaN
      */
   JButton boutonAleaNormal() {
@@ -392,7 +392,7 @@ public class Fenetre extends JFrame{
   }
 
 /**
-     * fonction pour créer le bouton permettant de jouer à un niveau aléatoire difficile
+     * fonction pour créer le bouton permettant de jouer à un niveau aléatoire difficile utilisé dans la classe fenetre, fonction: jouer()
      * @return le bouton boutonAleaD
      */
   JButton boutonAleaDifficile() {
@@ -404,7 +404,7 @@ public class Fenetre extends JFrame{
   }
 
 /**
-     * fonction pour créer le bouton permettant de retourner à l'accueil
+     * fonction pour créer le bouton permettant de retourner à l'accueil utilisé dans la classe fenetre, fonction: jouer()
      * @return le bouton boutonRetour
      */
   JButton boutonRetour() {
@@ -416,7 +416,7 @@ public class Fenetre extends JFrame{
   }
   
 /**
-     * fonction pour créer le label "regles"
+     * fonction pour créer le label "regles" utilisé dans la classe fenetre, fonction: aide()
      * @return le label titre
      */
   JLabel reglesTitre() {
