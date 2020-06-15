@@ -3,24 +3,50 @@ package Aquavias.model;
 import Aquavias.vue.GUI.VueTerm;
 
 public class MenuNiveau{
-  private int Norm; //Nombre de niveau normaux
-  private int Pers; //Nombre de niveau personnalisés
+    
+    /**
+     * Représente soit le nombre de niveau normaux
+     */
+  private int Norm;
+      
+    /**
+     * Représente soit le nombre de niveau personnalisés
+     */
+  private int Pers;
+      
+    /**
+     * Représente soit la vue
+     */
   private VueTerm vt = new VueTerm();
 
+    /**
+     * Renvoie le nombre de niveau normaux
+     */
   public int getNorm(){
     return Norm;
   }
+  
+     /**
+     * Renvoie le nombre de niveau personnalisés
+     */
   public int getPers(){
     return Pers;
   }
 
-  //Constructeur
+     /**
+     * Constructeur du menu de niveau
+     * @param n int
+     * @param p int
+     */
   public MenuNiveau(int n,int p){
     Norm = n;
     Pers = p;
   }
 
-  //Permet de lancer le niveau normal numéro x
+     /**
+     * Fonction qui permet de lancer le niveau normal numéro x
+     * @param x int
+     */
   public void LanceNivN(int x){
     System.out.println("Voir dans le fichier JSON le niveau normal numero "+ x);
     System.out.println("Disponible dans une prochaîne mise à jour...");
@@ -32,13 +58,20 @@ public class MenuNiveau{
     vt.afficheNiv(n1, true);
   }
 
-  //Permet de lancer le niveau personnalisé numéro x
+     /**
+     * Fonction qui permet de lancer le niveau personalisé numéro x
+     * @param x int
+     */
   public void LanceNivP(int x){
     System.out.println("Voir dans le fichier JSON le niveau personnalisé numero "+ x);
     System.out.println("Disponible dans une prochaîne mise à jour...");
   }
 
-
+     /**
+     * Fonction qui permet de jouer un niveau
+     * @param x int
+     * @param n Niveau
+     */
   public void jouer(int lvl, Niveau n) {
 
         int coups = 0;
@@ -73,10 +106,18 @@ public class MenuNiveau{
         VueTerm.afficheScore(n.getScore(), coups, lvl);
       }
 
+     /**
+     * Fonction qui permet de retourner la valeur de l'argument/10 pour tourner ensuite un tuyau, utilisé dans la classe MenuNiveau fonction: jouer()
+     * @param str int
+     */
       private int premier(int str) {
         return str/10;
       }
 
+    /**
+     * Fonction qui permet de retourner la valeur de l'argument%10 pour tourner ensuite un tuyau, utilisé dans la classe MenuNiveau fonction: jouer()
+     * @param str int
+     */
       private int deuxieme(int str) {
         return str%10;
       }
