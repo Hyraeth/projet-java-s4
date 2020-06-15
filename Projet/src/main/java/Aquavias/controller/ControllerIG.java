@@ -3,7 +3,9 @@ package Aquavias.controller;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import Aquavias.model.Generation;
 import Aquavias.model.Niveau;
+import Aquavias.vue.GUI.Fenetre;
 import Aquavias.vue.GUI.VueIG;
 import Aquavias.vue.GUI.VueTerm;
 import java.awt.*;
@@ -12,6 +14,7 @@ import java.io.IOException;
 
 public class ControllerIG {
     private VueIG vue;
+    private Fenetre fenetre;
     private Niveau model;
     private VueTerm vt = new VueTerm();
     private Timer timer;
@@ -27,6 +30,14 @@ public class ControllerIG {
             updateLoop();
     }
 
+    public void setFenetre(Fenetre f) {
+        this.fenetre = f;
+    }
+
+    public void setEnabledFenetre(boolean b) {
+        fenetre.setEnabled(b);
+    }
+
     public void lancerNiv(int j) {
         EventQueue.invokeLater(() -> {
             File f = new File("assets/lvls/niveau.json");
@@ -37,6 +48,7 @@ public class ControllerIG {
                 e.printStackTrace();
             }
             this.setNiveau(m);
+            fenetre.setEnabled(false);
             VueIG gui = new VueIG(this, m);
             this.setVue(gui);
         });
@@ -68,6 +80,39 @@ public class ControllerIG {
 
     public void solve() {
         model.gagnable(0, 0);
+    }
+
+    public void niveauAleaF() {       // lance un niveau facile
+        int int1 = (int)(Math.random() * 2) + 3;
+        int int2 = (int)(Math.random() * 2) + 3;
+        Niveau n = Generation.init(int1,int2,500);
+        n.setLvlType("niveauAleaF");
+        this.setNiveau(n);
+        fenetre.setEnabled(false);
+        VueIG v = new VueIG(this, n);
+        this.setVue(v);
+    }
+
+    public void niveauAleaN() {       // lance un niveau normal
+        int int1 = (int)(Math.random() * 2) + 4;
+        int int2 = (int)(Math.random() * 2) + 4;
+        Niveau n = Generation.init(int1,int2,10);
+        n.setLvlType("niveauAleaN");
+        this.setNiveau(n);
+        fenetre.setEnabled(false);
+        VueIG v = new VueIG(this, n);
+        this.setVue(v);
+    }
+
+    public void niveauAleaD() {       // lance un niveau dificile
+        int int1 = (int)(Math.random() * 2) + 6;
+        int int2 = (int)(Math.random() * 2) + 6;
+        Niveau n = Generation.init(int1,int2,5);
+        n.setLvlType("niveauAleaD");
+        this.setNiveau(n);
+        fenetre.setEnabled(false);
+        VueIG v = new VueIG(this, n);
+        this.setVue(v);
     }
 
     public void rotate(int i, int j) {
@@ -118,9 +163,9 @@ public class ControllerIG {
     public void quit() {
         if(timer != null) {
             timer.cancel();
-        timer.purge();
+            timer.purge();
         }
-        
+        fenetre.setEnabled(true);
         model.quit();
         System.out.println("fin");
     }

@@ -129,27 +129,45 @@ public class VueIG {
             int nblvl;
             try {
                 File f = new File("assets/lvls/niveau.json");
-                nblvl = Niveau.getNumberLvl(f, model.getLvlType());
-                if(nblvl == model.getLvlNumber()+1) {
-                    JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                if(model.getLvlType().equals("niveaux_off")) {
+                    nblvl = Niveau.getNumberLvl(f, model.getLvlType());
+                    if(nblvl == model.getLvlNumber()+1) {
+                        JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                        controller.setEnabledFenetre(true);
+                        this.close();
+                    }
+                    else {
+                        this.close();
+                        controller.lancerNiv(model.getLvlNumber()+1);
+                    }
+                } else {
                     this.close();
+                    switch (model.getLvlType()) {
+                        case "niveauAleaF":
+                            controller.niveauAleaF();
+                            break;
+                        case "niveauAleaN":
+                            controller.niveauAleaN();
+                        break;
+                        case "niveauAleaD":
+                            controller.niveauAleaD();
+                        break;
+                        default:
+                            break;
+                    }
                 }
-                else {
-                    this.close();
-                    model.load(f, model.getLvlType(), model.getLvlNumber()+1);
-                    ControllerIG c = new ControllerIG();
-                    c.setNiveau(model);
-                    VueIG gui = new VueIG(c, model);
-                    c.setVue(gui);
-                }
+                
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                controller.setEnabledFenetre(true);
                 this.close();
             } catch (JSONException e) {
                 JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                controller.setEnabledFenetre(true);
                 this.close();
             }
         } else {
+            controller.setEnabledFenetre(true);
             this.close();
         }
     }
@@ -161,8 +179,8 @@ public class VueIG {
         if(result == JOptionPane.YES_OPTION) {
             controller.lancerNiv(model.getLvlNumber());
             this.close();
-            
         } else {
+            controller.setEnabledFenetre(true);
             this.close();
         }
     }

@@ -120,10 +120,17 @@ public class Niveau {
     }
 
     /**
-     * Renvoie le type  du niveau
+     * Renvoie le type du niveau
      */
     public String getLvlType() {
         return lvlType;
+    }
+
+    /**
+     * Change le type du niveau
+     */
+    public void setLvlType(String s) {
+        this.lvlType = s;
     }
 
     /**
