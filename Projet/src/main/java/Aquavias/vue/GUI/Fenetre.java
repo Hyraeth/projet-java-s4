@@ -36,6 +36,7 @@ public class Fenetre extends JFrame{
 
   public Fenetre(){
     c = new ControllerIG();
+    c.setFenetre(this);
     this.setTitle("Aquavias");
     this.setSize(800, 600);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -204,33 +205,6 @@ public class Fenetre extends JFrame{
     niveaux();
   }
 
-  public void niveauAleaF() {       // lance un niveau facile
-    int int1 = (int)(Math.random() * 2);
-    int int2 = (int)(Math.random() * 2);
-    String str1 = Integer.toString(int1+3);
-    String str2 = Integer.toString(int2+3);
-    String[] a = {str1,str2,"500"};
-    Generation.main(a);
-  }
-
-  public void niveauAleaN() {       // lance un niveau normal
-    int int1 = (int)(Math.random() * 2);
-    int int2 = (int)(Math.random() * 2);
-    String str1 = Integer.toString(int1+4);
-    String str2 = Integer.toString(int2+4);
-    String[] a = {str1,str2,"10"};
-    Generation.main(a);
-  }
-
-  public void niveauAleaD() {       // lance un niveau dificile
-    int int1 = (int)(Math.random() * 2);
-    int int2 = (int)(Math.random() * 2);
-    String str1 = Integer.toString(int1+6);
-    String str2 = Integer.toString(int2+6);
-    String[] a = {str1,str2,"5"};
-    Generation.main(a);
-  }
-
 
   public void aide() {
     JPanel pan = (JPanel) this.getContentPane();
@@ -315,7 +289,7 @@ public class Fenetre extends JFrame{
 
   JButton boutonAleaFacile() {
     JButton boutonAleaF = new JButton("Facile");
-    boutonAleaF.addActionListener( (event) -> niveauAleaF());
+    boutonAleaF.addActionListener( (event) -> c.niveauAleaF());
     boutonAleaF.setBackground(Color.GREEN);
     boutonAleaF.setPreferredSize(new Dimension(150,50));
     return boutonAleaF;
@@ -323,7 +297,7 @@ public class Fenetre extends JFrame{
 
   JButton boutonAleaNormal() {
     JButton boutonAleaN = new JButton("Normal");
-    boutonAleaN.addActionListener( (event) -> niveauAleaN());
+    boutonAleaN.addActionListener( (event) -> c.niveauAleaN());
     boutonAleaN.setBackground(Color.BLUE);
     boutonAleaN.setPreferredSize(new Dimension(150,50));
     return boutonAleaN;
@@ -331,7 +305,7 @@ public class Fenetre extends JFrame{
 
   JButton boutonAleaDifficile() {
     JButton boutonAleaD = new JButton("Difficile");
-    boutonAleaD.addActionListener( (event) -> niveauAleaD());
+    boutonAleaD.addActionListener( (event) -> c.niveauAleaD());
     boutonAleaD.setBackground(Color.RED);
     boutonAleaD.setPreferredSize(new Dimension(150,50));
     return boutonAleaD;

@@ -99,7 +99,7 @@ public class VueIG {
             for (int j = 0; j < Pipes[i].length; j++) {
                 gbc.gridx = j;
                 gbc.gridy = i;
-                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j), model.getPipe(i, j).getRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
+                Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j), model.getPipe(i, j).isRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
                 if(model.getPipe(i,j).isMoveable()) Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
                 zonePlateau.add(Pipes[i][j], gbc);
@@ -110,7 +110,7 @@ public class VueIG {
     public void update() {
         for (int i = 0; i < Pipes.length; i++) {
             for (int j = 0; j < Pipes[i].length; j++) {
-                Pipes[i][j].remplir(model.getPipe(i, j).getRempli());
+                Pipes[i][j].remplir(model.getPipe(i, j).isRempli());
                 Pipes[i][j].repaint();
             }
         }
@@ -129,27 +129,45 @@ public class VueIG {
             int nblvl;
             try {
                 File f = new File("assets/lvls/niveau.json");
-                nblvl = Niveau.getNumberLvl(f, model.getLvlType());
-                if(nblvl == model.getLvlNumber()+1) {
-                    JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                if(model.getLvlType().equals("niveaux_off")) {
+                    nblvl = Niveau.getNumberLvl(f, model.getLvlType());
+                    if(nblvl == model.getLvlNumber()+1) {
+                        JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                        controller.setEnabledFenetre(true);
+                        this.close();
+                    }
+                    else {
+                        this.close();
+                        controller.lancerNiv(model.getLvlNumber()+1);
+                    }
+                } else {
                     this.close();
+                    switch (model.getLvlType()) {
+                        case "niveauAleaF":
+                            controller.niveauAleaF();
+                            break;
+                        case "niveauAleaN":
+                            controller.niveauAleaN();
+                        break;
+                        case "niveauAleaD":
+                            controller.niveauAleaD();
+                        break;
+                        default:
+                            break;
+                    }
                 }
-                else {
-                    this.close();
-                    model.load(f, model.getLvlType(), model.getLvlNumber()+1);
-                    ControllerIG c = new ControllerIG();
-                    c.setNiveau(model);
-                    VueIG gui = new VueIG(c, model);
-                    c.setVue(gui);
-                }
+                
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                controller.setEnabledFenetre(true);
                 this.close();
             } catch (JSONException e) {
                 JOptionPane.showMessageDialog(jframe, "Plus de niveaux.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                controller.setEnabledFenetre(true);
                 this.close();
             }
         } else {
+            controller.setEnabledFenetre(true);
             this.close();
         }
     }
@@ -161,8 +179,8 @@ public class VueIG {
         if(result == JOptionPane.YES_OPTION) {
             controller.lancerNiv(model.getLvlNumber());
             this.close();
-            
         } else {
+            controller.setEnabledFenetre(true);
             this.close();
         }
     }
