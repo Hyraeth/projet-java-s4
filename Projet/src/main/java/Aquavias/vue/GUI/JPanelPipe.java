@@ -14,14 +14,42 @@ import org.w3c.dom.events.MouseEvent;
 import Aquavias.controller.ControllerIG;
 import Aquavias.model.Pipe;
 
+/**
+ * JPanel affichant l'image d'un tuyau
+ */
 public class JPanelPipe extends JPanel {
 
+    /**
+     * Ensemble d'images représentant des tuyaux
+     */
     private static BufferedImage[][] img = new BufferedImage[2][24];
+    /**
+     * indicateur de la position dans img où se trouve le tuyau à afficher.
+     */
     private int index;
+    /**
+     * Indicateur si le tuyau est rempli
+     */
     private boolean remplit;
+    /**
+     * Le tuyau à afficher
+     */
     private Pipe p;
+    /**
+     * le controller
+     */
     private ControllerIG con;
 
+    /**
+     * Contructeur. Crée un JPanelPipe.
+     * @param i position dans le tableau de l'image à choisir
+     * @param p Tuyau à afficher
+     * @param remp indicateur si le tuyau est rempli
+     * @param co contrller
+     * @param x position du tuyau dans le niveau
+     * @param y position du tuyau dans le niveau
+     * @param moveable indicateur si le tuyau peut etre tourner.
+     */
     public JPanelPipe(int i, Pipe p, boolean remp, ControllerIG co, int x, int y, boolean moveable) {
         this.index = i;
         this.p = p;
@@ -38,6 +66,9 @@ public class JPanelPipe extends JPanel {
         }
     }
 
+    /**
+     * Charge les images des tuyaux dans la classe
+     */
     public static void loadImg() {
         for (int i = 0; i < 24; i++) {
             try {
@@ -51,6 +82,9 @@ public class JPanelPipe extends JPanel {
         }
     }
 
+    /**
+     * Rempli l'image du tuyau d'eau
+     */
     public void remplir(boolean rempli) {
         remplit = rempli;
     }

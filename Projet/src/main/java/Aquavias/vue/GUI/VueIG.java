@@ -15,19 +15,34 @@ import org.w3c.dom.events.MouseEvent;
 import Aquavias.controller.ControllerIG;
 import Aquavias.model.Niveau;
 
+/**
+ * Interface graphique d'un niveau
+ */
 public class VueIG {
+    /**
+     * Controller
+     */
     private ControllerIG controller;
     private Niveau model;
-
+    /**
+     * Conteneur
+     */
     private JFrame jframe;
 
+    /**
+     * barre d'action
+     */
     private JPanel actionBar;
-    private JButton undoButton;
     private JLabel resources;
 
     private JPanel zonePlateau;
     private JPanelPipe[][] Pipes;
 
+    /**
+     * Constructeur de l'interface graphihque du plateau
+     * @param c controlleur
+     * @param m Niveau
+     */
     public VueIG(ControllerIG c, Niveau m) {
         GridBagConstraints gbc = new GridBagConstraints();
         controller = c;
@@ -61,6 +76,9 @@ public class VueIG {
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Ajout des boutons dans le barre d'action
+     */
     private void zonePlateau() {
       actionBar = new JPanel();
 
@@ -77,20 +95,21 @@ public class VueIG {
       });
       actionBar.add(debugbutton);
 
-      JButton solvebutton = new JButton("Solve");
-      solvebutton.addActionListener((e)-> {
-          controller.solve();
-          update();
+      JButton undoButton = new JButton("Undo");
+      undoButton.addActionListener((e)-> {
+        controller.undo();
+        update();
       });
-      actionBar.add(solvebutton);
-
-      undoButton = new JButton("Undo");
-      undoButton.addActionListener((event) -> controller.undo());
-      resources = new JLabel(model.getresources()+"");
       actionBar.add(undoButton);
+      resources = new JLabel(model.getresources()+"");
       actionBar.add(resources);
     }
 
+    /**
+     * Charge un niveau dans l'interface graphique
+     * @param model niveau
+     * @param controller controller
+     */
     public void initPlateau(Niveau model, ControllerIG controller) {
         zonePlateau.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -107,6 +126,9 @@ public class VueIG {
         }
     }
 
+    /**
+     * Màj l'interface graphique pour bien afficher le niveau
+     */
     public void update() {
         for (int i = 0; i < Pipes.length; i++) {
             for (int j = 0; j < Pipes[i].length; j++) {
@@ -117,10 +139,16 @@ public class VueIG {
         resources.setText(model.getresources()+"");
     }
 
+    /**
+     * Ferme l'interface graphique
+     */
     public void close() {
         jframe.dispose();
     }
 
+    /**
+     * Affiche un message indiquant que le joueur à gagner. Demande s'il veut continuer
+     */
     public void displayWinScreen() {
         String options[] = {"Oui","Non"};
         int result = JOptionPane.showOptionDialog(jframe, "Bravo vous avez gagné.\nFaire le prochain niveau?", "Félicitation", JOptionPane.YES_NO_OPTION,
@@ -172,6 +200,9 @@ public class VueIG {
         }
     }
 
+    /**
+     * Affiche un message indiquant que le joueur a perdu
+     */
     public void displayLoseScreen() {
         String options[] = {"Oui","Non"};
         int result = JOptionPane.showOptionDialog(jframe, "Pas terrible, voulez-vous recommender ?", "Boo", JOptionPane.YES_NO_OPTION,
