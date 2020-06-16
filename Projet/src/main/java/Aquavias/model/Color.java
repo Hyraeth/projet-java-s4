@@ -1,5 +1,8 @@
 package Aquavias.model;
 
+/**
+ * Inventaire de style d'affichage pour le terminal
+ */
 public enum Color {
     //Reset Colors
     RESET("\033[0m"),
