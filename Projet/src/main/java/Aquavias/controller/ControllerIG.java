@@ -109,7 +109,6 @@ public class ControllerIG {
                     }
                     model.quit();
                     vue.displayLoseScreen();
-                    System.out.print("fin");
                 }
             }
         }, 0, 1000);
@@ -195,7 +194,6 @@ public class ControllerIG {
             }
             model.quit();
             vue.displayLoseScreen();
-            System.out.println("fin");
         }
         
         if(f) {
@@ -205,7 +203,6 @@ public class ControllerIG {
             }
             model.quit();
             vue.displayWinScreen();
-            System.out.println("fin");
         }
     }
 
@@ -242,7 +239,6 @@ public class ControllerIG {
         }
         fenetre.setEnabled(true);
         model.quit();
-        System.out.println("fin");
     }
 
     /**
