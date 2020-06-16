@@ -4,30 +4,43 @@ import Aquavias.vue.GUI.VueTerm;
 import java.util.*;
 import java.io.*;
 
+/**
+ * Représente le lien entre le menu du jeu et le plateau de jeu
+ */
 
 public class Jeu{
+
+  /**
+   * Représente la vue du Terminal, pour lancer les affichages
+   */
   private VueTerm vt = new VueTerm();
+
+  /** 
+   * Scanner de la classe pour interagir avec le terminal
+   */
   static Scanner sc;
 
-  //Constructeur du jeu
+  /**
+   * Constructeur de la classe Jeu
+   */
   public Jeu(){
 
   }
 
-  //Lancé si le joueur veut creer
+  /**
+   * Lancé si le joueur veut creer
+   */
   public void creer(){
-    /*Creation c = new Creation();
-    while(true){
-      //Affiche la fenêtre de création de niveau
-      c.affiche();
-      String rep = sc.next();
-      if(rep.equals("r")) return; //Retour
-      else if(rep.equals("q")) System.exit(0); //Quitter
-      else System.out.println("Je n'ai pas compris.");
-    }*/
+    
   }
 
-  //Lancé si le joueur veut jouer
+  /**
+   * Lance le Jeu
+   * Lance un niveau Normal si le joueur entre "n"
+   * Lance un niveau personnalisé si le joueur entre "p"
+   * Revient au menu si le joueur entre "r"
+   * Quitte le jeu si le joueur entre "q"
+   */ 
   public void jouer(){
 
     while(true){
@@ -43,7 +56,10 @@ public class Jeu{
     }
   }
 
-  //Lanceur de niveau (normal ou personnalisé)
+  /**
+   * Lance un niveau normal ou personnalisé
+   * @param s String
+   */
   public void lanceNiv(String s){
     while(true){
       MenuNiveau n = new MenuNiveau(25,13);
@@ -89,7 +105,9 @@ public class Jeu{
     }
   }
 
-  //Lanceur du Jeu
+  /**
+   * Fonction appelé par la classe Lanceur pour lancer le jeu
+   */
   public void start(){
     //Message de bienvenue
     vt.afficheStart();
