@@ -206,7 +206,6 @@ public class Generation {
             g1 = generer(i,j,facilité);
             tp = const1(g1.tab);
         }
-        g1.affiche();
         n1.setNiveau(tp);
         n1.setResources(1);
         return n1;
@@ -243,7 +242,6 @@ public class Generation {
         try {
             const2(pip,t,i,1,3,new boolean[t.length][t[0].length]);
         } catch (StackOverflowError e) {
-            System.out.println("bug");
             return null;
         }
         
@@ -255,7 +253,6 @@ public class Generation {
                 else if (t[k][j][1] != 9) {
                     pip[k][j] = new PipeT(true);
                     if(t[k][j][1] == t[k][j][0]) {
-                        System.out.println("GROS BUG");
                         return null;
                     }
                 }
