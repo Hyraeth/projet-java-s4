@@ -496,6 +496,7 @@ public class Niveau {
     /**
      * resolveur de niveau
      * @return true si la niveau peut etre fini
+     * @deprecated
      */
     public boolean resolution() {
         ArrayList<Point> list = new ArrayList<Point>();
@@ -509,12 +510,17 @@ public class Niveau {
         return true;
     }
 
-    
+    /**
+     * @deprecated
+     */
     public boolean resolve() {
         return true;
     }
 
-    //verifie si il appartient deja a la list
+    /**
+     * verifie si il appartient deja a la list
+     * @deprecated
+     */
     public boolean appartient(Point p, ArrayList<Point> list) {
         for (Point point : list) {
             if ( point.equals(p) ) return true;
