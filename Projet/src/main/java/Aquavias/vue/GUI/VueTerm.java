@@ -8,18 +8,28 @@ import Aquavias.model.Niveau;
 import Aquavias.model.Color;
 import Aquavias.model.Score;
 
+/**
+ * Regroupement de toutes les fonctions d'affichage sur le Terminal
+ */
 public class VueTerm{
-
+  /**
+   * Constructeur de VueTerm
+   */
   public VueTerm(){
 
   }
 
+  /**
+   * Affiche un message de bienvenue
+   */
   public void afficheStart(){
     //Message de bienvenue
     System.out.println(Color.BLUE_BOLD_BRIGHT+"\n     \033[3m ~BIENVENUE DANS AQUAVIAS~ \033[0m \n"+Color.RESET);
   }
 
-  //Affiche la barre de menu
+  /**
+   * Affiche la barre de menu
+   */ 
   public void afficheMenu(){
     System.out.println(
     Color.WHITE_BOLD_BRIGHT+"\n              MENU         \n"+Color.RESET
@@ -29,7 +39,9 @@ public class VueTerm{
     +  "           QUITTER(q) \n");
   }
 
-  //Affiche la liste de tous les niveaux normaux
+  /**
+   * Affiche la liste de tous les niveaux normaux
+   */
   public void afficheNorm(){
     MenuNiveau mn = new MenuNiveau(25,13);
 
@@ -57,7 +69,10 @@ public class VueTerm{
 
   }
 
-  //Affiche la liste de tous les niveaux personnalisés
+
+  /**
+   * Affiche la liste de tous les niveaux personnalisés
+   */
   public void affichePers(){
     MenuNiveau mn = new MenuNiveau(25,13);
     System.out.println(
@@ -87,7 +102,13 @@ public class VueTerm{
     +Color.WHITE_BOLD+"  Niveau à compléter. \n"+Color.RESET);
   }
 
-  // affiche le plateau dans le terminal
+
+
+  /**
+   * Affiche le plateau dans le terminal
+   * @param n Niveau
+   * @param debug boolean
+   */
   public void afficheNiv(Niveau n, boolean debug) {
       if (n.finis() && debug){
        System.out.println("*** Félicitation !!! ***");
@@ -106,7 +127,11 @@ public class VueTerm{
       }
   }
 
-  // affiche le plateau dans le terminal avec des séparations.
+
+  /**
+   * Affiche le plateau dans le terminal avec des séparations
+   * @param n Niveau
+   */
   public void afficheAvecCase(Niveau n) {
       for (int i = 0; i < n.getLargeur(); i++) {
           for (int j = 0; j < n.getLongueur(); j++) {
@@ -126,6 +151,9 @@ public class VueTerm{
       }
   }
 
+  /**
+   * Affiche le Menu de selection de niveau normal ou personnalisé
+   */
   public void afficheNiv(){
     //Affichage de la fenêtre
       System.out.println(
@@ -137,11 +165,15 @@ public class VueTerm{
 
   }
 
-
-
-  // scoreComparaison contient les "catégorie" de score possibles : le premier elem contient
-  // le minimum pour avoir une étoile, le deuxieme pour 2 étoiles, et le 3éme pour avoir les
-  // 3 étoiles (score max). Si on a moins que 1 une étoile, on affiche une tête de mort.
+  /**
+   * ScoreComparaison contient les "catégorie" de score possibles : le premier elem contient
+   * le minimum pour avoir une étoile, le deuxieme pour 2 étoiles, et le 3éme pour avoir les
+   * 3 étoiles (score max). Si on a moins que 1 une étoile, on affiche une tête de mort.
+   * 
+   * @param scoreComparaison int[]
+   * @param score int
+   * @param lvl int
+   */
   public static void afficheScore(int[] scoreComparaison, int score, int lvl) {
 
     if (score >= scoreComparaison[2] && score < scoreComparaison[1]) {
@@ -175,7 +207,11 @@ public class VueTerm{
           System.exit(0);
         }
   }
-
+  
+  /**
+   * Affiche le plateau
+   * @param tab int[][]
+   */
   public static void afficheGen(int[][] tab) {
     for (int i=0; i<tab.length; i++) {
       for (int j=0; j<tab[0].length; j++) {
@@ -185,7 +221,10 @@ public class VueTerm{
     }
   }
 
-
+  /**
+   * Affiche un tuyau dans le Terminal
+   * @param p Pipe
+   */
   public void affichePipe(Pipe p) {
       if(p.isRempli()){
           System.out.print(Color.BLUE_BRIGHT );
