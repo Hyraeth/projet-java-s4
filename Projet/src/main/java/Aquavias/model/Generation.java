@@ -6,19 +6,43 @@ import Aquavias.controller.ControllerIG;
 import Aquavias.vue.GUI.VueIG;
 import Aquavias.vue.GUI.VueTerm;
 
+/**
+ * Permet de créer un niveau aléatoirement
+ */
 public class Generation {
+    /**
+     * Représente les connexions du tuyau
+     */
     private int[][][] tab;
     public int[][][] getTab(){return tab;}
 
+    /**
+     * Initialise une Generation
+     */
     public Generation(int[][][] a) {
         tab = a;
     }
 
+    /**
+     * Crée une Generation aléatoirement
+     * @param hau dimention en hauteur du niveau souhaité
+     * @param lon dimention en longueur du niveau souhaité
+     * @param facilité difficultée du niveau (plus la valeur est basse, plus le niveau est difficile)
+     */
     public static Generation generer(int hau, int lon, int facilité) {
+        /**
+         * hauteur du niveau de depart
+         */
         int a = (int)(Math.random() * hau);
+        /**
+         * hauteur du niveau d'arrivé
+         */
         int b = (int)(Math.random() * hau);
         int[][][] t = new int[hau][lon][3];
         Generation g = new Generation(t);
+        /**
+         * initialise les valeur du tableau a 9
+         */
         for (int i = 0; i<hau; i++) {
             for (int j = 0; j<lon; j++) {
                 g.tab[i][j][0] = 9;
@@ -43,7 +67,17 @@ public class Generation {
         return g;
     }
 
+    /**
+     * Crée un chemin de connection jusqu'a l'arriver
+     * @param x position actuel
+     * @param y position actuel
+     * @param facilité facilité du niveau
+     * @return true si il a été rempli correctement, false sinon
+     */
     public boolean cree(int x, int y, int facilité){
+        /**
+         * verifie si on est arrivé
+         */
         if (this.finis(x,y)) {
             this.tab[x][y][0]=1;
             return true;
@@ -64,6 +98,9 @@ public class Generation {
                 case 2: b=this.cree(x+1,y,facilité);break;
                 case 3: b=this.cree(x,y-1,facilité);break;   //gauche
             }
+            /**
+             * si le chemin jusqu'a l'arriver est créé, possibilité de créé un autre chemin pour pouvoir poser des Pipe T
+             */
             if (b) {
                 possible = this.disponible(x,y);
                 if (tuyau3 == 0 && this.tab[x][y][1]==9 && facilité < 100) {
@@ -98,6 +135,14 @@ public class Generation {
         return false;
     }
 
+    /**
+     * Crée un chemin de connection qui essaye de rejoindre un chemin (fonctionne un peu pres pareil que la fonction cree)
+     * @param x position actuel
+     * @param y position actuel
+     * @param prec position precedente (0=haut, 1=droite, 2=bas, 3=gauche)
+     * @param facilité facilité du niveau
+     * @return true si il a été rempli correctement, false sinon
+     */
     public boolean creeT(int x, int y, int prec, int facilité) {
         if (this.tab[x][y][0]!=9) {
             if (tab[x][y][1]==9 || tab[x][y][1]==prec) this.tab[x][y][1]=prec;
@@ -155,7 +200,13 @@ public class Generation {
     }
 
 
-
+    /**
+     * Cherche a trouver les dirrection possible depuis une case pour la fonction creeT
+     * @param i position actuel
+     * @param j position actuel
+     * @param prec direction du precedent
+     * @return un tableau de boolean, t[x]=true si la dirrection x est possible
+     */
     public boolean[] disponibleT(int i, int j, int prec) {
         boolean[] b = new boolean[4];
         if (i-1>=0 && prec != 0 && this.tab[i-1][j][0] != 5 && this.tab[i-1][j][0] != 6) b[0] = true;            //verifie si la case est dans le plateau
@@ -165,7 +216,12 @@ public class Generation {
         return b;
     } 
 
-
+    /**
+     * Cherche a trouver les dirrection possible depuis une case pour la fonction cree
+     * @param i position actuel
+     * @param j position actuel
+     * @return un tableau de boolean, t[x]=true si la dirrection x est possible
+     */
     public boolean[] disponible(int i, int j) {
         boolean[] b = new boolean[4];
         if (i-1>=0 && this.tab[i-1][j][0] == 9) b[0] = true;            //verifie si la case est dans le plateau
@@ -175,6 +231,9 @@ public class Generation {
         return b;
     }
 
+    /**
+     * Permet de savoir si le tableau en parametre est un tableau constitué uniquement de false
+     */
     public boolean tableauDeFalse (boolean[] b) {
         for (int i=0; i<b.length; i++) {
             if (b[i]==true) return false;
@@ -182,6 +241,9 @@ public class Generation {
         return true;
     }
 
+    /**
+     * Permet de savoir si nous avons atteint l'arriver
+     */
     public boolean finis(int x, int y) {
         if (y+1<this.tab[0].length) return (this.tab[x][y+1][0]==6);
         else return false;
@@ -197,6 +259,13 @@ public class Generation {
         c.setVue(v);
     }
 
+    /**
+     * Initialise un niveau aléatoire
+     * @param i hauteur du niveau
+     * @param j largeur du niveau
+     * @param facilité facilité du niveau
+     * @return un Niveau créé aleatoirement
+     */
     public static Niveau init(int i, int j, int facilité) {
         Generation g1 = generer(i,j,facilité);
         Niveau n1 = new Niveau(i,j);
@@ -212,6 +281,9 @@ public class Generation {
 
     }
 
+    /**
+     * permet afficher le tableau associé à un niveau dans le terminal
+     */
     public void affiche() {
         for (int i=0; i<this.tab.length; i++) {
             for (int j=0; j<this.tab[0].length; j++) {
@@ -225,13 +297,11 @@ public class Generation {
 
 
 
-
-
-
-
-
-
-
+    /**
+     * Crée un tableau de pipe a partir du tableau d'entier créé aléatoirement
+     * @param t tableau d'entier créé aléatoirement grace au fonction precedente
+     * @return un tableau de pipe qui correspond à notre niveau généré
+     */
     public static Pipe[][] const1(int[][][] t) {
         Pipe[][] pip = new Pipe[t.length][t[0].length];
         int i=0;
@@ -263,8 +333,17 @@ public class Generation {
         }
         return pip;
     }
+
+    /**
+     * Permet de gérer les chemin qui parte des pipe T et des pipe X
+     * @param pip notre tableau de Pipe que nous allons remplir
+     * @param t tableau d'entier correspondant au connection d'une position
+     * @param x position actuel
+     * @param y position actuel
+     * @param prec position du precedent
+     * @param vis permet de savoir si la position a déjà été visitée
+     */
     public static void const2(Pipe[][] pip, int[][][] t, int x, int y, int prec, boolean[][] vis) {
-        //System.out.println(vis[x][y]);
         if (t[x][y][0]==6) {
             pip[x][y] = new PipeArrivee();
             return;
@@ -319,7 +398,10 @@ public class Generation {
         
     }
 
-    //return un tuyau aleatoire:
+    /**
+     * Créé un pipe aléatoire qui va nous permetre de completer notre tableau de pipe 
+     * @return un Pipe aleatoire
+     */
     public static Pipe pipeAlea() {
         int n = (int)(Math.random() * 6);
         switch(n) {
