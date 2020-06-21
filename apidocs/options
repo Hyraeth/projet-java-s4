@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/willi/.m2/repository/org/json/json/20190722/json-20190722.jar;C:/Users/willi/.m2/repository/commons-io/commons-io/2.6/commons-io-2.6.jar;C:/Users/willi/.m2/repository/no/tornado/tornadofx-android-compat/1.0.1/tornadofx-android-compat-1.0.1.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'C:/Users/willi/projet-java-s4/Projet/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2020. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/willi/projet-java-s4/Projet/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Projet 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/13/docs/api' 'C:/Users/willi/projet-java-s4/Projet/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Projet 1.0-SNAPSHOT API'

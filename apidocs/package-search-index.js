@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"Aquavias.controller"},{"l":"Aquavias.model"},{"l":"Aquavias.vue"},{"l":"Aquavias.vue.GUI"}]
