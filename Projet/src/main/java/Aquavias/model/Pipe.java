@@ -146,6 +146,13 @@ public abstract class Pipe {
         return "moveable :"+moveable+"; rempli :"+rempli+"; rotation :"+rotation+"; indexTerm :"+indexTerm+"; indexGui :"+indexGUI;
     }
 
+    /**
+     * return la config pour un tuyau pour sauvegarder dans un fichier
+     */
+    public String config() {
+        return this.moveable ? this.indexGUI/4+""+this.rotation+"T" : this.indexGUI/4+""+this.rotation+"F";
+    }
+
     public static void main(String[] args) {
         VueTerm vt = new VueTerm();
         PipeDepart pd = new PipeDepart();

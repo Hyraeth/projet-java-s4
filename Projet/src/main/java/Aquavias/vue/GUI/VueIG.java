@@ -120,7 +120,7 @@ public class VueIG {
                 gbc.gridy = i;
                 Pipes[i][j] = new JPanelPipe(model.getPipe(i, j).getIndexGui(), model.getPipe(i, j), model.getPipe(i, j).isRempli(), controller, i, j, model.getPipe(i,j).isMoveable());
                 Pipes[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-                if(model.getPipe(i,j).isMoveable()) Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
+                if(model.getPipe(i,j).isMoveable()) Pipes[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR)); 
                 zonePlateau.add(Pipes[i][j], gbc);
             }
         }

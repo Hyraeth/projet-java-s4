@@ -137,6 +137,12 @@ public class ControllerIG {
         int int1 = (int)(Math.random() * 2) + 3;
         int int2 = (int)(Math.random() * 2) + 3;
         Niveau n = Generation.init(int1,int2,500);
+        File f = new File("assets/lvls/niveau.json");
+        try {
+            n.save(f, "niveaux_off");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         n.setLvlType("niveauAleaF");
         this.setNiveau(n);
         fenetre.setEnabled(false);
@@ -151,6 +157,12 @@ public class ControllerIG {
         int int1 = (int)(Math.random() * 2) + 4;
         int int2 = (int)(Math.random() * 2) + 4;
         Niveau n = Generation.init(int1,int2,10);
+        File f = new File("assets/lvls/niveau.json");
+        try {
+            n.save(f, "niveaux_off");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         n.setLvlType("niveauAleaN");
         this.setNiveau(n);
         fenetre.setEnabled(false);
@@ -165,6 +177,12 @@ public class ControllerIG {
         int int1 = (int)(Math.random() * 2) + 6;
         int int2 = (int)(Math.random() * 2) + 6;
         Niveau n = Generation.init(int1,int2,5);
+        File f = new File("assets/lvls/niveau.json");
+        try {
+            n.save(f, "niveaux_off");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         n.setLvlType("niveauAleaD");
         this.setNiveau(n);
         fenetre.setEnabled(false);

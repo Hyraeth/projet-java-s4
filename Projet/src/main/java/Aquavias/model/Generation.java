@@ -276,9 +276,23 @@ public class Generation {
             tp = const1(g1.tab);
         }
         n1.setNiveau(tp);
-        n1.setResources(1);
+        n1.setType((int)(Math.random() * 2)+1);
+        n1.setResources(g1.calcResource());
         return n1;
 
+    }
+
+    /**
+     * Donne le nombre de ressource nécessaire pour résoudre un niveau
+     */
+    public int calcResource() {
+        int n = 0;
+        for (int i = 0; i < tab.length; i++) {
+            for (int j = 0; j < tab[i].length; j++) {
+                if(tab[i][j][0] != 9) n++;
+            }
+        }
+        return (n-2)*4;
     }
 
     /**

@@ -24,10 +24,7 @@ public class Niveau {
      * Représente soit le temps soit le nombre de coup restant
      */
     private int resources;
-    /**
-     * Modifie le nombre de resources
-     */
-    public void setResources(int nb) {this.resources = nb;}
+
     private int[] score;
     /**
      * pile avec tableau de taille 2 avec les coordonées des pipes tournées
@@ -97,6 +94,33 @@ public class Niveau {
     }
 
     /**
+     * Sauvegarde un niveau dans le fichier f
+     * @param f le fichier
+     * @param type string indiquant le type de niveau 
+     * @throws IOException si le fichier n'existe pas
+     */
+    public void save(File f, String type) throws IOException {
+        if (!f.exists())
+            return;
+        JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
+        JSONArray lvl_liste = json.getJSONArray(type);
+
+        JSONObject jo = new JSONObject();
+        jo.put("largeur", this.getLargeur()); 
+        jo.put("longueur", this.getLongueur());
+        jo.put("configuration", this.getConfig());
+        jo.put("resources", this.resources);
+        jo.put("type", this.type);
+
+        lvl_liste.put(jo);
+        json.put(type, lvl_liste);
+
+        FileWriter fw = new FileWriter (f);
+		fw.write (json.toString (2));
+		fw.close ();
+    }
+
+    /**
      * Donne le nombre de niveau d'un certain type dans le fichier f
      * @param f le fichier
      * @param type le type de niveau
@@ -137,8 +161,8 @@ public class Niveau {
      * Décrémente le nombre de resources et renvoie true si le niveua est finis
      */
     public boolean countdown() {
-        if(resources!=0) resources--;
-        return finis();
+        if(resources!=0 && !remplir()) resources--;
+        return remplir();
     }
 
     /**
@@ -146,6 +170,13 @@ public class Niveau {
      */
     public int getType() {
         return this.type;
+    }
+
+    /**
+     * Change le type de règle du niveau
+     */
+    public void setType(int t) {
+        this.type = t;
     }
 
     /**
@@ -161,6 +192,13 @@ public class Niveau {
      */
     public int getresources() {
       return resources;
+    }
+
+    /**
+     * Change le nombre de resouces restantes dans le niveau
+     */
+    public void setResources(int r) {
+        this.resources = r;
     }
 
     /**
@@ -260,6 +298,19 @@ public class Niveau {
         }
     }
 
+    /**
+     * Donne un string qui représente la config du niveau
+     * @return Donne un string qui représente la config du niveau
+     */
+    public String getConfig() {
+        String s = "";
+        for (int i = 0; i < niveau.length; i++) {
+            for (int j = 0; j < niveau[i].length; j++) {
+                s+=niveau[i][j].config();
+            }
+        }
+        return s;
+    }
     /**
      * Fait couler l'eau dans le niveau
      * @return true s'il n'y a pas de fuite

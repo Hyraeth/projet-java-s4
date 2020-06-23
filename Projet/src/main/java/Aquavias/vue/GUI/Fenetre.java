@@ -40,11 +40,6 @@ public class Fenetre extends JFrame{
   private int debut = 1;
   
   /**
-     * Représente le nombre de niveaux prédéfinis
-     */
-  private int max = nblvl();
-  
-  /**
      * Représente le controller
      */
   private ControllerIG c;
@@ -175,11 +170,11 @@ public class Fenetre extends JFrame{
     panCenter.setLayout(new GridLayout(3,3,40,40));
 
     ArrayList<JButton> listeNiveaux = new ArrayList<JButton>();     // on regroupe tous les niveaux dans une ArrayList pour les afficher
-    for(int i = 1; i < max; i++) {                                  // on fait ça pour pouvoir ajouter un ActionListener à chaque bouton
+    for(int i = 1; i < nblvl(); i++) {                                  // on fait ça pour pouvoir ajouter un ActionListener à chaque bouton
       listeNiveaux.add(new JButton("Niveau "+i));
     }
 
-    for (int i=debut; i<9; i++) {       // car on veut afficher 9 niveaux max par page
+    for (int i=debut; i<9+debut; i++) {       // car on veut afficher 9 niveaux max par page
       int j = i;
       if (i < listeNiveaux.size()+1) {
         if (listeNiveaux.get(j-1) != null) {
@@ -207,7 +202,7 @@ public class Fenetre extends JFrame{
     if (debut >= 9) boutonPrecedent.addActionListener( (event) -> precedent() );
     panSouth.add(boutonPrecedent);
     JButton boutonSuivant = new JButton("Suivant");
-    if (debut <= max) boutonSuivant.addActionListener( (event) -> suivant() );
+    if (debut <= nblvl()) boutonSuivant.addActionListener( (event) -> suivant() );
     panSouth.add(boutonSuivant);
     panSouth.setVisible(true);
     return panSouth;
@@ -247,7 +242,7 @@ public class Fenetre extends JFrame{
      * fonction pour avancer dans la selection de niveau utilisé dans la classe fenetre, fonction: panSouth()
      */
   public void suivant() {   // avancer dans le tableau de niveaux
-    if (debut < max-9) debut += 9;
+    if (debut < nblvl()-9) debut += 9;
     niveaux();
   }
 

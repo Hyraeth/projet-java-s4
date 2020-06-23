@@ -1,41 +1,86 @@
-
-{
-  "niveaux_off"  :
-  [
-    {
-      "largeur" : 3,
-      "longueur" : 4,
-      "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
-      "resources" : 500,
-      "type" : 1
-    },
-    {
-    "largeur" : 11,
-    "longueur" : 12,
-    "configuration" : "00F31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T32T10F",
-    "resources" : 5,
-    "type" : 2
-    },
-    {
-      "largeur" : 3,
-      "longueur" : 4,
-      "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
-      "resources" : 500,
-      "type" : 1
-    },
-    {
-      "largeur" : 3,
-      "longueur" : 4,
-      "configuration" : "00F23T31T21T20T40T43T10F21T30T22T22T",
-      "resources" : 500,
-      "type" : 2
-    },
-    {
-      "largeur" : 6,
-      "longueur" : 9,
-      "configuration" : "31T21T30T21T22T21T31T22T40T40T30T30T21T30T23T42T40T10F30T21T31T23T50F30T23T30T21T20T40T22T30T21T30T21T23T30T00T23T30T21T41T31T23T21T31T20T30T20T43T23T21T30T30T23T",
-      "resources" : 500,
-      "type" : 1
-    }
-  ]
-}
+{"niveaux_off": [
+  {
+    "longueur": 4,
+    "largeur": 3,
+    "configuration": "00F23T31T21T20T40T43T10F21T30T22T22T",
+    "resources": 500,
+    "type": 1
+  },
+  {
+    "longueur": 12,
+    "largeur": 11,
+    "configuration": "00F31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T32T10F",
+    "resources": 5,
+    "type": 2
+  },
+  {
+    "longueur": 4,
+    "largeur": 3,
+    "configuration": "00F23T31T21T20T40T43T10F21T30T22T22T",
+    "resources": 500,
+    "type": 1
+  },
+  {
+    "longueur": 4,
+    "largeur": 3,
+    "configuration": "00F23T31T21T20T40T43T10F21T30T22T22T",
+    "resources": 500,
+    "type": 2
+  },
+  {
+    "longueur": 9,
+    "largeur": 6,
+    "configuration": "31T21T30T21T22T21T31T22T40T40T30T30T21T30T23T42T40T10F30T21T31T23T50F30T23T30T21T20T40T22T30T21T30T21T23T30T00T23T30T21T41T31T23T21T31T20T30T20T43T23T21T30T30T23T",
+    "resources": 500,
+    "type": 1
+  },
+  {
+    "longueur": 6,
+    "largeur": 6,
+    "configuration": "20T40T20T40T40T20T30T40T30T30T30T20T01F20T50F30T20T40T20T50F20T50F50F30T20T40T40T20T30T13F30T20T20T20T50F30T",
+    "resources": 44,
+    "type": 2
+  },
+  {
+    "longueur": 5,
+    "largeur": 5,
+    "configuration": "50F20T20T50F20T01F40T30T40T40T20T20T20T20T30T30T20T30T20T40T20T40T30T30T13F",
+    "resources": 64,
+    "type": 2
+  },
+  {
+    "longueur": 4,
+    "largeur": 5,
+    "configuration": "01F30T20T20T20T30T20T20T30T20T30T13F30T30T30T30T20T20T30T50F",
+    "resources": 48,
+    "type": 2
+  },
+  {
+    "longueur": 4,
+    "largeur": 5,
+    "configuration": "01F40T20T30T20T40T40T13F20T40T20T20T20T20T20T40T20T30T40T20T",
+    "resources": 68,
+    "type": 1
+  },
+  {
+    "longueur": 4,
+    "largeur": 3,
+    "configuration": "30T20T30T20T01F20T20T13F50F20T20T30T",
+    "resources": 16,
+    "type": 2
+  },
+  {
+    "longueur": 4,
+    "largeur": 4,
+    "configuration": "40T20T30T13F01F20T50F20T40T30T30T30T50F20T30T20T",
+    "resources": 12,
+    "type": 1
+  },
+  {
+    "longueur": 3,
+    "largeur": 3,
+    "configuration": "20T30T13F20T20T30T01F20T20T",
+    "resources": 20,
+    "type": 2
+  }
+]}
