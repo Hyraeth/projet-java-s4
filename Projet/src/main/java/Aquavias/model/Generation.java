@@ -277,7 +277,9 @@ public class Generation {
         }
         n1.setNiveau(tp);
         n1.setType((int)(Math.random() * 2)+1);
-        n1.setResources(g1.calcResource());
+        int res = g1.calcResource();
+        if(facilité <= 10) res+=25;
+        n1.setResources(res);
         return n1;
 
     }
