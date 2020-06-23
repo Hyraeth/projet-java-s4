@@ -1,6 +1,7 @@
 {"niveaux_off": [
   {
     "longueur": 4,
+    "fini": false,
     "largeur": 3,
     "configuration": "00F23T31T21T20T40T43T10F21T30T22T22T",
     "resources": 500,
@@ -8,6 +9,7 @@
   },
   {
     "longueur": 12,
+    "fini": true,
     "largeur": 11,
     "configuration": "00F31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T31T22T21T31T31T31T31T31T31T31T31T31T31T23T20T31T31T31T31T31T31T31T31T31T32T10F",
     "resources": 5,
@@ -15,6 +17,7 @@
   },
   {
     "longueur": 4,
+    "fini": false,
     "largeur": 3,
     "configuration": "00F23T31T21T20T40T43T10F21T30T22T22T",
     "resources": 500,
@@ -22,6 +25,7 @@
   },
   {
     "longueur": 4,
+    "fini": false,
     "largeur": 3,
     "configuration": "00F23T31T21T20T40T43T10F21T30T22T22T",
     "resources": 500,
@@ -29,6 +33,7 @@
   },
   {
     "longueur": 9,
+    "fini": false,
     "largeur": 6,
     "configuration": "31T21T30T21T22T21T31T22T40T40T30T30T21T30T23T42T40T10F30T21T31T23T50F30T23T30T21T20T40T22T30T21T30T21T23T30T00T23T30T21T41T31T23T21T31T20T30T20T43T23T21T30T30T23T",
     "resources": 500,
@@ -36,6 +41,7 @@
   },
   {
     "longueur": 6,
+    "fini": false,
     "largeur": 6,
     "configuration": "20T40T20T40T40T20T30T40T30T30T30T20T01F20T50F30T20T40T20T50F20T50F50F30T20T40T40T20T30T13F30T20T20T20T50F30T",
     "resources": 44,
@@ -43,6 +49,7 @@
   },
   {
     "longueur": 5,
+    "fini": false,
     "largeur": 5,
     "configuration": "50F20T20T50F20T01F40T30T40T40T20T20T20T20T30T30T20T30T20T40T20T40T30T30T13F",
     "resources": 64,
@@ -50,6 +57,7 @@
   },
   {
     "longueur": 4,
+    "fini": false,
     "largeur": 5,
     "configuration": "01F30T20T20T20T30T20T20T30T20T30T13F30T30T30T30T20T20T30T50F",
     "resources": 48,
@@ -57,6 +65,7 @@
   },
   {
     "longueur": 4,
+    "fini": false,
     "largeur": 5,
     "configuration": "01F40T20T30T20T40T40T13F20T40T20T20T20T20T20T40T20T30T40T20T",
     "resources": 68,
@@ -64,6 +73,7 @@
   },
   {
     "longueur": 4,
+    "fini": false,
     "largeur": 3,
     "configuration": "30T20T30T20T01F20T20T13F50F20T20T30T",
     "resources": 16,
@@ -71,6 +81,7 @@
   },
   {
     "longueur": 4,
+    "fini": false,
     "largeur": 4,
     "configuration": "40T20T30T13F01F20T50F20T40T30T30T30T50F20T30T20T",
     "resources": 12,
@@ -78,9 +89,90 @@
   },
   {
     "longueur": 3,
+    "fini": false,
     "largeur": 3,
     "configuration": "20T30T13F20T20T30T01F20T20T",
     "resources": 20,
     "type": 2
+  },
+  {
+    "longueur": 3,
+    "fini": false,
+    "largeur": 3,
+    "configuration": "40T20T20T01F20T20T30T20T13F",
+    "resources": 8,
+    "type": 1
+  },
+  {
+    "longueur": 4,
+    "fini": true,
+    "largeur": 4,
+    "configuration": "01F30T20T50F30T30T30T40T20T50F30T20T20T30T20T13F",
+    "resources": 20,
+    "type": 2
+  },
+  {
+    "longueur": 4,
+    "fini": true,
+    "largeur": 3,
+    "configuration": "01F20T30T30T20T20T50F20T20T30T30T13F",
+    "resources": 24,
+    "type": 2
+  },
+  {
+    "longueur": 4,
+    "fini": false,
+    "largeur": 4,
+    "configuration": "01F20T20T40T20T20T30T20T20T30T30T20T20T30T30T13F",
+    "resources": 44,
+    "type": 2
+  },
+  {
+    "longueur": 3,
+    "fini": false,
+    "largeur": 3,
+    "configuration": "20T30T20T01F30T13F30T20T20T",
+    "resources": 4,
+    "type": 2
+  },
+  {
+    "longueur": 3,
+    "fini": false,
+    "largeur": 3,
+    "configuration": "40T30T30T01F20T20T20T20T13F",
+    "resources": 8,
+    "type": 2
+  },
+  {
+    "longueur": 3,
+    "fini": false,
+    "largeur": 4,
+    "configuration": "30T50F50F20T30T13F20T30T20T01F30T20T",
+    "resources": 28,
+    "type": 1
+  },
+  {
+    "longueur": 3,
+    "fini": false,
+    "largeur": 4,
+    "configuration": "30T40T30T30T30T20T40T20T13F01F20T40T",
+    "resources": 8,
+    "type": 1
+  },
+  {
+    "longueur": 3,
+    "fini": false,
+    "largeur": 4,
+    "configuration": "40T20T50F50F20T13F01F20T40T40T20T30T",
+    "resources": 8,
+    "type": 1
+  },
+  {
+    "longueur": 4,
+    "fini": true,
+    "largeur": 3,
+    "configuration": "20T50F20T13F30T40T20T20T01F30T30T20T",
+    "resources": 24,
+    "type": 1
   }
 ]}

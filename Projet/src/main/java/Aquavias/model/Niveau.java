@@ -33,7 +33,7 @@ public class Niveau {
     /**
      * 0 aucune type, 1 limite de mouvement, 2 limite de réserve
      */
-    private int type; 
+    private int type;
     /**
      * Indique le numéro du niveau dans le fichier json
      */
@@ -42,10 +42,14 @@ public class Niveau {
      * Indique s'il s'agit d'un niveau du fichier ou un niveau généré.
      */
     private String lvlType;
-
+    /**
+     * Indique si le niveau est fini
+     */
+    private boolean fini;
 
     /**
      * Crée un niveau de la taille spécifiée
+     * 
      * @param m largeur
      * @param n longueur
      */
@@ -66,9 +70,10 @@ public class Niveau {
 
     /**
      * Charge le niveau lvl depuis le fichier f
-     * @param f le fichier
-     * @param type string indiquant le type de niveau 
-     * @param lvl int indiquant le niveau 
+     * 
+     * @param f    le fichier
+     * @param type string indiquant le type de niveau
+     * @param lvl  int indiquant le niveau
      * @throws IOException si le fichier n'existe pas
      */
     public void load(File f, String type, int lvl) throws IOException {
@@ -88,6 +93,7 @@ public class Niveau {
 
         this.resources = level.getInt("resources");
         this.type = level.getInt("type");
+        this.fini = level.getBoolean("fini");
 
         lvlNumber = lvl;
         lvlType = type;
@@ -95,8 +101,9 @@ public class Niveau {
 
     /**
      * Sauvegarde un niveau dans le fichier f
-     * @param f le fichier
-     * @param type string indiquant le type de niveau 
+     * 
+     * @param f    le fichier
+     * @param type string indiquant le type de niveau
      * @throws IOException si le fichier n'existe pas
      */
     public void save(File f, String type) throws IOException {
@@ -106,23 +113,48 @@ public class Niveau {
         JSONArray lvl_liste = json.getJSONArray(type);
 
         JSONObject jo = new JSONObject();
-        jo.put("largeur", this.getLargeur()); 
+        jo.put("largeur", this.getLargeur());
         jo.put("longueur", this.getLongueur());
         jo.put("configuration", this.getConfig());
         jo.put("resources", this.resources);
         jo.put("type", this.type);
+        jo.put("fini", this.fini);
 
         lvl_liste.put(jo);
         json.put(type, lvl_liste);
 
-        FileWriter fw = new FileWriter (f);
-		fw.write (json.toString (2));
-		fw.close ();
+        FileWriter fw = new FileWriter(f);
+        fw.write(json.toString(2));
+        fw.close();
+    }
+
+    /**
+     * Modifie le fait qu'un niveau soit fini dans le fichier f
+     * 
+     * @param f    le fichier
+     * @param type string indiquant le type de niveau
+     * @throws IOException si le fichier n'existe pas
+     */
+    public void saveLvlfini(File f, String type) throws IOException {
+        if (!f.exists())
+            return;
+        JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
+        JSONArray lvl_liste = json.getJSONArray(type);
+
+        JSONObject level = lvl_liste.getJSONObject(lvlNumber);
+        level.put("fini", this.fini);
+
+        json.put(type, lvl_liste);
+
+        FileWriter fw = new FileWriter(f);
+        fw.write(json.toString(2));
+        fw.close();
     }
 
     /**
      * Donne le nombre de niveau d'un certain type dans le fichier f
-     * @param f le fichier
+     * 
+     * @param f    le fichier
      * @param type le type de niveau
      * @return le nombre de niveau
      * @throws IOException si le fichier n'existe pas
@@ -135,12 +167,32 @@ public class Niveau {
         return lvl_liste.length();
     }
 
+    public static boolean[] getLvlFinished(File f, String type) throws IOException {
+        if (!f.exists())
+            return null;
+        JSONObject json = new JSONObject(FileUtils.readFileToString(f, "utf-8"));
+        JSONArray lvl_liste = json.getJSONArray(type);
+        boolean[] b = new boolean[lvl_liste.length()];
+        for (int i = 0; i < b.length; i++) {
+            if(lvl_liste.getJSONObject(i).getBoolean("fini")) b[i] = true;
+        }
+        return b;
+    }
+
     /**
      * Donne le numéro du niveau actuel
+     * 
      * @return le numéro du niveua actuel
      */
     public int getLvlNumber() {
         return lvlNumber;
+    }
+
+    /**
+     * Change le numéro du niveau actuel
+     */
+    public void setLvlNumber(int n) {
+        this.lvlNumber = n;
     }
 
     /**
@@ -161,7 +213,8 @@ public class Niveau {
      * Décrémente le nombre de resources et renvoie true si le niveua est finis
      */
     public boolean countdown() {
-        if(resources!=0 && !remplir()) resources--;
+        if (resources != 0 && !remplir())
+            resources--;
         return remplir();
     }
 
@@ -181,6 +234,7 @@ public class Niveau {
 
     /**
      * Renvoie le tuyau à la position i,j du niveau
+     * 
      * @return un tuyau
      */
     public Pipe getPipe(int i, int j) {
@@ -191,7 +245,7 @@ public class Niveau {
      * Renvoie le nombre de resouces restantes dans le niveau
      */
     public int getresources() {
-      return resources;
+        return resources;
     }
 
     /**
@@ -210,6 +264,7 @@ public class Niveau {
 
     /**
      * Renvoie la longueur du niveau
+     * 
      * @return int
      */
     public int getLongueur() {
@@ -218,6 +273,7 @@ public class Niveau {
 
     /**
      * Renvoie la largeur du niveau
+     * 
      * @return int
      */
     public int getLargeur() {
@@ -225,11 +281,12 @@ public class Niveau {
     }
 
     public int[] getScore() {
-      return this.score;
+        return this.score;
     }
 
     /**
      * Modifie le contenu du niveau
+     * 
      * @param p tableau de Pipe
      */
     public void setNiveau(Pipe[][] p) {
@@ -238,29 +295,36 @@ public class Niveau {
 
     /**
      * Ajoute à la pile retour les coordonées i,j
+     * 
      * @param i int
      * @param j int
      */
     public void addRetour(int i, int j) {
-      int[] coordonnees = new int[2];
-      coordonnees[0] = i;
-      coordonnees[1] = j;
-      this.retour.push(coordonnees);
+        int[] coordonnees = new int[2];
+        coordonnees[0] = i;
+        coordonnees[1] = j;
+        this.retour.push(coordonnees);
     }
 
     /**
      * Vérifie si le nivau est finis
+     * 
      * @return true si le niveau est finis
      */
-    public boolean finis () {
+    public boolean finis() {
         boolean cont = true;
-        switch(type){
-            case 1: cont = limMouv(); //S'il y a une limite de mouvement
-            case 2: cont = limRes();  //S'il y a une limite de réservoir
+        switch (type) {
+            case 1:
+                cont = limMouv(); // S'il y a une limite de mouvement
+            case 2:
+                cont = limRes(); // S'il y a une limite de réservoir
         }
-        for (int i = 0; i<this.getLargeur(); i++) {
-            if (niveau[i][this.getLongueur()-1]!=null && niveau[i][this.getLongueur()-1] instanceof PipeArrivee) {
-                return cont && this.remplir() && niveau[i][this.getLongueur()-1].rempli;
+        for (int i = 0; i < this.getLargeur(); i++) {
+            if (niveau[i][this.getLongueur() - 1] != null && niveau[i][this.getLongueur() - 1] instanceof PipeArrivee) {
+                if (cont && this.remplir() && niveau[i][this.getLongueur() - 1].rempli) {
+                    this.fini = true;
+                    return true;
+                }
             }
         }
         return false;

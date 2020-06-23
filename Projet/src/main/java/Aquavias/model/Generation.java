@@ -1,5 +1,7 @@
 package Aquavias.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Aquavias.controller.ControllerIG;
@@ -14,7 +16,10 @@ public class Generation {
      * Représente les connexions du tuyau
      */
     private int[][][] tab;
-    public int[][][] getTab(){return tab;}
+
+    public int[][][] getTab() {
+        return tab;
+    }
 
     /**
      * Initialise une Generation
@@ -25,43 +30,45 @@ public class Generation {
 
     /**
      * Crée une Generation aléatoirement
-     * @param hau dimention en hauteur du niveau souhaité
-     * @param lon dimention en longueur du niveau souhaité
-     * @param facilité difficultée du niveau (plus la valeur est basse, plus le niveau est difficile)
+     * 
+     * @param hau      dimention en hauteur du niveau souhaité
+     * @param lon      dimention en longueur du niveau souhaité
+     * @param facilité difficultée du niveau (plus la valeur est basse, plus le
+     *                 niveau est difficile)
      */
     public static Generation generer(int hau, int lon, int facilité) {
         /**
          * hauteur du niveau de depart
          */
-        int a = (int)(Math.random() * hau);
+        int a = (int) (Math.random() * hau);
         /**
          * hauteur du niveau d'arrivé
          */
-        int b = (int)(Math.random() * hau);
+        int b = (int) (Math.random() * hau);
         int[][][] t = new int[hau][lon][3];
         Generation g = new Generation(t);
         /**
          * initialise les valeur du tableau a 9
          */
-        for (int i = 0; i<hau; i++) {
-            for (int j = 0; j<lon; j++) {
+        for (int i = 0; i < hau; i++) {
+            for (int j = 0; j < lon; j++) {
                 g.tab[i][j][0] = 9;
                 g.tab[i][j][1] = 9;
                 g.tab[i][j][2] = 9;
             }
         }
-        g.tab[a][0][0] = 5;   // 5 = tuyau depart
-        g.tab[b][lon-1][0] = 6;  // 6 = tuyau arrivé
-        boolean c = g.cree(a,1,facilité);
-        while(!c) {
-            for (int i = 0; i<hau; i++) {
-                for (int j = 0; j<lon; j++) {
+        g.tab[a][0][0] = 5; // 5 = tuyau depart
+        g.tab[b][lon - 1][0] = 6; // 6 = tuyau arrivé
+        boolean c = g.cree(a, 1, facilité);
+        while (!c) {
+            for (int i = 0; i < hau; i++) {
+                for (int j = 0; j < lon; j++) {
                     g.tab[i][j][0] = 9;
                     g.tab[i][j][1] = 9;
                     g.tab[i][j][2] = 9;
                 }
             }
-            c = g.cree(a,1,facilité);
+            c = g.cree(a, 1, facilité);
         }
 
         return g;
@@ -69,123 +76,165 @@ public class Generation {
 
     /**
      * Crée un chemin de connection jusqu'a l'arriver
-     * @param x position actuel
-     * @param y position actuel
+     * 
+     * @param x        position actuel
+     * @param y        position actuel
      * @param facilité facilité du niveau
      * @return true si il a été rempli correctement, false sinon
      */
-    public boolean cree(int x, int y, int facilité){
+    public boolean cree(int x, int y, int facilité) {
         /**
          * verifie si on est arrivé
          */
-        if (this.finis(x,y)) {
-            this.tab[x][y][0]=1;
+        if (this.finis(x, y)) {
+            this.tab[x][y][0] = 1;
             return true;
         }
-        int n = (int)(Math.random() * 4);
-        int tuyau3 = (int)(Math.random() * facilité);
-        boolean[] possible = this.disponible(x,y);
-        while (!tableauDeFalse(possible)){
-            while (possible[n]==false) {
-                n = (int)(Math.random() * 4);
+        int n = (int) (Math.random() * 4);
+        int tuyau3 = (int) (Math.random() * facilité);
+        boolean[] possible = this.disponible(x, y);
+        while (!tableauDeFalse(possible)) {
+            while (possible[n] == false) {
+                n = (int) (Math.random() * 4);
             }
-            possible[n]=false;
-            this.tab[x][y][0]=n;
+            possible[n] = false;
+            this.tab[x][y][0] = n;
             boolean b = false;
-            switch(n) {
-                case 0: b=this.cree(x-1,y,facilité);break;   //haut
-                case 1: b=this.cree(x,y+1,facilité);break;
-                case 2: b=this.cree(x+1,y,facilité);break;
-                case 3: b=this.cree(x,y-1,facilité);break;   //gauche
+            switch (n) {
+                case 0:
+                    b = this.cree(x - 1, y, facilité);
+                    break; // haut
+                case 1:
+                    b = this.cree(x, y + 1, facilité);
+                    break;
+                case 2:
+                    b = this.cree(x + 1, y, facilité);
+                    break;
+                case 3:
+                    b = this.cree(x, y - 1, facilité);
+                    break; // gauche
             }
             /**
-             * si le chemin jusqu'a l'arriver est créé, possibilité de créé un autre chemin pour pouvoir poser des Pipe T
+             * si le chemin jusqu'a l'arriver est créé, possibilité de créé un autre chemin
+             * pour pouvoir poser des Pipe T
              */
             if (b) {
-                possible = this.disponible(x,y);
-                if (tuyau3 == 0 && this.tab[x][y][1]==9 && facilité < 100) {
-                    int aleat = (int)(Math.random() * 4);
-                    for (int i = 0; i<4; i++) {
-                        n = (aleat + i)%4;
+                possible = this.disponible(x, y);
+                if (tuyau3 == 0 && this.tab[x][y][1] == 9 && facilité < 100) {
+                    int aleat = (int) (Math.random() * 4);
+                    for (int i = 0; i < 4; i++) {
+                        n = (aleat + i) % 4;
                         if (possible[n]) {
                             possible[n] = false;
-                            if (this.tab[x][y][1] == 9) this.tab[x][y][1] = n;
-                            else this.tab[x][y][2] = n;
+                            if (this.tab[x][y][1] == 9)
+                                this.tab[x][y][1] = n;
+                            else
+                                this.tab[x][y][2] = n;
 
                             boolean c = false;
-                            switch(n) {
-                                case 0: c=this.creeT(x-1,y,2,facilité);break;   //haut
-                                case 1: c=this.creeT(x,y+1,3,facilité);break;   //droite
-                                case 2: c=this.creeT(x+1,y,0,facilité);break;   //bas
-                                case 3: c=this.creeT(x,y-1,1,facilité);break;   //gauche
+                            switch (n) {
+                                case 0:
+                                    c = this.creeT(x - 1, y, 2, facilité);
+                                    break; // haut
+                                case 1:
+                                    c = this.creeT(x, y + 1, 3, facilité);
+                                    break; // droite
+                                case 2:
+                                    c = this.creeT(x + 1, y, 0, facilité);
+                                    break; // bas
+                                case 3:
+                                    c = this.creeT(x, y - 1, 1, facilité);
+                                    break; // gauche
                             }
                             if (!c) {
-                                if (this.tab[x][y][2]!=9 && this.tab[x][y][2]==n) this.tab[x][y][2]=9;
-                                else this.tab[x][y][1]=9;    //si ca n'a pas marcher et si c'est un T
+                                if (this.tab[x][y][2] != 9 && this.tab[x][y][2] == n)
+                                    this.tab[x][y][2] = 9;
+                                else
+                                    this.tab[x][y][1] = 9; // si ca n'a pas marcher et si c'est un T
                             }
                         }
                     }
                 }
                 return true;
-            } 
+            }
         }
-        this.tab[x][y][0]=9;
-        this.tab[x][y][1]=9;
-        this.tab[x][y][2]=9;
+        this.tab[x][y][0] = 9;
+        this.tab[x][y][1] = 9;
+        this.tab[x][y][2] = 9;
         return false;
     }
 
     /**
-     * Crée un chemin de connection qui essaye de rejoindre un chemin (fonctionne un peu pres pareil que la fonction cree)
-     * @param x position actuel
-     * @param y position actuel
-     * @param prec position precedente (0=haut, 1=droite, 2=bas, 3=gauche)
+     * Crée un chemin de connection qui essaye de rejoindre un chemin (fonctionne un
+     * peu pres pareil que la fonction cree)
+     * 
+     * @param x        position actuel
+     * @param y        position actuel
+     * @param prec     position precedente (0=haut, 1=droite, 2=bas, 3=gauche)
      * @param facilité facilité du niveau
      * @return true si il a été rempli correctement, false sinon
      */
     public boolean creeT(int x, int y, int prec, int facilité) {
-        if (this.tab[x][y][0]!=9) {
-            if (tab[x][y][1]==9 || tab[x][y][1]==prec) this.tab[x][y][1]=prec;
-            else this.tab[x][y][2]=prec;
+        if (this.tab[x][y][0] != 9) {
+            if (tab[x][y][1] == 9 || tab[x][y][1] == prec)
+                this.tab[x][y][1] = prec;
+            else
+                this.tab[x][y][2] = prec;
             return true;
         }
-        int n = (int)(Math.random() * 4);
-        int tuyau3 = (int)(Math.random() * facilité+4);
-        boolean[] possible = this.disponibleT(x,y,prec);
-        while (!tableauDeFalse(possible)){
-            n = (int)(Math.random() * 4);
-            while (possible[n]==false) {
-                n = (n+1)%4;
+        int n = (int) (Math.random() * 4);
+        int tuyau3 = (int) (Math.random() * facilité + 4);
+        boolean[] possible = this.disponibleT(x, y, prec);
+        while (!tableauDeFalse(possible)) {
+            n = (int) (Math.random() * 4);
+            while (possible[n] == false) {
+                n = (n + 1) % 4;
             }
-            this.tab[x][y][0]=n;
+            this.tab[x][y][0] = n;
             boolean b = false;
-            switch(n) {
-                case 0: b=this.creeT(x-1,y,2,facilité);break;   //haut
-                case 1: b=this.creeT(x,y+1,3,facilité);break;
-                case 2: b=this.creeT(x+1,y,0,facilité);break;
-                case 3: b=this.creeT(x,y-1,1,facilité);break;   //gauche
+            switch (n) {
+                case 0:
+                    b = this.creeT(x - 1, y, 2, facilité);
+                    break; // haut
+                case 1:
+                    b = this.creeT(x, y + 1, 3, facilité);
+                    break;
+                case 2:
+                    b = this.creeT(x + 1, y, 0, facilité);
+                    break;
+                case 3:
+                    b = this.creeT(x, y - 1, 1, facilité);
+                    break; // gauche
             }
-            possible[n]=false;
+            possible[n] = false;
             if (b && facilité < 100) {
-                possible = this.disponible(x,y);
-                if (tuyau3 == 0 && this.tab[x][y][1]==9) {
-                    int aleat = (int)(Math.random() * 4);
-                    for (int i = 0; i<4; i++) {
-                        n = (aleat + i)%4;
+                possible = this.disponible(x, y);
+                if (tuyau3 == 0 && this.tab[x][y][1] == 9) {
+                    int aleat = (int) (Math.random() * 4);
+                    for (int i = 0; i < 4; i++) {
+                        n = (aleat + i) % 4;
                         if (possible[n]) {
                             possible[n] = false;
                             tab[x][y][1] = n;
 
                             boolean c = false;
-                            switch(n) {
-                                case 0: c=this.creeT(x-1,y,2,facilité);break;   //haut
-                                case 1: c=this.creeT(x,y+1,3,facilité);break;   //droite
-                                case 2: c=this.creeT(x+1,y,0,facilité);break;   //bas
-                                case 3: c=this.creeT(x,y-1,1,facilité);break;   //gauche
+                            switch (n) {
+                                case 0:
+                                    c = this.creeT(x - 1, y, 2, facilité);
+                                    break; // haut
+                                case 1:
+                                    c = this.creeT(x, y + 1, 3, facilité);
+                                    break; // droite
+                                case 2:
+                                    c = this.creeT(x + 1, y, 0, facilité);
+                                    break; // bas
+                                case 3:
+                                    c = this.creeT(x, y - 1, 1, facilité);
+                                    break; // gauche
                             }
                             if (!c) {
-                                tab[x][y][1]=9;
-                                tab[x][y][2]=9;    //si ca n'a pas marcher et si c'est un X
+                                tab[x][y][1] = 9;
+                                tab[x][y][2] = 9; // si ca n'a pas marcher et si c'est un X
                             }
                         }
                     }
@@ -193,50 +242,63 @@ public class Generation {
                 return true;
             }
         }
-        this.tab[x][y][0]=9;
-        this.tab[x][y][1]=9;
-        this.tab[x][y][2]=9;
+        this.tab[x][y][0] = 9;
+        this.tab[x][y][1] = 9;
+        this.tab[x][y][2] = 9;
         return false;
     }
 
-
     /**
-     * Cherche a trouver les dirrection possible depuis une case pour la fonction creeT
-     * @param i position actuel
-     * @param j position actuel
+     * Cherche a trouver les dirrection possible depuis une case pour la fonction
+     * creeT
+     * 
+     * @param i    position actuel
+     * @param j    position actuel
      * @param prec direction du precedent
      * @return un tableau de boolean, t[x]=true si la dirrection x est possible
      */
     public boolean[] disponibleT(int i, int j, int prec) {
         boolean[] b = new boolean[4];
-        if (i-1>=0 && prec != 0 && this.tab[i-1][j][0] != 5 && this.tab[i-1][j][0] != 6) b[0] = true;            //verifie si la case est dans le plateau
-        if (j+1<this.tab[0].length && prec != 1 && this.tab[i][j+1][0] != 5 && this.tab[i][j+1][0] != 6) b[1] = true;
-        if (i+1<this.tab.length && prec != 2 && this.tab[i+1][j][0] != 5 && this.tab[i+1][j][0] != 6) b[2] = true;
-        if (j-1>=0 && prec != 3 && this.tab[i][j-1][0] != 5 && this.tab[i][j-1][0] != 6) b[3] = true;
+        if (i - 1 >= 0 && prec != 0 && this.tab[i - 1][j][0] != 5 && this.tab[i - 1][j][0] != 6)
+            b[0] = true; // verifie si la case est dans le plateau
+        if (j + 1 < this.tab[0].length && prec != 1 && this.tab[i][j + 1][0] != 5 && this.tab[i][j + 1][0] != 6)
+            b[1] = true;
+        if (i + 1 < this.tab.length && prec != 2 && this.tab[i + 1][j][0] != 5 && this.tab[i + 1][j][0] != 6)
+            b[2] = true;
+        if (j - 1 >= 0 && prec != 3 && this.tab[i][j - 1][0] != 5 && this.tab[i][j - 1][0] != 6)
+            b[3] = true;
         return b;
-    } 
+    }
 
     /**
-     * Cherche a trouver les dirrection possible depuis une case pour la fonction cree
+     * Cherche a trouver les dirrection possible depuis une case pour la fonction
+     * cree
+     * 
      * @param i position actuel
      * @param j position actuel
      * @return un tableau de boolean, t[x]=true si la dirrection x est possible
      */
     public boolean[] disponible(int i, int j) {
         boolean[] b = new boolean[4];
-        if (i-1>=0 && this.tab[i-1][j][0] == 9) b[0] = true;            //verifie si la case est dans le plateau
-        if (j+1<this.tab[0].length && this.tab[i][j+1][0] == 9) b[1] = true;   //et si la case n'a pas deja été visitée.
-        if (i+1<this.tab.length && this.tab[i+1][j][0] == 9) b[2] = true;
-        if (j-1>=0 && this.tab[i][j-1][0] == 9) b[3] = true;
+        if (i - 1 >= 0 && this.tab[i - 1][j][0] == 9)
+            b[0] = true; // verifie si la case est dans le plateau
+        if (j + 1 < this.tab[0].length && this.tab[i][j + 1][0] == 9)
+            b[1] = true; // et si la case n'a pas deja été visitée.
+        if (i + 1 < this.tab.length && this.tab[i + 1][j][0] == 9)
+            b[2] = true;
+        if (j - 1 >= 0 && this.tab[i][j - 1][0] == 9)
+            b[3] = true;
         return b;
     }
 
     /**
-     * Permet de savoir si le tableau en parametre est un tableau constitué uniquement de false
+     * Permet de savoir si le tableau en parametre est un tableau constitué
+     * uniquement de false
      */
-    public boolean tableauDeFalse (boolean[] b) {
-        for (int i=0; i<b.length; i++) {
-            if (b[i]==true) return false;
+    public boolean tableauDeFalse(boolean[] b) {
+        for (int i = 0; i < b.length; i++) {
+            if (b[i] == true)
+                return false;
         }
         return true;
     }
@@ -245,13 +307,15 @@ public class Generation {
      * Permet de savoir si nous avons atteint l'arriver
      */
     public boolean finis(int x, int y) {
-        if (y+1<this.tab[0].length) return (this.tab[x][y+1][0]==6);
-        else return false;
+        if (y + 1 < this.tab[0].length)
+            return (this.tab[x][y + 1][0] == 6);
+        else
+            return false;
     }
 
     public static void main(String[] args) {
         VueTerm vt = new VueTerm();
-        Niveau n = init(Integer.valueOf(args[0]),Integer.valueOf(args[1]),Integer.valueOf(args[2]));
+        Niveau n = init(Integer.valueOf(args[0]), Integer.valueOf(args[1]), Integer.valueOf(args[2]));
         vt.afficheNiv(n, true);
         ControllerIG c = new ControllerIG();
         c.setNiveau(n);
@@ -261,25 +325,32 @@ public class Generation {
 
     /**
      * Initialise un niveau aléatoire
-     * @param i hauteur du niveau
-     * @param j largeur du niveau
+     * 
+     * @param i        hauteur du niveau
+     * @param j        largeur du niveau
      * @param facilité facilité du niveau
      * @return un Niveau créé aleatoirement
      */
     public static Niveau init(int i, int j, int facilité) {
-        Generation g1 = generer(i,j,facilité);
-        Niveau n1 = new Niveau(i,j);
+        Generation g1 = generer(i, j, facilité);
+        Niveau n1 = new Niveau(i, j);
 
         Pipe[][] tp = const1(g1.tab);
-        while(tp == null){
-            g1 = generer(i,j,facilité);
+        while (tp == null) {
+            g1 = generer(i, j, facilité);
             tp = const1(g1.tab);
         }
         n1.setNiveau(tp);
-        n1.setType((int)(Math.random() * 2)+1);
+        n1.setType((int) (Math.random() * 2) + 1);
         int res = g1.calcResource();
-        if(facilité <= 10) res+=25;
+        if (facilité <= 10)
+            res += 25;
         n1.setResources(res);
+        try {
+            n1.setLvlNumber(Niveau.getNumberLvl(new File("assets/lvls/niveau.json"), "niveaux_off"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return n1;
 
     }

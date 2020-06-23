@@ -166,6 +166,7 @@ public class Fenetre extends JFrame{
      */
      
   JPanel centre() {
+    boolean[] b = lvlfinis();
     JPanel panCenter = new JPanel();            // partie au centre (les niveaux)
     panCenter.setLayout(new GridLayout(3,3,40,40));
 
@@ -180,6 +181,7 @@ public class Fenetre extends JFrame{
         if (listeNiveaux.get(j-1) != null) {
           listeNiveaux.get(i-1).addActionListener( (event) -> c.lancerNiv(j) );
           listeNiveaux.get(i-1).setBackground(Color.GREEN);
+          if(b[i]) listeNiveaux.get(i-1).setBackground(Color.BLUE);
           listeNiveaux.get(i-1).setForeground(Color.WHITE);
           panCenter.add(listeNiveaux.get(i-1));
         }
@@ -226,7 +228,7 @@ public class Fenetre extends JFrame{
   }
 
   /**
-     * fonction connaître le nombre de niveaux dans le fichier Json utilisé dans la classe fenetre, définir la constante max utilisé dans centre()
+     * fonction connaître le nombre de niveaux dans le fichier Json utilisé dans la classe fenetre
      * @return le nombre de niveaux stockés dans le fichier Json
      */
   int nblvl() {                  
@@ -236,6 +238,20 @@ public class Fenetre extends JFrame{
     catch(Exception e) {
       return 4;  // si on arrive pas à acceder au nombre de niveau, on affiche que les 4 premiers
     }
+  }
+
+   /**
+     * fonction connaître les niveaux finis
+     * @return un tableau de boolean qui vaut true à la position i si le niveau i est fini.
+     */
+  boolean[] lvlfinis() {
+    try {
+      return Niveau.getLvlFinished(new File("assets/lvls/niveau.json"), "niveaux_off");
+    }
+    catch(Exception e) {
+      return null;  // si on arrive pas à acceder au nombre de niveau, on affiche que les 4 premiers
+    }
+    
   }
 
   /**
@@ -344,7 +360,7 @@ public class Fenetre extends JFrame{
      * @return le bouton boutonJouer
      */
   JButton lancerJeu() {
-    JButton boutonJouer = new JButton("Niveaux normaux");
+    JButton boutonJouer = new JButton("Niveaux sauvegardés");
     boutonJouer.addActionListener( (event) -> niveaux());
     boutonJouer.setBackground(Color.YELLOW);
     boutonJouer.setPreferredSize(new Dimension(300,50));

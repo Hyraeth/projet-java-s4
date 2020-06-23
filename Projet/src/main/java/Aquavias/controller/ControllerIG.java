@@ -219,6 +219,11 @@ public class ControllerIG {
                 timer.cancel();
                 timer.purge();
             }
+            try {
+                model.saveLvlfini(new File("assets/lvls/niveau.json"), "niveaux_off");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             model.quit();
             vue.displayWinScreen();
         }
