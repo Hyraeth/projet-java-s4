@@ -503,8 +503,7 @@ public class Niveau {
      * Tourne vers la gauche le dernier tuyau tourné et incrémente le nombre de resource selon le type de règle
      */
     public void undo() {
-      if (this.retour.isEmpty()) System.out.println("vous ne pouvez pas faire un undo");
-      else {
+      if (!this.retour.isEmpty()) {
         int[] tuile = this.retour.peek();
         int i = tuile[0];
         int j = tuile[1];
