@@ -18,36 +18,36 @@ Il a a en tout 6 tuyaux :
   Représentation dans l'interface terminale : ╨ ╞ ╥ ╡
 
   Représentation dans l'interface graphique :
-  ![Tuyau départ](assets/img/00false.png =250x)
-  ![Tuyau arriver](assets/img/10false.png =250x)
+  ![Tuyau départ](https://gaufre.informatique.univ-paris-diderot.fr/ydidel28/projet-java-s4/blob/master/assets/img/00false.png)
+  ![Tuyau arriver](https://gaufre.informatique.univ-paris-diderot.fr/ydidel28/projet-java-s4/blob/master/assets/img/10false.png)
 
 - Un tuyau avec 2 connections "suivie".
   
   Représentation dans l'interface terminale : ╚ ╔ ╗ ╝
 
   Représentation dans l'interface graphique :
-  ![Tuyau en L](assets/img/20false.png =250x)
+  ![Tuyau en L](https://gaufre.informatique.univ-paris-diderot.fr/ydidel28/projet-java-s4/blob/master/assets/img/20false.png)
 
 - Un tuyau avec 2 connections opposées.
   
   Représentation dans l'interface terminale : ║ ═
 
   Représentation dans l'interface graphique :
-  ![Tuyau en I](assets/img/30false.png =250x)
+  ![Tuyau en I](https://gaufre.informatique.univ-paris-diderot.fr/ydidel28/projet-java-s4/blob/master/assets/img/30false.png)
 
 - Un tuyau avec 3 connections.
   
   Représentation dans l'interface terminale : ╠ ╦ ╣ ╩
 
   Représentation dans l'interface graphique :
-  ![Tuyau en T](assets/img/40false.png =250x)
+  ![Tuyau en T](https://gaufre.informatique.univ-paris-diderot.fr/ydidel28/projet-java-s4/blob/master/assets/img/40false.png)
   
 - Un tuyau avec 4 connections.
   
   Représentation dans l'interface terminale : '╬'
 
   Représentation dans l'interface graphique :
-  ![Tuyau en X](assets/img/50false.png =250x)
+  ![Tuyau en X](https://gaufre.informatique.univ-paris-diderot.fr/ydidel28/projet-java-s4/blob/master/assets/img/50false.png)
 
 Voici par exemple comment un tuyau à 2 connections opposées serait modéliser.
 `[TRUE, FALSE, TRUE, FALSE]`
