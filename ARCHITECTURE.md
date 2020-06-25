@@ -190,4 +190,6 @@ L'algorithme commence par remplir la case si ele est relier a la case precendent
 
 ### Algorithme de génération de niveaux
 
-WIP
+l'algorithme de génération de niveau va commencer par créer une matrice d'entiers qui vont nous permetre d'associer a une case un pipe et d'avoir a la fin un niveau fonctionnel.
+La matrice d'entier est en réalité une matice de tableaux d'entiers, qui donne pour une case, les connections du pipe.
+l'agorithle commence donc au depart, sont but va etre de rejoindre l'arrivée en créant un chemin, mais suivant la facilité demandé du niveau, l'agorithme a la possibilité de posé des pipe T qui vont créer un autre chemin dont l'objctif va etre cette fois de rejoindre le un autre chemin (et non l'arrivée).
