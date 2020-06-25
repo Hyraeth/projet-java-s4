@@ -289,7 +289,7 @@ public class Fenetre extends JFrame{
     JLabel titre = reglesTitre();
     gc.gridx = 1; gc.gridy = 0;
     pan.add(titre, gc);
-    JLabel regleun = new JLabel("Il faut faire arriver l'eau jusqu'au tuyau rouge.");
+    JLabel regleun = new JLabel("Il faut faire arriver l'eau jusqu'au tuyau rouge en tournant(cliquant) les tuyaux sans qu'il y ait de fuites sur le chemin.");
     gc.gridx = 1; gc.gridy = 1;
     pan.add(regleun, gc);
     JPanel vide = new JPanel();
