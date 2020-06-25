@@ -19,7 +19,6 @@ Il a a en tout 6 tuyaux :
 
   Représentation dans l'interface graphique :
   [Tuyau départ](https://gaufre.informatique.univ-paris-diderot.fr/ydidel28/projet-java-s4/blob/master/assets/img/00false.png)
-  
   [Tuyau arriver](https://gaufre.informatique.univ-paris-diderot.fr/ydidel28/projet-java-s4/blob/master/assets/img/10false.png)
 
 - Un tuyau avec 2 connections "suivie".
