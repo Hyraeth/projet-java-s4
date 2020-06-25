@@ -181,10 +181,6 @@ Il y a un attribut qui sert à stocker les positions des tuyaux qui ont été to
 
 Cette classe sert à afficher un tuyau dans l'interface graphique. Il y a un tableau de tableau de BuffedredImage static. Cela sert à charger qu'une seule fois les images et ensuite choisir quelle image afficher selon l'indice (un attribut) du tuyau à afficher.
 
-## Organisation de l'interface graphique
-
-WIP
-
 ## Algorithmes
 
 ### Algorithme de coulage d'eau
