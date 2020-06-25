@@ -185,7 +185,8 @@ Cette classe sert à afficher un tuyau dans l'interface graphique. Il y a un tab
 
 ### Algorithme de coulage d'eau
 
-Wip
+Cette algorithme permet de remplir les case relier au depart, et nous sert aussi a savoir si il y a des fuites (renvoi true si il n'y a pas de fuites).
+L'algorithme commence par remplir la case si ele est relier a la case precendente, il va ensuite testé si il a des fuite, cet a dire si les connections donnent bien sur une connection d'une autre case. Après ça, il va appeler l'algorithme sur lees cases ajacentes connectée.
 
 ### Algorithme de génération de niveaux
 
