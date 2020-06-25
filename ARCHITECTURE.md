@@ -1,5 +1,6 @@
 # Projet de programmation : AQUAVIAS
 
+
 ## Architecture du programme
 
 Notre programme est divisé en 3 parties : la partie logique du programme (le model), la partie graphique (la vue) et un controller qui gère la communication entre la vue et le model.
@@ -23,6 +24,7 @@ VueTerm est l'affichage du jeu dans le terminal. C'est une classe qui sert de de
 ### Le controller
 
 Le controller s'occupe de lancer un niveau et avertit la vue lorsqu'il y a des changement à faire. Il sert aussi à dire au model lorsqu'il y a quelque chose à faire. Par exemple si le joueur clique sur un tuyau, le controller dit au model de tourner ce tuyau et une fois qu'il est tourner, dire à la vue de se mettre à jour afin d'afficher le tuyau bien tourner.
+
 
 ## Arbre des fichiers
 
@@ -54,6 +56,7 @@ Projet
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ VueTerm.java
  ┃ ┃ ┃ ┃ ┃ ┗ App.java
 ```
+
 
 ## Modélisation du jeu
 
@@ -132,6 +135,7 @@ Exemple d'affichage d'un niveau dans l'interface terminale :
 
 Cette classe sert à générer des niveaux aléatoires. Pour plus d'information, aller à la section Algorithmes.
 
+
 ## Structures de données
 
 ### Stockage des niveaux de jeu
@@ -180,6 +184,7 @@ Il y a un attribut qui sert à stocker les positions des tuyaux qui ont été to
 ### Structures de données de la classe JPanelPipe
 
 Cette classe sert à afficher un tuyau dans l'interface graphique. Il y a un tableau de tableau de BuffedredImage static. Cela sert à ne charger qu'une seule fois les images, et ensuite choisir quelle image afficher selon l'indice (un attribut) du tuyau à afficher.
+
 
 ## Algorithmes
 
